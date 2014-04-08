@@ -5,10 +5,15 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <parameter key="pmd_resources_resolver.factory.class">PMD\ResourcesResolverBundle\Factory\Factory</parameter>
         <parameter key="pmd_resources_resolver.event_listener.controller_listener.class">PMD\ResourcesResolverBundle\EventListener\ControllerListener</parameter>
     </parameters>
 
     <services>
+        <service id="pmd_resources_resolver.factory"
+                 class="%pmd_resources_resolver.factory.class%">
+        </service>
+
         <service id="pmd_resources_resolver.event_listener.controller_listener"
                  class="%pmd_resources_resolver.event_listener.controller_listener.class%">
             <tag name="kernel.event_listener"
