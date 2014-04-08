@@ -36,7 +36,10 @@ class MethodRequirementsCollector implements RequirementsCollectorInterface
     public function collectRequirements()
     {
         foreach ($this->method->getParameters() as $parameter) {
-            $this->requirements[] = $this->createRequirement($parameter);
+            $requirement = $this->createRequirement($parameter);
+            $name = $requirement->getName();
+
+            $this->requirements[$name] = $requirement;
         }
     }
 
