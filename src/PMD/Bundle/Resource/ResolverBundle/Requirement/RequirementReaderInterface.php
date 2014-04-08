@@ -14,7 +14,7 @@ interface RequirementReaderInterface
     public function isOptional();
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getClass();
 

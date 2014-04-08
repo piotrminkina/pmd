@@ -34,7 +34,12 @@ class ParameterRequirement implements RequirementReaderInterface
      */
     public function getClass()
     {
-        return $this->parameter->getClass();
+        $class = $this->parameter->getClass();
+
+        if ($class) {
+            return $class->getName();
+        }
+        return null;
     }
 
     /**
