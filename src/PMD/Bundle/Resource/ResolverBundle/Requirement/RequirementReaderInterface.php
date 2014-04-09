@@ -21,5 +21,10 @@ interface RequirementReaderInterface
     /**
      * @return string
      */
-    public function getName();
+    public function getResourceName();
+
+    /**
+     * @return string
+     */
+    public function getResolvedName();
 }

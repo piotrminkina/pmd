@@ -2,6 +2,8 @@
 
 namespace PMD\ResourcesResolverBundle\Requirement;
 
+use Doctrine\Common\Inflector\Inflector;
+
 /**
  * Class ParameterRequirement
  * @package PMD\ResourcesResolverBundle\Requirement
@@ -45,7 +47,15 @@ class ParameterRequirement implements RequirementReaderInterface
     /**
      * @inheritdoc
      */
-    public function getName()
+    public function getResourceName()
+    {
+        return Inflector::tableize($this->parameter->getName());
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getResolvedName()
     {
         return $this->parameter->getName();
     }
