@@ -2,8 +2,9 @@
 
 namespace PMD\ResourcesResolverBundle\EventListener;
 
-use PMD\ResourcesResolverBundle\Factory\FactoryInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use PMD\ResourcesResolverBundle\Factory\FactoryInterface;
+use PMD\ResourcesResolverBundle\ResourcesResolverInterface;
 
 /**
  * Class ControllerListener
@@ -17,11 +18,20 @@ class ControllerListener
     protected $factory;
 
     /**
-     * @param FactoryInterface $factory
+     * @var ResourcesResolverInterface
      */
-    public function __construct(FactoryInterface $factory)
-    {
+    protected $resolver;
+
+    /**
+     * @param FactoryInterface $factory
+     * @param ResourcesResolverInterface $resolver
+     */
+    public function __construct(
+        FactoryInterface $factory,
+        ResourcesResolverInterface $resolver
+    ) {
         $this->factory = $factory;
+        $this->resolver = $resolver;
     }
 
     /**
@@ -29,12 +39,12 @@ class ControllerListener
      */
     public function onKernelController(FilterControllerEvent $event)
     {
-        /*
         $controller = $event->getController();
         $request = $event->getRequest();
 
         $collector = $this->factory->createRequirementsCollector($controller);
         $injector = $this->factory->createResourcesInjector($request);
-         */
+
+        $this->resolver->resolveAndInject($collector, $injector);
     }
 }
