@@ -12,7 +12,7 @@
         <service id="pmd_resources_resolver.event_listener.controller_listener"
                  class="%pmd_resources_resolver.event_listener.controller_listener.class%">
             <argument type="service"
-                      id="pmd_resources_resolver.factory"/>
+                      id="pmd_resources_resolver.factory.request_controller"/>
             <argument type="service"
                       id="pmd_resources_resolver.resources_resolver"/>
             <tag name="kernel.event_listener"
