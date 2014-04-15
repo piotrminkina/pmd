@@ -2,6 +2,9 @@
 
 namespace PMD\ResourcesResolverBundle\Factory;
 
+use
+    PMD\ResourcesResolverBundle\Collector\Decorator\FilterExistsRequestAttribute;
+use PMD\ResourcesResolverBundle\Collector\Decorator\FilterRequestClass;
 use Symfony\Component\HttpFoundation\Request;
 use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
 use PMD\ResourcesResolverBundle\Collector\MethodRequirements;
@@ -67,6 +70,7 @@ class RequestControllerFactory implements FactoryInterface
      */
     public function createCollector()
     {
+        $request = $this->request;
         $controller = $this->controller;
         $collector = null;
 
@@ -79,7 +83,8 @@ class RequestControllerFactory implements FactoryInterface
         if (!$collector) {
             throw new InvalidArgumentException('Unsupported controller type');
         }
-        $collector->collect();
+        $collector = new FilterExistsRequestAttribute($collector, $request);
+        $collector = new FilterRequestClass($collector, $request);
 
         return $collector;
     }
