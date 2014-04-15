@@ -2,13 +2,16 @@
 
 namespace PMD\ResourcesResolverBundle\Collector;
 
+use PMD\ResourcesResolverBundle\Requirement\RequirementReadInterface;
+
 /**
  * Interface CollectorInterface
  * @package PMD\ResourcesResolverBundle\Collector
  */
-interface CollectorInterface extends CollectorReadInterface
+interface CollectorInterface
 {
     /**
+     * @return RequirementReadInterface[]
      */
-    public function collectRequirements();
+    public function collect();
 }

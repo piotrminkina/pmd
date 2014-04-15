@@ -15,39 +15,29 @@ abstract class AbstractCallableRequirements implements CollectorInterface
      * @var \ReflectionFunctionAbstract
      */
     protected $reflection;
-    
-    /**
-     * @var RequirementInterface[]
-     */
-    protected $requirements;
 
     /**
      */
     public function __construct(\ReflectionFunctionAbstract $reflection)
     {
         $this->reflection = $reflection;
-        $this->requirements = array();
     }
     
     /**
      * @inheritdoc
      */
-    public function collectRequirements()
+    public function collect()
     {
+        $requirements = array();
+
         foreach ($this->reflection->getParameters() as $parameter) {
             $requirement = $this->createRequirement($parameter);
             $resourceName = $requirement->getResourceName();
 
-            $this->requirements[$resourceName] = $requirement;
+            $requirements[$resourceName] = $requirement;
         }
-    }
 
-    /**
-     * @inheritdoc
-     */
-    public function getIterator()
-    {
-        return new \ArrayIterator($this->requirements);
+        return $requirements;
     }
 
     /**

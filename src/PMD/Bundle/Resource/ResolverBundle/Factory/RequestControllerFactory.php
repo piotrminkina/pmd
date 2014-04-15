@@ -79,7 +79,7 @@ class RequestControllerFactory implements FactoryInterface
         if (!$collector) {
             throw new InvalidArgumentException('Unsupported controller type');
         }
-        $collector->collectRequirements();
+        $collector->collect();
 
         return $collector;
     }
