@@ -3,7 +3,6 @@
 namespace PMD\ResourcesResolverBundle\Collector\Decorator;
 
 use PMD\ResourcesResolverBundle\Collector\CollectorInterface;
-use PMD\ResourcesResolverBundle\Requirement\RequirementReadInterface;
 
 /**
  * Class AbstractDecorator

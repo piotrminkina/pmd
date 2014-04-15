@@ -3,7 +3,6 @@
 namespace PMD\ResourcesResolverBundle\Resolver;
 
 use PMD\ResourcesResolverBundle\Exception\ResourceNotFoundException;
-use PMD\ResourcesResolverBundle\Requirement\RequirementReadInterface;
 use PMD\ResourcesResolverBundle\Collector\CollectorInterface;
 use PMD\ResourcesResolverBundle\Injector\InjectorInterface;
 use PMD\ResourcesResolverBundle\Provider\ProviderReadInterface;
