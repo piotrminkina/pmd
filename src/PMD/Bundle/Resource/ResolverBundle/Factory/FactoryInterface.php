@@ -2,9 +2,11 @@
 
 namespace PMD\ResourcesResolverBundle\Factory;
 
-use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
 use PMD\ResourcesResolverBundle\Collector\CollectorInterface;
+use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
 use PMD\ResourcesResolverBundle\Injector\InjectorInterface;
+use PMD\ResourcesResolverBundle\Provider\ProviderInterface;
+use PMD\ResourcesResolverBundle\Resolver\ResolverInterface;
 
 /**
  * Interface FactoryInterface
@@ -23,4 +25,14 @@ interface FactoryInterface
      * @throws InvalidArgumentException
      */
     public function createInjector();
+
+    /**
+     * @return ProviderInterface
+     */
+    public function createProvider();
+
+    /**
+     * @return ResolverInterface
+     */
+    public function createResolver();
 }

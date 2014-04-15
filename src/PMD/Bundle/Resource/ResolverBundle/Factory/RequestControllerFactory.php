@@ -2,14 +2,15 @@
 
 namespace PMD\ResourcesResolverBundle\Factory;
 
-use
-    PMD\ResourcesResolverBundle\Collector\Decorator\FilterExistsRequestAttribute;
-use PMD\ResourcesResolverBundle\Collector\Decorator\FilterRequestClass;
 use Symfony\Component\HttpFoundation\Request;
-use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
-use PMD\ResourcesResolverBundle\Collector\MethodRequirements;
+use PMD\ResourcesResolverBundle\Collector\Decorator\FilterExistsRequestAttribute;
+use PMD\ResourcesResolverBundle\Collector\Decorator\FilterRequestClass;
 use PMD\ResourcesResolverBundle\Collector\FunctionRequirements;
+use PMD\ResourcesResolverBundle\Collector\MethodRequirements;
+use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
 use PMD\ResourcesResolverBundle\Injector\RequestAttributeInjector;
+use PMD\ResourcesResolverBundle\Provider\RequestProvider;
+use PMD\ResourcesResolverBundle\Resolver\Resolver;
 
 /**
  * Class RequestControllerFactory
@@ -101,5 +102,23 @@ class RequestControllerFactory implements FactoryInterface
         }
 
         return new RequestAttributeInjector($this->request);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function createProvider()
+    {
+        return new RequestProvider($this->request);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function createResolver()
+    {
+        $provider = $this->createProvider();
+
+        return new Resolver($provider);
     }
 }

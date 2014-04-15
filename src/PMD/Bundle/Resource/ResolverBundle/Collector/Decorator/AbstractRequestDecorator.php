@@ -2,8 +2,8 @@
 
 namespace PMD\ResourcesResolverBundle\Collector\Decorator;
 
-use PMD\ResourcesResolverBundle\Collector\CollectorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use PMD\ResourcesResolverBundle\Collector\CollectorInterface;
 
 /**
  * Class AbstractRequestDecorator

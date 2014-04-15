@@ -23,8 +23,6 @@ class PMDResourcesResolverExtension extends Extension
             new FileLocator(__DIR__ . '/../Resources/config')
         );
         $loader->load('factory.xml');
-        $loader->load('provider.xml');
-        $loader->load('resolver.xml');
         $loader->load('event.xml');
     }
 

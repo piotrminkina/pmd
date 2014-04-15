@@ -2,8 +2,8 @@
 
 namespace PMD\ResourcesResolverBundle\Resolver;
 
-use PMD\ResourcesResolverBundle\Exception\ResourceNotFoundException;
 use PMD\ResourcesResolverBundle\Collector\CollectorInterface;
+use PMD\ResourcesResolverBundle\Exception\ResourceNotFoundException;
 use PMD\ResourcesResolverBundle\Injector\InjectorInterface;
 
 /**
