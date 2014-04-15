@@ -5,10 +5,10 @@ namespace PMD\ResourcesResolverBundle\Requirement;
 use Doctrine\Common\Inflector\Inflector;
 
 /**
- * Class ParameterRequirement
+ * Class CallbackParameter
  * @package PMD\ResourcesResolverBundle\Requirement
  */
-class ParameterRequirement implements RequirementReaderInterface
+class CallbackParameter implements RequirementInterface
 {
     /**
      * @var \ReflectionParameter

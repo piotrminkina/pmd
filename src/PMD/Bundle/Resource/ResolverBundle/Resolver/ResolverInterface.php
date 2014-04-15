@@ -3,7 +3,7 @@
 namespace PMD\ResourcesResolverBundle\Resolver;
 
 use PMD\ResourcesResolverBundle\Exception\ResourceNotFoundException;
-use PMD\ResourcesResolverBundle\RequirementsCollector\RequirementsCollectorReaderInterface;
+use PMD\ResourcesResolverBundle\RequirementsCollector\RequirementsCollectorReadInterface;
 use PMD\ResourcesResolverBundle\Injector\InjectorInterface;
 
 /**
@@ -13,20 +13,20 @@ use PMD\ResourcesResolverBundle\Injector\InjectorInterface;
 interface ResolverInterface
 {
     /**
-     * @param RequirementsCollectorReaderInterface $collector
+     * @param RequirementsCollectorReadInterface $collector
      * @return array
      * @throws ResourceNotFoundException
      */
-    public function resolve(RequirementsCollectorReaderInterface $collector);
+    public function resolve(RequirementsCollectorReadInterface $collector);
 
     /**
-     * @param RequirementsCollectorReaderInterface $collector
+     * @param RequirementsCollectorReadInterface $collector
      * @param InjectorInterface $injector
      * @return array
      * @throws ResourceNotFoundException
      */
     public function resolveAndInject(
-        RequirementsCollectorReaderInterface $collector,
+        RequirementsCollectorReadInterface $collector,
         InjectorInterface $injector
     );
 }

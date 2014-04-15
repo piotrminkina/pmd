@@ -6,7 +6,7 @@ namespace PMD\ResourcesResolverBundle\RequirementsCollector;
  * Interface RequirementsCollectorInterface
  * @package PMD\ResourcesResolverBundle\RequirementsCollector
  */
-interface RequirementsCollectorInterface extends RequirementsCollectorReaderInterface
+interface RequirementsCollectorInterface extends RequirementsCollectorReadInterface
 {
     /**
      */

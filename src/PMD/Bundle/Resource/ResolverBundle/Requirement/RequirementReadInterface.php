@@ -3,10 +3,10 @@
 namespace PMD\ResourcesResolverBundle\Requirement;
 
 /**
- * Interface RequirementReaderInterface
+ * Interface RequirementReadInterface
  * @package PMD\ResourcesResolverBundle\Requirement
  */
-interface RequirementReaderInterface
+interface RequirementReadInterface
 {
     /**
      * @return bool

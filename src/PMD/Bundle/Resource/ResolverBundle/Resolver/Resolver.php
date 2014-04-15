@@ -3,8 +3,8 @@
 namespace PMD\ResourcesResolverBundle\Resolver;
 
 use PMD\ResourcesResolverBundle\Exception\ResourceNotFoundException;
-use PMD\ResourcesResolverBundle\Requirement\RequirementReaderInterface;
-use PMD\ResourcesResolverBundle\RequirementsCollector\RequirementsCollectorReaderInterface;
+use PMD\ResourcesResolverBundle\Requirement\RequirementReadInterface;
+use PMD\ResourcesResolverBundle\RequirementsCollector\RequirementsCollectorReadInterface;
 use PMD\ResourcesResolverBundle\Injector\InjectorInterface;
 use PMD\ResourcesResolverBundle\Provider\ProviderReadInterface;
 
@@ -30,11 +30,11 @@ class Resolver implements ResolverInterface
     /**
      * @inheritdoc
      */
-    public function resolve(RequirementsCollectorReaderInterface $collector)
+    public function resolve(RequirementsCollectorReadInterface $collector)
     {
         $resources = array();
 
-        /** @var RequirementReaderInterface[] $collector */
+        /** @var RequirementReadInterface[] $collector */
         foreach ($collector as $resourceName => $requirement) {
             $resolvedName = $requirement->getResolvedName();
 
@@ -55,7 +55,7 @@ class Resolver implements ResolverInterface
      * @inheritdoc
      */
     public function resolveAndInject(
-        RequirementsCollectorReaderInterface $collector,
+        RequirementsCollectorReadInterface $collector,
         InjectorInterface $injector
     ) {
         $resources = $this->resolve($collector);

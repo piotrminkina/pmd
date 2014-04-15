@@ -70,14 +70,10 @@ class RequestControllerFactory implements FactoryInterface
         $controller = $this->controller;
         $collector = null;
 
-        if (is_array($controller)) {
-            if (count($controller) == 2) {
-                $method = new \ReflectionMethod($controller[0], $controller[1]);
-                $collector = new MethodRequirementsCollector($method);
-            }
-        } elseif (is_scalar($controller)) {
-            $function = new \ReflectionFunction($controller);
-            $collector = new FunctionRequirementsCollector($function);
+        if (is_array($controller) && count($controller) == 2) {
+            $collector = new MethodRequirementsCollector($controller[0], $controller[1]);
+        } elseif (is_string($controller)) {
+            $collector = new FunctionRequirementsCollector($controller);
         }
 
         if (!$collector) {
