@@ -1,14 +1,14 @@
 <?php
 
-namespace PMD\ResourcesResolverBundle\ResourcesInjector;
+namespace PMD\ResourcesResolverBundle\Injector;
 
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class RequestAttributeInjector
- * @package PMD\ResourcesResolverBundle\ResourcesInjector
+ * @package PMD\ResourcesResolverBundle\Injector
  */
-class RequestAttributeInjector implements ResourcesInjectorInterface
+class RequestAttributeInjector implements InjectorInterface
 {
     /**
      * @var Request

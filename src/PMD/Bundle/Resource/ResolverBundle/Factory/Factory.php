@@ -5,7 +5,7 @@ namespace PMD\ResourcesResolverBundle\Factory;
 use Symfony\Component\HttpFoundation\Request;
 use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
 use PMD\ResourcesResolverBundle\RequirementsCollector\MethodRequirementsCollector;
-use PMD\ResourcesResolverBundle\ResourcesInjector\RequestAttributeInjector;
+use PMD\ResourcesResolverBundle\Injector\RequestAttributeInjector;
 
 /**
  * Class Factory
@@ -35,7 +35,7 @@ class Factory implements FactoryInterface
     /**
      * @inheritdoc
      */
-    public function createResourcesInjector(Request $request)
+    public function createInjector(Request $request)
     {
         return new RequestAttributeInjector($request);
     }

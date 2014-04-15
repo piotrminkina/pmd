@@ -43,7 +43,7 @@ class ControllerListener
         $request = $event->getRequest();
 
         $collector = $this->factory->createRequirementsCollector($controller);
-        $injector = $this->factory->createResourcesInjector($request);
+        $injector = $this->factory->createInjector($request);
 
         $this->resolver->resolveAndInject($collector, $injector);
     }

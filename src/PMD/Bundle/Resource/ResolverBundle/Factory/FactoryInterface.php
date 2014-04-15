@@ -4,7 +4,7 @@ namespace PMD\ResourcesResolverBundle\Factory;
 
 use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
 use PMD\ResourcesResolverBundle\RequirementsCollector\RequirementsCollectorReaderInterface;
-use PMD\ResourcesResolverBundle\ResourcesInjector\ResourcesInjectorInterface;
+use PMD\ResourcesResolverBundle\Injector\InjectorInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -22,7 +22,7 @@ interface FactoryInterface
 
     /**
      * @param Request $request
-     * @return ResourcesInjectorInterface
+     * @return InjectorInterface
      */
-    public function createResourcesInjector(Request $request);
+    public function createInjector(Request $request);
 }
