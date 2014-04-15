@@ -2,6 +2,8 @@
 
 namespace PMD\ResourcesResolverBundle\Factory;
 
+use
+    PMD\ResourcesResolverBundle\RequirementsCollector\FunctionRequirementsCollector;
 use Symfony\Component\HttpFoundation\Request;
 use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
 use PMD\ResourcesResolverBundle\RequirementsCollector\MethodRequirementsCollector;
@@ -27,6 +29,13 @@ class Factory implements FactoryInterface
 
                 return $collector;
             }
+        } elseif (is_scalar($callback)) {
+            $function = new \ReflectionFunction($callback);
+
+            $collector = new FunctionRequirementsCollector($function);
+            $collector->collectRequirements();
+
+            return $collector;
         }
 
         throw new InvalidArgumentException('Unsupported callback type');
