@@ -24,8 +24,8 @@ class PMDResourcesResolverExtension extends Extension
         );
         $loader->load('factory.xml');
         $loader->load('provider.xml');
-        $loader->load('resources_resolver.xml');
-        $loader->load('event_listener.xml');
+        $loader->load('resolver.xml');
+        $loader->load('event.xml');
     }
 
     /**

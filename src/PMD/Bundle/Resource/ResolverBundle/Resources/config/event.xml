@@ -14,7 +14,7 @@
             <argument type="service"
                       id="pmd_resources_resolver.factory.request_controller"/>
             <argument type="service"
-                      id="pmd_resources_resolver.resources_resolver"/>
+                      id="pmd_resources_resolver.resolver.resolver"/>
             <tag name="kernel.event_listener"
                  event="kernel.controller"
                  method="onKernelController"/>

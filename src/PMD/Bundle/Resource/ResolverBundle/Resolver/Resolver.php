@@ -1,6 +1,6 @@
 <?php
 
-namespace PMD\ResourcesResolverBundle;
+namespace PMD\ResourcesResolverBundle\Resolver;
 
 use PMD\ResourcesResolverBundle\Exception\ResourceNotFoundException;
 use PMD\ResourcesResolverBundle\Requirement\RequirementReaderInterface;
@@ -9,10 +9,10 @@ use PMD\ResourcesResolverBundle\Injector\InjectorInterface;
 use PMD\ResourcesResolverBundle\Provider\ProviderReadInterface;
 
 /**
- * Class ResourcesResolver
- * @package PMD\ResourcesResolverBundle
+ * Class Resolver
+ * @package PMD\ResourcesResolverBundle\Resolver
  */
-class ResourcesResolver implements ResourcesResolverInterface
+class Resolver implements ResolverInterface
 {
     /**
      * @var ProviderReadInterface

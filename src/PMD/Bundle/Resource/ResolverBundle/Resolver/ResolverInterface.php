@@ -1,16 +1,16 @@
 <?php
 
-namespace PMD\ResourcesResolverBundle;
+namespace PMD\ResourcesResolverBundle\Resolver;
 
 use PMD\ResourcesResolverBundle\Exception\ResourceNotFoundException;
 use PMD\ResourcesResolverBundle\RequirementsCollector\RequirementsCollectorReaderInterface;
 use PMD\ResourcesResolverBundle\Injector\InjectorInterface;
 
 /**
- * Interface ResourcesResolverInterface
- * @package PMD\ResourcesResolverBundle
+ * Interface ResolverInterface
+ * @package PMD\ResourcesResolverBundle\Resolver
  */
-interface ResourcesResolverInterface
+interface ResolverInterface
 {
     /**
      * @param RequirementsCollectorReaderInterface $collector

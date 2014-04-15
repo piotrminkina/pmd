@@ -5,12 +5,12 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="pmd_resources_resolver.resources_resolver.class">PMD\ResourcesResolverBundle\ResourcesResolver</parameter>
+        <parameter key="pmd_resources_resolver.resolver.resolver.class">PMD\ResourcesResolverBundle\Resolver\Resolver</parameter>
     </parameters>
 
     <services>
-        <service id="pmd_resources_resolver.resources_resolver"
-                 class="%pmd_resources_resolver.resources_resolver.class%">
+        <service id="pmd_resources_resolver.resolver.resolver"
+                 class="%pmd_resources_resolver.resolver.resolver.class%">
             <argument type="service" id="pmd_resources_resolver.provider.provider"/>
         </service>
     </services>
