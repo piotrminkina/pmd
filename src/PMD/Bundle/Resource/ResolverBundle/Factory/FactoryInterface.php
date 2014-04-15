@@ -3,17 +3,17 @@
 namespace PMD\ResourcesResolverBundle\Factory;
 
 use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
-use PMD\ResourcesResolverBundle\RequirementsCollector\RequirementsCollectorReadInterface;
+use PMD\ResourcesResolverBundle\Collector\CollectorReadInterface;
 use PMD\ResourcesResolverBundle\Injector\InjectorInterface;
 
 /**
  * Interface FactoryInterface
- * @package PMD\ResourcesResolverBundle\RequirementsCollector
+ * @package PMD\ResourcesResolverBundle\Collector
  */
 interface FactoryInterface
 {
     /**
-     * @return RequirementsCollectorReadInterface
+     * @return CollectorReadInterface
      * @throws InvalidArgumentException
      */
     public function createCollector();

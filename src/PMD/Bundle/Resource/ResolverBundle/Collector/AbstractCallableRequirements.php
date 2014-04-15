@@ -1,15 +1,15 @@
 <?php
 
-namespace PMD\ResourcesResolverBundle\RequirementsCollector;
+namespace PMD\ResourcesResolverBundle\Collector;
 
 use PMD\ResourcesResolverBundle\Requirement\CallbackParameter;
 use PMD\ResourcesResolverBundle\Requirement\RequirementInterface;
 
 /**
- * Class AbstractCallableRequirementsCollector
- * @package PMD\ResourcesResolverBundle\RequirementsCollector
+ * Class AbstractCallableRequirements
+ * @package PMD\ResourcesResolverBundle\Collector
  */
-abstract class AbstractCallableRequirementsCollector implements RequirementsCollectorInterface
+abstract class AbstractCallableRequirements implements CollectorInterface
 {
     /**
      * @var \ReflectionFunctionAbstract

@@ -4,13 +4,13 @@ namespace PMD\ResourcesResolverBundle\Factory;
 
 use Symfony\Component\HttpFoundation\Request;
 use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
-use PMD\ResourcesResolverBundle\RequirementsCollector\MethodRequirementsCollector;
-use PMD\ResourcesResolverBundle\RequirementsCollector\FunctionRequirementsCollector;
+use PMD\ResourcesResolverBundle\Collector\MethodRequirements;
+use PMD\ResourcesResolverBundle\Collector\FunctionRequirements;
 use PMD\ResourcesResolverBundle\Injector\RequestAttributeInjector;
 
 /**
  * Class RequestControllerFactory
- * @package PMD\ResourcesResolverBundle\RequirementsCollector
+ * @package PMD\ResourcesResolverBundle\Collector
  */
 class RequestControllerFactory implements FactoryInterface
 {
@@ -71,9 +71,9 @@ class RequestControllerFactory implements FactoryInterface
         $collector = null;
 
         if (is_array($controller) && count($controller) == 2) {
-            $collector = new MethodRequirementsCollector($controller[0], $controller[1]);
+            $collector = new MethodRequirements($controller[0], $controller[1]);
         } elseif (is_string($controller)) {
-            $collector = new FunctionRequirementsCollector($controller);
+            $collector = new FunctionRequirements($controller);
         }
 
         if (!$collector) {
