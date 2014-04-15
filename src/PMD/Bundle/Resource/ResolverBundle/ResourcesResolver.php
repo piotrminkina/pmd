@@ -6,7 +6,7 @@ use PMD\ResourcesResolverBundle\Exception\ResourceNotFoundException;
 use PMD\ResourcesResolverBundle\Requirement\RequirementReaderInterface;
 use PMD\ResourcesResolverBundle\RequirementsCollector\RequirementsCollectorReaderInterface;
 use PMD\ResourcesResolverBundle\ResourcesInjector\ResourcesInjectorInterface;
-use PMD\ResourcesResolverBundle\ResourcesProvider\ResourcesProviderReaderInterface;
+use PMD\ResourcesResolverBundle\Provider\ProviderReadInterface;
 
 /**
  * Class ResourcesResolver
@@ -15,14 +15,14 @@ use PMD\ResourcesResolverBundle\ResourcesProvider\ResourcesProviderReaderInterfa
 class ResourcesResolver implements ResourcesResolverInterface
 {
     /**
-     * @var ResourcesProviderReaderInterface
+     * @var ProviderReadInterface
      */
     protected $provider;
 
     /**
-     * @param ResourcesProviderReaderInterface $provider
+     * @param ProviderReadInterface $provider
      */
-    public function __construct(ResourcesProviderReaderInterface $provider)
+    public function __construct(ProviderReadInterface $provider)
     {
         $this->provider = $provider;
     }
@@ -38,8 +38,8 @@ class ResourcesResolver implements ResourcesResolverInterface
         foreach ($collector as $resourceName => $requirement) {
             $resolvedName = $requirement->getResolvedName();
 
-            if ($this->provider->hasResource($resourceName)) {
-                $resource = $this->provider->getResource($resourceName);
+            if ($this->provider->has($resourceName)) {
+                $resource = $this->provider->get($resourceName);
                 $resources[$resolvedName] = $resource;
             } elseif (!$requirement->isOptional()) {
                 throw new ResourceNotFoundException(
@@ -63,5 +63,7 @@ class ResourcesResolver implements ResourcesResolverInterface
         foreach ($resources as $resolvedName => $resource) {
             $injector->inject($resolvedName, $resource);
         }
+
+        return $resources;
     }
 }

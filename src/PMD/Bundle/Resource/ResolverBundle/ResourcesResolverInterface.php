@@ -22,6 +22,7 @@ interface ResourcesResolverInterface
     /**
      * @param RequirementsCollectorReaderInterface $collector
      * @param ResourcesInjectorInterface $injector
+     * @return array
      * @throws ResourceNotFoundException
      */
     public function resolveAndInject(

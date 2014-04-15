@@ -11,7 +11,7 @@
     <services>
         <service id="pmd_resources_resolver.resources_resolver"
                  class="%pmd_resources_resolver.resources_resolver.class%">
-            <argument type="service" id="pmd_resources_resolver.resources_provider"/>
+            <argument type="service" id="pmd_resources_resolver.provider.provider"/>
         </service>
     </services>
 
