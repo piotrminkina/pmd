@@ -2,6 +2,10 @@
 
 namespace PMD\ResourcesResolverBundle\Factory;
 
+use PMD\ResourcesResolverBundle\Parser\ExpressionParser;
+use PMD\ResourcesResolverBundle\Parser\ParserChain;
+use PMD\ResourcesResolverBundle\Parser\ServiceParser;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use PMD\ResourcesResolverBundle\Collector\Decorator\FilterExistsRequestAttribute;
 use PMD\ResourcesResolverBundle\Collector\Decorator\FilterRequestClass;
@@ -9,6 +13,9 @@ use PMD\ResourcesResolverBundle\Collector\FunctionRequirements;
 use PMD\ResourcesResolverBundle\Collector\MethodRequirements;
 use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
 use PMD\ResourcesResolverBundle\Injector\RequestAttributeInjector;
+use PMD\ResourcesResolverBundle\Parser\ParserInterface;
+use PMD\ResourcesResolverBundle\Parser\RecursiveParser;
+use PMD\ResourcesResolverBundle\Provider\Decorator\ParseDecorator;
 use PMD\ResourcesResolverBundle\Provider\RequestProvider;
 use PMD\ResourcesResolverBundle\Resolver\Resolver;
 
@@ -19,6 +26,11 @@ use PMD\ResourcesResolverBundle\Resolver\Resolver;
 class RequestControllerFactory implements FactoryInterface
 {
     /**
+     * @var ContainerInterface
+     */
+    protected $container;
+
+    /**
      * @var Request|null
      */
     protected $request;
@@ -27,6 +39,14 @@ class RequestControllerFactory implements FactoryInterface
      * @var callable|null
      */
     protected $controller;
+
+    /**
+     * @param ContainerInterface $container
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
 
     /**
      * @param Request $request
@@ -105,11 +125,32 @@ class RequestControllerFactory implements FactoryInterface
     }
 
     /**
+     * @return ParserInterface
+     */
+    public function createParser()
+    {
+        $parser = new ParserChain(
+            array(
+                new ExpressionParser($this->container, $this->request),
+                new ServiceParser($this->container),
+            )
+        );
+        $parser = new RecursiveParser($parser);
+
+        return $parser;
+    }
+
+    /**
      * @inheritdoc
      */
     public function createProvider()
     {
-        return new RequestProvider($this->request);
+        $parser = $this->createParser();
+
+        $provider = new RequestProvider($this->request);
+        $provider = new ParseDecorator($provider, $parser);
+
+        return $provider;
     }
 
     /**

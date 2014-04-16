@@ -11,6 +11,7 @@
     <services>
         <service id="pmd_resources_resolver.factory.request_controller_factory"
                  class="%pmd_resources_resolver.factory.request_controller_factory.class%">
+            <argument type="service" id="service_container"/>
         </service>
     </services>
 

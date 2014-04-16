@@ -5,6 +5,7 @@ namespace PMD\ResourcesResolverBundle\Factory;
 use PMD\ResourcesResolverBundle\Collector\CollectorInterface;
 use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
 use PMD\ResourcesResolverBundle\Injector\InjectorInterface;
+use PMD\ResourcesResolverBundle\Parser\ParserInterface;
 use PMD\ResourcesResolverBundle\Provider\ProviderInterface;
 use PMD\ResourcesResolverBundle\Resolver\ResolverInterface;
 
@@ -30,6 +31,11 @@ interface FactoryInterface
      * @return ProviderInterface
      */
     public function createProvider();
+
+    /**
+     * @return ParserInterface
+     */
+    public function createParser();
 
     /**
      * @return ResolverInterface
