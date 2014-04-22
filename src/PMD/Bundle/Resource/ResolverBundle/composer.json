@@ -1,5 +1,5 @@
 {
-    "name": "piotrminkina/reources-resolver-bundle",
+    "name": "piotrminkina/resources-resolver-bundle",
     "license": "proprietary",
     "type": "symfony-bundle",
     "description": "Resolves controllers actions parameters and injects Resources",
