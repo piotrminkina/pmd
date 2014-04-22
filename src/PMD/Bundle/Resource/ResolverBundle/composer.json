@@ -20,7 +20,7 @@
     "config": {
         "bin-dir": "bin"
     },
-    "target-dir": "PMD/ResourcesResolver",
+    "target-dir": "PMD/ResourcesResolverBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "0.1-dev"
