@@ -1,0 +1,62 @@
+{% extends 'PMDFrontendBundle:Block:basic.html.twig' %}
+
+{% set block_title = block_title|default(block('title')|trim) %}
+{% set block_header = block_header|default(block('header')|trim) %}
+{% set block_footer = block_footer|default(block('footer')|trim) %}
+
+{% set block_title_attrs = block_title_attrs|default({}) %}
+{% set block_title_attrs = block_title_attrs|merge({class: ('block-title ' ~ block_title_attrs.class|default(''))|trim}) %}
+{% set block_header_attrs = block_header_attrs|default({}) %}
+{% set block_header_attrs = block_header_attrs|merge({class: ('block-header ' ~ block_header_attrs.class|default(''))|trim}) %}
+{% set block_body_attrs = block_body_attrs|default({}) %}
+{% set block_body_attrs = block_body_attrs|merge({class: ('block-body ' ~ block_body_attrs.class|default(''))|trim}) %}
+{% set block_footer_attrs = block_footer_attrs|default({}) %}
+{% set block_footer_attrs = block_footer_attrs|merge({class: ('block-footer ' ~ block_footer_attrs.class|default(''))|trim}) %}
+
+{% block block_content %}
+    {% block block_header %}
+        {% if block_title is not empty or block_header is not empty %}
+            {% set attrs = block_header_attrs %}
+
+            <header {{ block('block_attrs') }}>
+                {% block block_header_content %}
+                    {{ block_header|raw }}
+
+                    {% block block_title %}
+                        {% if block_title is not empty %}
+                            {% set attrs = block_title_attrs %}
+
+                            <h1 {{ block('block_attrs') }}>
+                                {% block block_title_content %}
+                                    {{ block_title|raw }}
+                                {% endblock %}
+                            </h1>
+                        {% endif %}
+                    {% endblock %}
+                {% endblock %}
+            </header>
+        {% endif %}
+    {% endblock %}
+
+    {{- parent() -}}
+
+    {% block block_footer %}
+        {% if block_footer is not empty %}
+            {% set attrs = block_footer_attrs %}
+
+            <footer {{ block('block_attrs') }}>
+                {% block block_footer_content %}
+                    {{ block_footer|raw }}
+                {% endblock %}
+            </footer>
+        {% endif %}
+    {% endblock %}
+{% endblock %}
+
+{% block block_body %}
+    {% set attrs = block_body_attrs %}
+
+    <div {{ block('block_attrs') }}>
+        {{ parent() }}
+    </div>
+{% endblock %}

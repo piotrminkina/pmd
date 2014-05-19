@@ -1,0 +1,29 @@
+{
+    "name": "piotrminkina/frontend-bundle",
+    "license": "proprietary",
+    "type": "symfony-bundle",
+    "description": "Utilities to build frontend, like layouts, blocks, templates etc.",
+    "authors": [
+        {
+            "name": "Piotr Minkina",
+            "email": "projekty@piotrminkina.pl",
+            "homepage": "http://www.piotrminkina.pl"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "PMD\\FrontendBundle": "" }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.4"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "target-dir": "PMD/FrontendBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}

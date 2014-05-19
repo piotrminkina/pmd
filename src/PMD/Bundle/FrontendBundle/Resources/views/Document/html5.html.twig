@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="{{ app.request.locale }}">
+<head>
+    {% block document_metadata %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
+    <title>{% block document_title '' %}</title>
+    {% block document_javascripts %}{% endblock %}
+    {% block document_stylesheets %}{% endblock %}
+</head>
+<body>
+    {% block document_body %}{% endblock %}
+</body>
+</html>
