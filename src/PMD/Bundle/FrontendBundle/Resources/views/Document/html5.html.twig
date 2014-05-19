@@ -7,6 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     {% endblock %}
     <title>{% block document_title '' %}</title>
+    {% block document_links %}
+        <link type="image/x-icon" rel="icon" href="{{ asset('favicon.ico') }}">
+    {% endblock %}
     {% block document_javascripts %}{% endblock %}
     {% block document_stylesheets %}{% endblock %}
 </head>
