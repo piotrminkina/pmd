@@ -1,0 +1,29 @@
+{
+    "name": "piotrminkina/doctrine-bundle",
+    "license": "proprietary",
+    "type": "symfony-bundle",
+    "description": "Pre-configured Doctrine to works with future projects",
+    "authors": [
+        {
+            "name": "Piotr Minkina",
+            "email": "projekty@piotrminkina.pl",
+            "homepage": "http://www.piotrminkina.pl"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "PMD\\DoctrineBundle": "" }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.4"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "target-dir": "PMD/DoctrineBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
