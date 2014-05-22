@@ -22,7 +22,7 @@ class PMDFrontendExtension extends Extension
             $container,
             new FileLocator(__DIR__ . '/../Resources/config')
         );
-        //$loader->load('services.xml');
+        $loader->load('event.xml');
     }
 
     /**
