@@ -11,11 +11,9 @@
     <services>
         <service id="pmd_resources_resolver.event_listener.controller_listener"
                  class="%pmd_resources_resolver.event_listener.controller_listener.class%">
+            <tag name="kernel.event_subscriber" />
             <argument type="service"
                       id="pmd_resources_resolver.factory.request_controller_factory"/>
-            <tag name="kernel.event_listener"
-                 event="kernel.controller"
-                 method="onKernelController"/>
         </service>
     </services>
 
