@@ -28,8 +28,6 @@ class BlockListener implements EventSubscriberInterface
             if (!array_key_exists('_block', $parameters)) {
                 $parameters['_block'] = $request->attributes->get('_block');
             }
-
-            $request->attributes->remove('_block');
         }
 
         if ($request->attributes->has('_block_vars')) {
@@ -40,8 +38,6 @@ class BlockListener implements EventSubscriberInterface
             if (!array_key_exists('_block_vars', $parameters)) {
                 $parameters['_block_vars'] = $request->attributes->get('_block_vars');
             }
-
-            $request->attributes->remove('_block_vars');
 
             foreach ($parameters['_block_vars'] as $name => $value) {
                 $parameters['block_' . $name] = $value;

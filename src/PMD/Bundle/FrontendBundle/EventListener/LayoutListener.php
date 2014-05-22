@@ -28,8 +28,6 @@ class LayoutListener implements EventSubscriberInterface
             if (!array_key_exists('_layout', $parameters)) {
                 $parameters['_layout'] = $request->attributes->get('_layout');
             }
-
-            $request->attributes->remove('_layout');
         }
 
         $event->setControllerResult($parameters);
