@@ -1,0 +1,11 @@
+{% block html_attrs %}
+    {%- set class = class|default('') -%}
+    {%- set attrs = attrs|merge({
+        class: (class ~ ' ' ~ attrs.class|default(''))|trim
+    }) -%}
+
+    {%- for attrname, attrvalue in attrs -%}
+        {{- " " -}}
+        {{- attrname }}="{{ attrvalue }}"
+    {%- endfor -%}
+{% endblock html_attrs %}

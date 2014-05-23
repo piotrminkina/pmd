@@ -1,25 +1,21 @@
-{% set attrs = {} %}
+{% use 'PMDFrontendBundle::blocks.html.twig' %}
+
 {% set block_tag = block_tag|default('section') %}
-{% set block_body = block_body|default(block('body')|trim) %}
 {% set block_attrs = block_attrs|default({}) %}
-{% set block_attrs = block_attrs|merge({class: ('block ' ~ block_attrs.class|default(''))|trim}) %}
 
-{% block block %}
+{% set _block_body = block('body')|trim %}
+
+{% block _block %}
     {% set attrs = block_attrs %}
+    {% set class = 'block' %}
 
-    <{{ block_tag }} {{ block('block_attrs') }}>
-        {% block block_content %}
-            {% block block_body %}
-                {% block block_body_content %}
-                    {{ block_body|raw }}
+    <{{ block_tag }}{{ block('html_attrs') }}>
+        {% block _block_content %}
+            {% block _block_body %}
+                {% block _block_body_content %}
+                    {{ _block_body|raw }}
                 {% endblock %}
             {% endblock %}
         {% endblock %}
     </{{ block_tag }}>
 {% endblock %}
-
-{% block block_attrs %}
-    {%- for name, value in attrs -%}
-        {{- name }}="{{ value }}"
-    {%- endfor -%}
-{% endblock block_attrs %}
