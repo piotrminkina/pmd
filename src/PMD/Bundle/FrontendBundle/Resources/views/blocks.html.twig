@@ -1,8 +1,11 @@
 {% block html_attrs %}
     {%- set class = class|default('') -%}
-    {%- set attrs = attrs|merge({
-        class: (class ~ ' ' ~ attrs.class|default(''))|trim
-    }) -%}
+
+    {%- if class -%}
+        {%- set attrs = attrs|merge({
+            class: (class ~ ' ' ~ attrs.class|default(''))|trim
+        }) -%}
+    {%- endif -%}
 
     {%- for attrname, attrvalue in attrs -%}
         {{- " " -}}

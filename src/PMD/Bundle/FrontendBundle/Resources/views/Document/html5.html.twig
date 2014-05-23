@@ -1,6 +1,16 @@
+{% use 'PMDFrontendBundle::blocks.html.twig' %}
+{% spaceless %}
+
+{% set document_attrs = document_attrs|default({}) %}
+{% set document_head_attrs = document_head_attrs|default({}) %}
+{% set document_body_attrs = document_body_attrs|default({}) %}
+
+{% endspaceless %}
 <!doctype html>
-<html lang="{{ app.request.locale }}">
-<head>
+{% set attrs = {lang: app.request.locale}|merge(document_attrs) %}
+<html{{ block('html_attrs') }}>
+{% set attrs = document_head_attrs %}
+<head{{ block('html_attrs') }}>
     {% block document_metadata %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +23,8 @@
     {% block document_javascripts %}{% endblock %}
     {% block document_stylesheets %}{% endblock %}
 </head>
-<body>
+{% set attrs = document_body_attrs %}
+<body{{ block('html_attrs') }}>
     {% block document_body %}{% endblock %}
 </body>
 </html>
