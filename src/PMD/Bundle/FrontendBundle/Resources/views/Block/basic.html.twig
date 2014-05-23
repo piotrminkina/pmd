@@ -1,12 +1,15 @@
-{% use 'PMDFrontendBundle::blocks.html.twig' %}
-{% spaceless %}
+{% extends _layout|default('@PMDFrontend/Layout/none.html.twig') %}
+{% use '@PMDFrontend/blocks.html.twig' %}
 
 {% set block_tag = block_tag|default('section') %}
 {% set block_attrs = block_attrs|default({}) %}
 
 {% set _block_body = block('body')|trim %}
 
-{% endspaceless %}
+{% block layout_body %}
+    {{ block('_block') }}
+{% endblock %}
+
 {% block _block %}
     {% set attrs = block_attrs %}
     {% set class = 'block' %}

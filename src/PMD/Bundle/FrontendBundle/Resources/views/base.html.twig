@@ -1,30 +1,5 @@
-{% extends _layout %}
+{% extends _block %}
 
-{% set _document = _document|default('PMDFrontendBundle:Document:html5.html.twig') %}
-{% set _layout = _layout|default('PMDFrontendBundle:Layout:none.html.twig') %}
-{% set _block = _block|default('PMDFrontendBundle:Block:basic.html.twig') %}
-
-{% set block_title = block('title') %}
-{% set block_header = block('header') %}
-{% set block_body = block('body') %}
-{% set block_footer = block('footer') %}
-
-{% block layout_body %}
-    {% embed _block %}
-        {% block title %}
-            {{ block_title|raw }}
-        {% endblock %}
-
-        {% block header %}
-            {{ block_header|raw }}
-        {% endblock %}
-
-        {% block body %}
-            {{ block_body|raw }}
-        {% endblock %}
-
-        {% block footer %}
-            {{ block_footer|raw }}
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
+{% set _document = _document|default('@PMDFrontend/Document/html5.html.twig') %}
+{% set _layout = _layout|default('@PMDFrontend/Layout/none.html.twig') %}
+{% set _block = _block|default('@PMDFrontend/Block/basic.html.twig') %}

@@ -1,4 +1,4 @@
-{% extends _document %}
+{% extends _document|default('@PMDFrontend/Document/html5.html.twig') %}
 
 {% block document_body %}
     {% block layout_body %}{% endblock %}
