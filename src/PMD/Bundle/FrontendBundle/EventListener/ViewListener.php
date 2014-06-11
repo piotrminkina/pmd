@@ -115,6 +115,7 @@ class ViewListener implements EventSubscriberInterface
     {
         $vars = array();
         $attributes = $this->request->attributes;
+        $parameters = $this->request->query;
         $varsGroups = array('document', 'layout', 'block');
 
         foreach ($varsGroups as $varsGroup) {
@@ -124,10 +125,18 @@ class ViewListener implements EventSubscriberInterface
 
             if ($attributes->has($view)) {
                 $vars[$view] = $attributes->get($view);
+            } elseif ($parameters->has($view)) {
+                // FIXME: Temporary added support from request query
+                $vars[$view] = $parameters->get($view);
             }
 
             if ($attributes->has($viewVars)) {
                 foreach ($attributes->get($viewVars) as $name => $value) {
+                    $vars[$prefix . $name] = $value;
+                }
+            } elseif ($parameters->has($viewVars)) {
+                // FIXME: Temporary added support from request query
+                foreach ($parameters->get($viewVars) as $name => $value) {
                     $vars[$prefix . $name] = $value;
                 }
             }
