@@ -5,6 +5,10 @@
 {% set _layout = layout_vars._layout|default() %}
 {% set _layout_vars = layout_vars._layout_vars|default() %}
 
-{% block document_body %}
-    {% block layout_body %}{% endblock %}
+{% block document_body_content %}
+    {{ block('layout_body') }}
+{% endblock %}
+
+{% block layout_body %}
+    {% block layout_body_content %}{% endblock %}
 {% endblock %}

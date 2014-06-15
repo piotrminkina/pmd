@@ -1,0 +1,14 @@
+{% spaceless %}
+    {% set document_vars = _document_vars|default({}) %}
+
+    {% set _document = document_vars._document|default() %}
+    {% set _document_vars = document_vars._document_vars|default() %}
+
+    {% block document %}
+        {% block document_content %}
+            {% block document_body %}
+                {% block document_body_content %}{% endblock %}
+            {% endblock %}
+        {% endblock %}
+    {% endblock %}
+{% endspaceless %}

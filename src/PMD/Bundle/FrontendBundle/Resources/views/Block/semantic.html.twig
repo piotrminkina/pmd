@@ -1,14 +1,18 @@
 {% extends '@PMDFrontend/Block/basic.html.twig' %}
 {% use '@PMDFrontend/blocks.html.twig' %}
 
-{% set block_header_attrs = block_vars.header_attrs|default({}) %}
-{% set block_header = block('header')|trim %}
-{% set block_title_tag = block_vars.title_tag|default('h1') %}
-{% set block_title_attrs = block_vars.title_attrs|default({}) %}
-{% set block_title = block_vars.title|default(block('title'))|trim %}
-{% set block_body_attrs = block_vars.body_attrs|default({}) %}
-{% set block_footer_attrs = block_vars.footer_attrs|default({}) %}
-{% set block_footer = block('footer')|trim %}
+{% block block %}
+    {% set block_header_attrs = block_vars.header_attrs|default({}) %}
+    {% set block_header = block('header')|trim %}
+    {% set block_title_tag = block_vars.title_tag|default('h1') %}
+    {% set block_title_attrs = block_vars.title_attrs|default({}) %}
+    {% set block_title = block_vars.title|default(block('title'))|trim %}
+    {% set block_body_attrs = block_vars.body_attrs|default({}) %}
+    {% set block_footer_attrs = block_vars.footer_attrs|default({}) %}
+    {% set block_footer = block('footer')|trim %}
+
+    {{ parent() }}
+{% endblock %}
 
 {% block block_content %}
     {{ block('block_header') }}

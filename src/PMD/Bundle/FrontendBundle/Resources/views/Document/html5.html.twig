@@ -1,35 +1,51 @@
+{% extends '@PMDFrontend/Document/basic.html.twig' %}
 {% use '@PMDFrontend/blocks.html.twig' %}
-{% spaceless %}
 
-{% set document_vars = _document_vars|default({}) %}
+{% block document %}
+    {% set document_attrs = document_vars.attrs|default({}) %}
+    {% set document_head_attrs = document_vars.head_attrs|default({}) %}
+    {% set document_body_attrs = document_vars.body_attrs|default({}) %}
 
-{% set _document = document_vars._document|default() %}
-{% set _document_vars = document_vars._document_vars|default() %}
+    {% set attrs = {lang: app.request.locale}|merge(document_attrs) %}
 
-{% set document_attrs = document_vars.attrs|default({}) %}
-{% set document_head_attrs = document_vars.head_attrs|default({}) %}
-{% set document_body_attrs = document_vars.body_attrs|default({}) %}
+    <!doctype html>
+    <html{{ block('html_attrs') }}>
 
-{% endspaceless %}
-<!doctype html>
-{% set attrs = {lang: app.request.locale}|merge(document_attrs) %}
-<html{{ block('html_attrs') }}>
-{% set attrs = document_head_attrs %}
-<head{{ block('html_attrs') }}>
-    {% block document_metadata %}
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% endblock %}
-    <title>{% block document_title '' %}</title>
-    {% block document_links %}
-        <link type="image/x-icon" rel="icon" href="{{ asset('favicon.ico') }}">
-    {% endblock %}
-    {% block document_javascripts %}{% endblock %}
-    {% block document_stylesheets %}{% endblock %}
-</head>
-{% set attrs = document_body_attrs %}
-<body{{ block('html_attrs') }}>
-    {% block document_body %}{% endblock %}
-</body>
-</html>
+    {{ parent() }}
+
+    </html>
+{% endblock %}
+
+{% block document_content %}
+    {{ block('document_head') }}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block document_head %}
+    {% set attrs = document_head_attrs %}
+
+    <head{{ block('html_attrs') }}>
+        {% block document_metadata %}
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% endblock %}
+        <title>{% block document_title '' %}</title>
+        {% block document_links %}
+            <link type="image/x-icon" rel="icon" href="{{ asset('favicon.ico') }}">
+        {% endblock %}
+        {% block document_javascripts %}{% endblock %}
+        {% block document_stylesheets %}{% endblock %}
+
+        {% block document_head_content %}{% endblock %}
+    </head>
+{% endblock %}
+
+{% block document_body %}
+    {% set attrs = document_body_attrs %}
+
+    <body{{ block('html_attrs') }}>
+        {{ parent() }}
+    </body>
+{% endblock %}
