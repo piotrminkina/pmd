@@ -1,5 +1,10 @@
 {% extends _document|default('@PMDFrontend/Document/html5.html.twig') %}
 
+{% set layout_vars = _layout_vars|default({}) %}
+
+{% set _layout = layout_vars._layout|default() %}
+{% set _layout_vars = layout_vars._layout_vars|default() %}
+
 {% block document_body %}
     {% block layout_body %}{% endblock %}
 {% endblock %}

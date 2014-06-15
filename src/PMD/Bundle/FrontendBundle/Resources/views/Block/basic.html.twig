@@ -1,24 +1,28 @@
 {% extends _layout|default('@PMDFrontend/Layout/none.html.twig') %}
 {% use '@PMDFrontend/blocks.html.twig' %}
 
-{% set block_tag = block_tag|default('section') %}
-{% set block_attrs = block_attrs|default({}) %}
+{% set block_vars = _block_vars|default({}) %}
 
-{% set _block_body = block('body')|trim %}
+{% set _block = block_vars._block|default() %}
+{% set _block_vars = block_vars._block_vars|default() %}
+
+{% set block_tag = block_vars.tag|default('section') %}
+{% set block_attrs = block_vars.attrs|default({}) %}
+{% set block_body = block('body')|trim %}
 
 {% block layout_body %}
-    {{ block('_block') }}
+    {{ block('block') }}
 {% endblock %}
 
-{% block _block %}
+{% block block %}
     {% set attrs = block_attrs %}
     {% set class = 'block' %}
 
     <{{ block_tag }}{{ block('html_attrs') }}>
-        {% block _block_content %}
-            {% block _block_body %}
-                {% block _block_body_content %}
-                    {{ _block_body|raw }}
+        {% block block_content %}
+            {% block block_body %}
+                {% block block_body_content %}
+                    {{ block_body|raw }}
                 {% endblock %}
             {% endblock %}
         {% endblock %}

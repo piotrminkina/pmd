@@ -1,53 +1,52 @@
 {% extends '@PMDFrontend/Block/basic.html.twig' %}
 {% use '@PMDFrontend/blocks.html.twig' %}
 
-{% set block_header_attrs = block_header_attrs|default({}) %}
-{% set block_title_tag = block_title_tag|default('h1') %}
-{% set block_title_attrs = block_title_attrs|default({}) %}
-{% set block_body_attrs = block_body_attrs|default({}) %}
-{% set block_footer_attrs = block_footer_attrs|default({}) %}
+{% set block_header_attrs = block_vars.header_attrs|default({}) %}
+{% set block_header = block('header')|trim %}
+{% set block_title_tag = block_vars.title_tag|default('h1') %}
+{% set block_title_attrs = block_vars.title_attrs|default({}) %}
+{% set block_title = block_vars.title|default(block('title'))|trim %}
+{% set block_body_attrs = block_vars.body_attrs|default({}) %}
+{% set block_footer_attrs = block_vars.footer_attrs|default({}) %}
+{% set block_footer = block('footer')|trim %}
 
-{% set _block_title = block('title')|trim %}
-{% set _block_header = block('header')|trim %}
-{% set _block_footer = block('footer')|trim %}
-
-{% block _block_content %}
-    {{ block('_block_header') }}
+{% block block_content %}
+    {{ block('block_header') }}
 
     {{ parent() }}
 
-    {{ block('_block_footer') }}
+    {{ block('block_footer') }}
 {% endblock %}
 
-{% block _block_header %}
-    {% if _block_title is not empty or _block_header is not empty %}
+{% block block_header %}
+    {% if block_title is not empty or block_header is not empty %}
         {% set attrs = block_header_attrs %}
         {% set class = 'block-header' %}
 
         <header{{ block('html_attrs') }}>
-            {% block _block_header_content %}
-                {{ block('_block_title') }}
+            {% block block_header_content %}
+                {{ block('block_title') }}
 
-                {{ _block_header|raw }}
+                {{ block_header|raw }}
             {% endblock %}
         </header>
     {% endif %}
 {% endblock %}
 
-{% block _block_title %}
-    {% if _block_title is not empty %}
+{% block block_title %}
+    {% if block_title is not empty %}
         {% set attrs = block_title_attrs %}
         {% set class = 'block-title' %}
 
         <{{ block_title_tag }}{{ block('html_attrs') }}>
-            {% block _block_title_content %}
-                {{ _block_title|raw }}
+            {% block block_title_content %}
+                {{ block_title|raw }}
             {% endblock %}
         </{{ block_title_tag }}>
     {% endif %}
 {% endblock %}
 
-{% block _block_body %}
+{% block block_body %}
     {% set attrs = block_body_attrs %}
     {% set class = 'block-body' %}
 
@@ -56,14 +55,14 @@
     </div>
 {% endblock %}
 
-{% block _block_footer %}
-    {% if _block_footer is not empty %}
+{% block block_footer %}
+    {% if block_footer is not empty %}
         {% set attrs = block_footer_attrs %}
         {% set class = 'block-footer' %}
 
         <footer{{ block('html_attrs') }}>
-            {% block _block_footer_content %}
-                {{ _block_footer|raw }}
+            {% block block_footer_content %}
+                {{ block_footer|raw }}
             {% endblock %}
         </footer>
     {% endif %}

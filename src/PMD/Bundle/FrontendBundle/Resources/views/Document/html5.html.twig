@@ -1,9 +1,14 @@
 {% use '@PMDFrontend/blocks.html.twig' %}
 {% spaceless %}
 
-{% set document_attrs = document_attrs|default({}) %}
-{% set document_head_attrs = document_head_attrs|default({}) %}
-{% set document_body_attrs = document_body_attrs|default({}) %}
+{% set document_vars = _document_vars|default({}) %}
+
+{% set _document = document_vars._document|default() %}
+{% set _document_vars = document_vars._document_vars|default() %}
+
+{% set document_attrs = document_vars.attrs|default({}) %}
+{% set document_head_attrs = document_vars.head_attrs|default({}) %}
+{% set document_body_attrs = document_vars.body_attrs|default({}) %}
 
 {% endspaceless %}
 <!doctype html>
