@@ -4,16 +4,17 @@
 
 
 {% block document %}
-    {% set document_class = document_vars.class|default('') %}
-    {% set document_attrs = document_vars.attrs|default({}) %}
-    {% set document_attrs = {lang: app.request.locale}|merge(document_attrs) %}
-    {% set document_head_class = document_vars.head_class|default('') %}
-    {% set document_head_attrs = document_vars.head_attrs|default({}) %}
-    {% set document_body_class = document_vars.body_class|default('') %}
-    {% set document_body_attrs = document_vars.body_attrs|default({}) %}
+    {%- set document = document + {
+        class: '',
+        attrs: {},
+        head_class: '',
+        head_attrs: {},
+        body_class: '',
+        body_attrs: {},
+    } -%}
 
     <!doctype html>
-    <html{{ macro.tag_attrs(document_attrs, document_class) }}>
+    <html{{ macro.tag_attrs(document.attrs, document.class) }}>
 
     {{ parent() }}
 
@@ -27,7 +28,7 @@
 {% endblock %}
 
 {% block document_head %}
-    <head{{ macro.tag_attrs(document_head_attrs, document_head_class) }}>
+    <head{{ macro.tag_attrs(document.head_attrs, document.head_class) }}>
         {{ block('document_metadata') }}
         <title>{{ block('document_title') }}</title>
         {{ block('document_links') }}
@@ -56,7 +57,7 @@
 {% block document_head_content %}{% endblock %}
 
 {% block document_body %}
-    <body{{ macro.tag_attrs(document_body_attrs, document_body_class) }}>
+    <body{{ macro.tag_attrs(document.body_attrs, document.body_class) }}>
         {{ parent() }}
     </body>
 {% endblock %}

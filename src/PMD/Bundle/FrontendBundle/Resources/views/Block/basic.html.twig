@@ -3,20 +3,23 @@
 {% import '@PMDFrontend/macros.html.twig' as macro %}
 
 
-{% set block_vars = _block_vars|default({}) %}
+{% set block = _block_vars|default({}) %}
 
-{% set _block = block_vars._block|default() %}
-{% set _block_vars = block_vars._block_vars|default() %}
+{% set _block = block._block|default() %}
+{% set _block_vars = block._block_vars|default() %}
 
 {% block block %}
-    {% set block_tag = block_vars.tag|default('div') %}
-    {% set block_class = block_vars.class|default('block') %}
-    {% set block_attrs = block_vars.attrs|default({}) %}
-    {% set block_body = block('body')|trim %}
+    {%- set block = {
+        body: block('body')|trim
+    } + block + {
+        tag: 'div',
+        class: 'block',
+        attrs: {},
+    } -%}
 
-    <{{ block_tag }}{{ macro.tag_attrs(block_attrs, block_class) }}>
+    <{{ block.tag }}{{ macro.tag_attrs(block.attrs, block.class) }}>
         {{ parent() }}
-    </{{ block_tag }}>
+    </{{ block.tag }}>
 {% endblock %}
 
 {% block block_content %}
@@ -28,5 +31,5 @@
 {% endblock %}
 
 {% block block_body_content %}
-    {{ block_body|raw }}
+    {{ block.body|raw }}
 {% endblock %}

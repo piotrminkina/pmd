@@ -4,23 +4,22 @@
 
 
 {% block block %}
-    {% set block_tag = block_vars.tag|default('section') %}
-
-    {% set block_header_class = block_vars.header_class|default('block-header') %}
-    {% set block_header_attrs = block_vars.header_attrs|default({}) %}
-    {% set block_header = block('header')|trim %}
-
-    {% set block_title_tag = block_vars.title_tag|default('h1') %}
-    {% set block_title_class = block_vars.title_class|default('block-title') %}
-    {% set block_title_attrs = block_vars.title_attrs|default({}) %}
-    {% set block_title = block_vars.title|default(block('title'))|trim %}
-
-    {% set block_body_class = block_vars.body_class|default('block-body') %}
-    {% set block_body_attrs = block_vars.body_attrs|default({}) %}
-
-    {% set block_footer_class = block_vars.footer_class|default('block-footer') %}
-    {% set block_footer_attrs = block_vars.footer_attrs|default({}) %}
-    {% set block_footer = block('footer')|trim %}
+    {%- set block = {
+        header: block('header')|trim,
+        footer: block('footer')|trim,
+    } + block + {
+        tag: 'section',
+        header_class: 'block-header',
+        header_attrs: {},
+        title: block('title')|trim,
+        title_tag: 'h1',
+        title_class: 'block-title',
+        title_attrs: {},
+        body_class: 'block-body',
+        body_attrs: {},
+        footer_class: 'block-footer',
+        footer_attrs: {},
+    } -%}
 
     {{ parent() }}
 {% endblock %}
@@ -34,8 +33,8 @@
 {% endblock %}
 
 {% block block_header %}
-    {% if block_title is not empty or block_header is not empty %}
-        <header{{ macro.tag_attrs(block_header_attrs, block_header_class) }}>
+    {% if block.title is not empty or block.header is not empty %}
+        <header{{ macro.tag_attrs(block.header_attrs, block.header_class) }}>
             {{ block('block_header_content') }}
         </header>
     {% endif %}
@@ -44,35 +43,35 @@
 {% block block_header_content %}
     {{ block('block_title') }}
 
-    {{ block_header|raw }}
+    {{ block.header|raw }}
 {% endblock %}
 
 {% block block_title %}
-    {% if block_title is not empty %}
-        <{{ block_title_tag }}{{ macro.tag_attrs(block_title_attrs, block_title_class) }}>
+    {% if block.title is not empty %}
+        <{{ block.title_tag }}{{ macro.tag_attrs(block.title_attrs, block.title_class) }}>
             {{ block('block_title_content') }}
-        </{{ block_title_tag }}>
+        </{{ block.title_tag }}>
     {% endif %}
 {% endblock %}
 
 {% block block_title_content %}
-    {{ block_title|raw }}
+    {{ block.title|raw }}
 {% endblock %}
 
 {% block block_body %}
-    <div{{ macro.tag_attrs(block_body_attrs, block_body_class) }}>
+    <div{{ macro.tag_attrs(block.body_attrs, block.body_class) }}>
         {{ parent() }}
     </div>
 {% endblock %}
 
 {% block block_footer %}
-    {% if block_footer is not empty %}
-        <footer{{ macro.tag_attrs(block_footer_attrs, block_footer_class) }}>
+    {% if block.footer is not empty %}
+        <footer{{ macro.tag_attrs(block.footer_attrs, block.footer_class) }}>
             {{ block('block_footer_content') }}
         </footer>
     {% endif %}
 {% endblock %}
 
 {% block block_footer_content %}
-    {{ block_footer|raw }}
+    {{ block.footer|raw }}
 {% endblock %}
