@@ -1,0 +1,10 @@
+{% extends _document|default('@PMDFrontend/Document/basic.html.twig') %}
+
+
+{% block document_body_content %}
+    {{ block('layout') }}
+{% endblock %}
+
+{% block layout %}
+    {% block layout_content %}{% endblock %}
+{% endblock %}

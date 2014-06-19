@@ -1,14 +1,17 @@
-{% extends _document|default('@PMDFrontend/Document/html5.html.twig') %}
+{% extends '@PMDFrontend/Layout/_base.html.twig' %}
+
 
 {% set layout_vars = _layout_vars|default({}) %}
 
 {% set _layout = layout_vars._layout|default() %}
 {% set _layout_vars = layout_vars._layout_vars|default() %}
 
-{% block document_body_content %}
+{% block layout_content %}
     {{ block('layout_body') }}
 {% endblock %}
 
 {% block layout_body %}
-    {% block layout_body_content %}{% endblock %}
+    {{ block('layout_body_content') }}
 {% endblock %}
+
+{% block layout_body_content %}{% endblock %}

@@ -1,5 +1,7 @@
 {% extends '@PMDFrontend/Document/basic.html.twig' %}
+
 {% use '@PMDFrontend/blocks.html.twig' %}
+
 
 {% block document %}
     {% set document_attrs = document_vars.attrs|default({}) %}
@@ -26,21 +28,32 @@
     {% set attrs = document_head_attrs %}
 
     <head{{ block('html_attrs') }}>
-        {% block document_metadata %}
-            <meta charset="utf-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% endblock %}
-        <title>{% block document_title '' %}</title>
-        {% block document_links %}
-            <link type="image/x-icon" rel="icon" href="{{ asset('favicon.ico') }}">
-        {% endblock %}
-        {% block document_javascripts %}{% endblock %}
-        {% block document_stylesheets %}{% endblock %}
-
-        {% block document_head_content %}{% endblock %}
+        {{ block('document_metadata') }}
+        <title>{{ block('document_title') }}</title>
+        {{ block('document_links') }}
+        {{ block('document_javascripts') }}
+        {{ block('document_stylesheets') }}
+        {{ block('document_head_content') }}
     </head>
 {% endblock %}
+
+{% block document_metadata %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{% block document_title %}{% endblock %}
+
+{% block document_links %}
+    <link type="image/x-icon" rel="icon" href="{{ asset('favicon.ico') }}">
+{% endblock %}
+
+{% block document_javascripts %}{% endblock %}
+
+{% block document_stylesheets %}{% endblock %}
+
+{% block document_head_content %}{% endblock %}
 
 {% block document_body %}
     {% set attrs = document_body_attrs %}

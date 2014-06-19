@@ -1,7 +1,10 @@
 {% extends '@PMDFrontend/Block/basic.html.twig' %}
+
 {% use '@PMDFrontend/blocks.html.twig' %}
 
+
 {% block block %}
+    {% set block_tag = block_vars.tag|default('section') %}
     {% set block_header_attrs = block_vars.header_attrs|default({}) %}
     {% set block_header = block('header')|trim %}
     {% set block_title_tag = block_vars.title_tag|default('h1') %}
@@ -28,13 +31,15 @@
         {% set class = 'block-header' %}
 
         <header{{ block('html_attrs') }}>
-            {% block block_header_content %}
-                {{ block('block_title') }}
-
-                {{ block_header|raw }}
-            {% endblock %}
+            {{ block('block_header_content') }}
         </header>
     {% endif %}
+{% endblock %}
+
+{% block block_header_content %}
+    {{ block('block_title') }}
+
+    {{ block_header|raw }}
 {% endblock %}
 
 {% block block_title %}
@@ -43,11 +48,13 @@
         {% set class = 'block-title' %}
 
         <{{ block_title_tag }}{{ block('html_attrs') }}>
-            {% block block_title_content %}
-                {{ block_title|raw }}
-            {% endblock %}
+            {{ block('block_title_content') }}
         </{{ block_title_tag }}>
     {% endif %}
+{% endblock %}
+
+{% block block_title_content %}
+    {{ block_title|raw }}
 {% endblock %}
 
 {% block block_body %}
@@ -65,9 +72,11 @@
         {% set class = 'block-footer' %}
 
         <footer{{ block('html_attrs') }}>
-            {% block block_footer_content %}
-                {{ block_footer|raw }}
-            {% endblock %}
+            {{ block('block_footer_content') }}
         </footer>
     {% endif %}
+{% endblock %}
+
+{% block block_footer_content %}
+    {{ block_footer|raw }}
 {% endblock %}
