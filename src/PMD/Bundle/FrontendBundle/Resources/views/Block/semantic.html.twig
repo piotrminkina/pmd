@@ -1,16 +1,24 @@
 {% extends '@PMDFrontend/Block/basic.html.twig' %}
 
-{% use '@PMDFrontend/blocks.html.twig' %}
+{% import '@PMDFrontend/macros.html.twig' as macro %}
 
 
 {% block block %}
     {% set block_tag = block_vars.tag|default('section') %}
+
+    {% set block_header_class = block_vars.header_class|default('block-header') %}
     {% set block_header_attrs = block_vars.header_attrs|default({}) %}
     {% set block_header = block('header')|trim %}
+
     {% set block_title_tag = block_vars.title_tag|default('h1') %}
+    {% set block_title_class = block_vars.title_class|default('block-title') %}
     {% set block_title_attrs = block_vars.title_attrs|default({}) %}
     {% set block_title = block_vars.title|default(block('title'))|trim %}
+
+    {% set block_body_class = block_vars.body_class|default('block-body') %}
     {% set block_body_attrs = block_vars.body_attrs|default({}) %}
+
+    {% set block_footer_class = block_vars.footer_class|default('block-footer') %}
     {% set block_footer_attrs = block_vars.footer_attrs|default({}) %}
     {% set block_footer = block('footer')|trim %}
 
@@ -27,10 +35,7 @@
 
 {% block block_header %}
     {% if block_title is not empty or block_header is not empty %}
-        {% set attrs = block_header_attrs %}
-        {% set class = 'block-header' %}
-
-        <header{{ block('html_attrs') }}>
+        <header{{ macro.tag_attrs(block_header_attrs, block_header_class) }}>
             {{ block('block_header_content') }}
         </header>
     {% endif %}
@@ -44,10 +49,7 @@
 
 {% block block_title %}
     {% if block_title is not empty %}
-        {% set attrs = block_title_attrs %}
-        {% set class = 'block-title' %}
-
-        <{{ block_title_tag }}{{ block('html_attrs') }}>
+        <{{ block_title_tag }}{{ macro.tag_attrs(block_title_attrs, block_title_class) }}>
             {{ block('block_title_content') }}
         </{{ block_title_tag }}>
     {% endif %}
@@ -58,20 +60,14 @@
 {% endblock %}
 
 {% block block_body %}
-    {% set attrs = block_body_attrs %}
-    {% set class = 'block-body' %}
-
-    <div{{ block('html_attrs') }}>
+    <div{{ macro.tag_attrs(block_body_attrs, block_body_class) }}>
         {{ parent() }}
     </div>
 {% endblock %}
 
 {% block block_footer %}
     {% if block_footer is not empty %}
-        {% set attrs = block_footer_attrs %}
-        {% set class = 'block-footer' %}
-
-        <footer{{ block('html_attrs') }}>
+        <footer{{ macro.tag_attrs(block_footer_attrs, block_footer_class) }}>
             {{ block('block_footer_content') }}
         </footer>
     {% endif %}

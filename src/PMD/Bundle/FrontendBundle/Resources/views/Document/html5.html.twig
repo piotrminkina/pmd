@@ -1,17 +1,19 @@
 {% extends '@PMDFrontend/Document/basic.html.twig' %}
 
-{% use '@PMDFrontend/blocks.html.twig' %}
+{% import '@PMDFrontend/macros.html.twig' as macro %}
 
 
 {% block document %}
+    {% set document_class = document_vars.class|default('') %}
     {% set document_attrs = document_vars.attrs|default({}) %}
+    {% set document_attrs = {lang: app.request.locale}|merge(document_attrs) %}
+    {% set document_head_class = document_vars.head_class|default('') %}
     {% set document_head_attrs = document_vars.head_attrs|default({}) %}
+    {% set document_body_class = document_vars.body_class|default('') %}
     {% set document_body_attrs = document_vars.body_attrs|default({}) %}
 
-    {% set attrs = {lang: app.request.locale}|merge(document_attrs) %}
-
     <!doctype html>
-    <html{{ block('html_attrs') }}>
+    <html{{ macro.tag_attrs(document_attrs, document_class) }}>
 
     {{ parent() }}
 
@@ -25,9 +27,7 @@
 {% endblock %}
 
 {% block document_head %}
-    {% set attrs = document_head_attrs %}
-
-    <head{{ block('html_attrs') }}>
+    <head{{ macro.tag_attrs(document_head_attrs, document_head_class) }}>
         {{ block('document_metadata') }}
         <title>{{ block('document_title') }}</title>
         {{ block('document_links') }}
@@ -56,9 +56,7 @@
 {% block document_head_content %}{% endblock %}
 
 {% block document_body %}
-    {% set attrs = document_body_attrs %}
-
-    <body{{ block('html_attrs') }}>
+    <body{{ macro.tag_attrs(document_body_attrs, document_body_class) }}>
         {{ parent() }}
     </body>
 {% endblock %}

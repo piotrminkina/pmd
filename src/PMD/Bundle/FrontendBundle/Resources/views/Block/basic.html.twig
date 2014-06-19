@@ -1,6 +1,6 @@
 {% extends '@PMDFrontend/Block/_base.html.twig' %}
 
-{% use '@PMDFrontend/blocks.html.twig' %}
+{% import '@PMDFrontend/macros.html.twig' as macro %}
 
 
 {% set block_vars = _block_vars|default({}) %}
@@ -10,13 +10,11 @@
 
 {% block block %}
     {% set block_tag = block_vars.tag|default('div') %}
+    {% set block_class = block_vars.class|default('block') %}
     {% set block_attrs = block_vars.attrs|default({}) %}
     {% set block_body = block('body')|trim %}
 
-    {% set attrs = block_attrs %}
-    {% set class = 'block' %}
-
-    <{{ block_tag }}{{ block('html_attrs') }}>
+    <{{ block_tag }}{{ macro.tag_attrs(block_attrs, block_class) }}>
         {{ parent() }}
     </{{ block_tag }}>
 {% endblock %}

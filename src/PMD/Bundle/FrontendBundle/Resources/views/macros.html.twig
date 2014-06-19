@@ -1,4 +1,4 @@
-{% block html_attrs %}
+{% macro tag_attrs(attrs, class) %}
     {%- set class = class|default('') -%}
 
     {%- if class -%}
@@ -11,4 +11,4 @@
         {{- " " -}}
         {{- attrname }}="{{ attrvalue }}"
     {%- endfor -%}
-{% endblock html_attrs %}
+{% endmacro tag_attrs %}
