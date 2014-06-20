@@ -5,9 +5,6 @@
 
 {% set block = _block_vars|default({}) %}
 
-{% set _block = block._block|default() %}
-{% set _block_vars = block._block_vars|default() %}
-
 {% block block %}
     {%- set block = {
         body: block('body')|trim
@@ -20,14 +17,6 @@
     <{{ block.tag }}{{ macro.tag_attrs(block.attrs, block.class) }}>
         {{ parent() }}
     </{{ block.tag }}>
-{% endblock %}
-
-{% block block_content %}
-    {{ block('block_body') }}
-{% endblock %}
-
-{% block block_body %}
-    {{ block('block_body_content') }}
 {% endblock %}
 
 {% block block_body_content %}

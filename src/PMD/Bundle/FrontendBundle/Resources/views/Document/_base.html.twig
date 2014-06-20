@@ -1,3 +1,8 @@
 {% block document %}
-    {% block document_content %}{% endblock %}
-{% endblock %}
+{% block document_content %}
+{% block document_body %}
+{% block document_body_content %}
+{% endblock document_body_content %}
+{% endblock document_body %}
+{% endblock document_content %}
+{% endblock document %}

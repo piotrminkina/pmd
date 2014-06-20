@@ -2,16 +2,3 @@
 
 
 {% set layout = _layout_vars|default({}) %}
-
-{% set _layout = layout._layout|default() %}
-{% set _layout_vars = layout._layout_vars|default() %}
-
-{% block layout_content %}
-    {{ block('layout_body') }}
-{% endblock %}
-
-{% block layout_body %}
-    {{ block('layout_body_content') }}
-{% endblock %}
-
-{% block layout_body_content %}{% endblock %}
