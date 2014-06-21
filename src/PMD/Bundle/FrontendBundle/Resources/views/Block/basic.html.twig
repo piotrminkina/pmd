@@ -3,8 +3,6 @@
 {% import '@PMDFrontend/macros.html.twig' as macro %}
 
 
-{% set block = _block_vars|default({}) %}
-
 {% block block %}
     {%- set block = {
         body: block('body')|trim

@@ -3,8 +3,6 @@
 {% import '@PMDFrontend/macros.html.twig' as macro %}
 
 
-{% set document = _document_vars|default({}) %}
-
 {% block document %}
     {%- set document = document + {
         class: '',

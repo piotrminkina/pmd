@@ -23,6 +23,8 @@ class PMDFrontendExtension extends Extension
             new FileLocator(__DIR__ . '/../Resources/config')
         );
         $loader->load('event.xml');
+        $loader->load('templating.xml');
+        $loader->load('twig.xml');
     }
 
     /**

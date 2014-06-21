@@ -1,5 +1,7 @@
-{% extends _layout|default('@PMDFrontend/Layout/none.html.twig') %}
+{% extends pmd_frontend_layout_view_or('@PMDFrontend/Layout/none.html.twig') %}
 
+
+{% set block = pmd_frontend_block_vars_or({}) %}
 
 {% block layout_body_content %}
 {% block block %}

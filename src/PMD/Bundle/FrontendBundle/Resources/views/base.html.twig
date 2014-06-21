@@ -1,1 +1,9 @@
-{% extends _block|default('@PMDFrontend/Block/basic.html.twig') %}
+{% extends pmd_frontend_block_view_or('@PMDFrontend/Block/basic.html.twig') %}
+
+
+{% do pmd_frontend_push_context() %}
+
+{% block layout_body_content %}
+    {{- parent() -}}
+    {% do pmd_frontend_pop_context() %}
+{% endblock %}

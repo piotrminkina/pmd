@@ -2,6 +2,7 @@
 
 namespace PMD\FrontendBundle\EventListener;
 
+use PMD\FrontendBundle\Templating\FrontendVariables;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -21,6 +22,11 @@ class ViewListener implements EventSubscriberInterface
      * @var EngineInterface
      */
     protected $engine;
+
+    /**
+     * @var FrontendVariables
+     */
+    protected $variables;
     
     /**
      * @var TemplateGuesser
@@ -39,11 +45,16 @@ class ViewListener implements EventSubscriberInterface
 
     /**
      * @param EngineInterface $engine
+     * @param FrontendVariables $variables
      * @param TemplateGuesser $guesser
      */
-    public function __construct(EngineInterface $engine, TemplateGuesser $guesser)
-    {
+    public function __construct(
+        EngineInterface $engine,
+        FrontendVariables $variables,
+        TemplateGuesser $guesser
+    ) {
         $this->engine = $engine;
+        $this->variables = $variables;
         $this->guesser = $guesser;
     }
 
@@ -60,23 +71,32 @@ class ViewListener implements EventSubscriberInterface
      */
     public function onKernelView(GetResponseForControllerResultEvent $event)
     {
+        $request = $event->getRequest();
+        $attributes = $request->attributes;
         $result = $event->getControllerResult();
 
         if (!is_array($this->controller) || !is_array($result)) {
             return;
         }
+        $this->request = $request;
 
-        $this->request = $event->getRequest();
-        $view = $this->getView();
+        $view = $attributes->get('_view');
+        $vars = $attributes->get('_vars');
+
+        if (empty($view) || !is_string($view)) {
+            $view = $this->guessViewName();
+        }
+        if (empty($vars) || !is_array($vars)) {
+            $vars = array();
+        }
 
         if (!$this->engine->exists($view)) {
             return;
         }
-
-        $viewVars = $result + $this->getViewVars();
+        $this->variables->replace($vars);
 
         $event->setResponse(
-            $this->engine->renderResponse($view, $viewVars)
+            $this->engine->renderResponse($view, $result)
         );
     }
 
@@ -94,42 +114,13 @@ class ViewListener implements EventSubscriberInterface
     /**
      * @return string|TemplateReference
      */
-    public function getView()
+    public function guessViewName()
     {
-        $view = $this->request->attributes->get('_view');
-
-        if (null === $view) {
-            $view = $this->guesser->guessTemplateName(
-                $this->controller,
-                $this->request
-            );
-        }
+        $view = $this->guesser->guessTemplateName(
+            $this->controller,
+            $this->request
+        );
 
         return $view;
-    }
-
-    /**
-     * @return array
-     */
-    public function getViewVars()
-    {
-        $vars = array();
-        $attributes = $this->request->attributes;
-        $varsGroups = array('document', 'layout', 'block');
-
-        foreach ($varsGroups as $varsGroup) {
-            $view = '_' . $varsGroup;
-            $viewVars = $view . '_vars';
-
-            if ($attributes->has($view)) {
-                $vars[$view] = $attributes->get($view);
-            }
-
-            if ($attributes->has($viewVars)) {
-                $vars[$viewVars] = $attributes->get($viewVars);
-            }
-        }
-
-        return $vars;
     }
 }
