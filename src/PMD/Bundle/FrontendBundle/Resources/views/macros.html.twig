@@ -2,13 +2,12 @@
     {%- set class = class|default('') -%}
 
     {%- if class -%}
-        {%- set attrs = attrs|merge({
+        {% set attrs = attrs|merge({
             class: (class ~ ' ' ~ attrs.class|default(''))|trim
-        }) -%}
+        }) %}
     {%- endif -%}
 
     {%- for attrname, attrvalue in attrs -%}
-        {{- " " -}}
-        {{- attrname }}="{{ attrvalue }}"
+        {{ " " ~ attrname }}="{{ attrvalue }}"
     {%- endfor -%}
 {% endmacro tag_attrs %}

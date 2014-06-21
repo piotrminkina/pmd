@@ -5,13 +5,13 @@
 
 {% block block %}
     {%- set block = {
-        header: block('header')|trim,
-        footer: block('footer')|trim,
+        header: block('header'),
+        footer: block('footer'),
     } + block + {
         tag: 'section',
         header_class: 'block-header',
         header_attrs: {},
-        title: block('title')|trim,
+        title: block('title'),
         title_tag: 'h1',
         title_class: 'block-title',
         title_attrs: {},

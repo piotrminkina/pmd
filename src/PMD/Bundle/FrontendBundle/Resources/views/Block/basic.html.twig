@@ -5,7 +5,7 @@
 
 {% block block %}
     {%- set block = {
-        body: block('body')|trim
+        body: block('body'),
     } + block + {
         tag: 'div',
         class: 'block',

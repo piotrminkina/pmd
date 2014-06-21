@@ -4,6 +4,6 @@
 {% do pmd_frontend_push_context() %}
 
 {% block layout_body_content %}
-    {{- parent() -}}
+    {{ parent() }}
     {% do pmd_frontend_pop_context() %}
 {% endblock %}
