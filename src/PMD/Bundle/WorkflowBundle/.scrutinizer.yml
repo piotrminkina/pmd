@@ -23,7 +23,6 @@ tools:
         enabled: true
         config:
             rulesets:
-                - cleancode
                 - codesize
                 - controversial
                 - design
