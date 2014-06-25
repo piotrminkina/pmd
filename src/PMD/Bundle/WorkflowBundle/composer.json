@@ -15,7 +15,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/framework-bundle": "~2.5"
+        "symfony/http-kernel": "~2.5"
     },
     "config": {
         "bin-dir": "bin"
