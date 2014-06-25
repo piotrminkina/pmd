@@ -1,0 +1,29 @@
+{
+    "name": "piotrminkina/workflow-bundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "description": "Symfony2 Workflow Bundle to define workflows to handle the volatile and changing business processes",
+    "authors": [
+        {
+            "name": "Piotr Minkina",
+            "email": "projekty@piotrminkina.pl",
+            "homepage": "http://www.piotrminkina.pl"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "PMD\\WorkflowBundle": "" }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.5"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "target-dir": "PMD/WorkflowBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
