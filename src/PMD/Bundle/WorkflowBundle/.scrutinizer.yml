@@ -1,5 +1,5 @@
 before_commands:
-    - composer install --prefer-source --dev
+    - composer install -n
 
 filter:
     excluded_paths:
