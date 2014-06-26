@@ -1,8 +1,8 @@
 {
     "name": "piotrminkina/resources-resolver-bundle",
-    "license": "proprietary",
+    "license": "MIT",
     "type": "symfony-bundle",
-    "description": "Resolves controllers actions parameters and injects Resources",
+    "description": "Symfony2 Resources Resolver Bundle that resolves dependencies from controllers actions by inject configured resources",
     "authors": [
         {
             "name": "Piotr Minkina",
