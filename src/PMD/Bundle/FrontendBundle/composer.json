@@ -1,8 +1,8 @@
 {
     "name": "piotrminkina/frontend-bundle",
-    "license": "proprietary",
+    "license": "MIT",
     "type": "symfony-bundle",
-    "description": "Utilities to build frontend, like layouts, blocks, templates etc.",
+    "description": "Symfony2 Frontend Bundle that helps build User Interfaces by provide set of Blocks and Layouts to use with existing standard controllers",
     "authors": [
         {
             "name": "Piotr Minkina",
