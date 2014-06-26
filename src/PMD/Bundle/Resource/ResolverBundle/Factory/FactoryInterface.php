@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the PMDResourcesResolverBundle package.
+ *
+ * (c) Piotr Minkina <projekty@piotrminkina.pl>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace PMD\ResourcesResolverBundle\Factory;
 
 use PMD\ResourcesResolverBundle\Collector\CollectorInterface;
@@ -11,7 +20,9 @@ use PMD\ResourcesResolverBundle\Resolver\ResolverInterface;
 
 /**
  * Interface FactoryInterface
- * @package PMD\ResourcesResolverBundle\Collector
+ *
+ * @author Piotr Minkina <projekty@piotrminkina.pl>
+ * @package PMD\ResourcesResolverBundle\Factory
  */
 interface FactoryInterface
 {
