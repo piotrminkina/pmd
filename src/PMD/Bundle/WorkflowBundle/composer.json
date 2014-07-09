@@ -15,6 +15,7 @@
     },
     "require": {
         "php": ">=5.3.3",
+        "doctrine/collections": "1.2.*",
         "symfony/http-kernel": "~2.5"
     },
     "config": {
