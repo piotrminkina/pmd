@@ -11,8 +11,9 @@
 
 namespace PMD\WorkflowBundle\Definition\Builder;
 
-use PMD\WorkflowBundle\Definition\ActivityInterface;
-use PMD\WorkflowBundle\Definition\DefinitionInterface;
+use PMD\WorkflowBundle\Definition\Activity\ActivityInterface;
+use PMD\WorkflowBundle\Definition\Transition\TransitionInterface;
+use PMD\WorkflowBundle\Definition\WorkflowDefinitionInterface;
 
 /**
  * Interface DefinitionBuilderInterface
@@ -23,22 +24,39 @@ use PMD\WorkflowBundle\Definition\DefinitionInterface;
 interface DefinitionBuilderInterface
 {
     /**
+     * @param string $type
      * @return ActivityInterface
      */
-    public function buildActivity();
+    public function buildActivity($type);
 
     /**
-     * @param ActivityInterface $source
-     * @param ActivityInterface $target
+     * @param string $type
+     * @return ActivityInterface
+     */
+    public function buildTransition($type);
+
+    /**
+     * @param TransitionInterface $transition
+     * @param ActivityInterface $activity
      * @return DefinitionBuilderInterface
      */
-    public function connectActivities(
-        ActivityInterface $source,
-        ActivityInterface $target
+    public function connectActivityInput(
+        TransitionInterface $transition,
+        ActivityInterface $activity
     );
 
     /**
-     * @return DefinitionInterface
+     * @param ActivityInterface $activity
+     * @param TransitionInterface $transition
+     * @return DefinitionBuilderInterface
+     */
+    public function connectActivityOutput(
+        ActivityInterface $activity,
+        TransitionInterface $transition
+    );
+
+    /**
+     * @return WorkflowDefinitionInterface
      */
     public function getDefinition();
 }

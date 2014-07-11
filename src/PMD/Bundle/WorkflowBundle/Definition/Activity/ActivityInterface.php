@@ -9,12 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\Definition;
+namespace PMD\WorkflowBundle\Definition\Activity;
 
 use Doctrine\Common\Collections\Collection;
+use PMD\WorkflowBundle\Definition\Transition\TransitionInterface;
 
 /**
- * Interface ActivityInterface
+ * A description of a piece of work that forms one logical step within
+ * a process.
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
  * @package PMD\WorkflowBundle\Definition

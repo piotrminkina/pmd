@@ -12,14 +12,18 @@
 namespace PMD\WorkflowBundle\Definition;
 
 use Doctrine\Common\Collections\Collection;
+use PMD\WorkflowBundle\Definition\Activity\ActivityInterface;
+use PMD\WorkflowBundle\Definition\Transition\TransitionInterface;
 
 /**
- * Interface DefinitionInterfaceq
+ * The representation of a business process in a form which supports automated
+ * manipulation, such as modelling, or enactment by a workflow management
+ * system.
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
  * @package PMD\WorkflowBundle\Definition
  */
-interface DefinitionInterface
+interface WorkflowDefinitionInterface
 {
     /**
      * The process instance has been created, but may not yet be running.
@@ -71,13 +75,13 @@ interface DefinitionInterface
 
     /**
      * @param Collection|ActivityInterface[] $activities
-     * @return DefinitionInterface
+     * @return WorkflowDefinitionInterface
      */
     public function setActivities(Collection $activities);
 
     /**
      * @param ActivityInterface $activity
-     * @return DefinitionInterface
+     * @return WorkflowDefinitionInterface
      */
     public function addActivity(ActivityInterface $activity);
 
@@ -85,4 +89,21 @@ interface DefinitionInterface
      * @return Collection|ActivityInterface[]
      */
     public function getActivities();
+
+    /**
+     * @param Collection|TransitionInterface[] $transitions
+     * @return WorkflowDefinitionInterface
+     */
+    public function setTransitions(Collection $transitions);
+
+    /**
+     * @param TransitionInterface $transition
+     * @return WorkflowDefinitionInterface
+     */
+    public function addTransition(TransitionInterface $transition);
+
+    /**
+     * @return Collection|TransitionInterface[]
+     */
+    public function getTransitions();
 }

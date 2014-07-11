@@ -9,10 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\Definition;
+namespace PMD\WorkflowBundle\Definition\Transition;
+
+use PMD\WorkflowBundle\Definition\Activity\ActivityInterface;
 
 /**
- * Interface TransitionInterface
+ * A point during the execution of a process instance where one activity
+ * completes and the thread of control passes to another, which starts.
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
  * @package PMD\WorkflowBundle\Definition
