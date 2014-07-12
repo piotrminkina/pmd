@@ -9,20 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\Definition;
+namespace PMD\WorkflowBundle\Process;
 
 use Doctrine\Common\Collections\Collection;
-use PMD\WorkflowBundle\Definition\Activity\ActivityInterface;
-use PMD\WorkflowBundle\Definition\Transition\TransitionInterface;
+use PMD\WorkflowBundle\Activity\ActivityInterface;
+use PMD\WorkflowBundle\Transition\TransitionInterface;
 
 /**
- * Class AbstractWorkflowDefinition
+ * Class AbstractProcess
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\Definition
+ * @package PMD\WorkflowBundle\Process
  */
-abstract class AbstractWorkflowDefinition
-    implements WorkflowDefinitionInterface
+abstract class AbstractProcess implements ProcessInterface
 {
     /**
      * @var string
@@ -35,7 +34,7 @@ abstract class AbstractWorkflowDefinition
     protected $activities;
 
     /**
-     * @var Collection|ActivityInterface[]
+     * @var Collection|TransitionInterface[]
      */
     protected $transitions;
 
@@ -57,7 +56,7 @@ abstract class AbstractWorkflowDefinition
 
     /**
      * @param Collection|ActivityInterface[] $activities
-     * @return WorkflowDefinitionInterface
+     * @return ProcessInterface
      */
     public function setActivities(Collection $activities)
     {
@@ -68,7 +67,7 @@ abstract class AbstractWorkflowDefinition
 
     /**
      * @param ActivityInterface $activity
-     * @return WorkflowDefinitionInterface
+     * @return ProcessInterface
      */
     public function addActivity(ActivityInterface $activity)
     {
@@ -88,7 +87,7 @@ abstract class AbstractWorkflowDefinition
 
     /**
      * @param Collection|TransitionInterface[] $transitions
-     * @return WorkflowDefinitionInterface
+     * @return ProcessInterface
      */
     public function setTransitions(Collection $transitions)
     {
@@ -99,7 +98,7 @@ abstract class AbstractWorkflowDefinition
 
     /**
      * @param TransitionInterface $transition
-     * @return WorkflowDefinitionInterface
+     * @return ProcessInterface
      */
     public function addTransition(TransitionInterface $transition)
     {

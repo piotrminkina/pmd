@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\Definition;
+namespace PMD\WorkflowBundle\Process;
 
 use Doctrine\Common\Collections\Collection;
-use PMD\WorkflowBundle\Definition\Activity\ActivityInterface;
-use PMD\WorkflowBundle\Definition\Transition\TransitionInterface;
+use PMD\WorkflowBundle\Activity\ActivityInterface;
+use PMD\WorkflowBundle\Transition\TransitionInterface;
 
 /**
  * The representation of a business process in a form which supports automated
@@ -21,9 +21,9 @@ use PMD\WorkflowBundle\Definition\Transition\TransitionInterface;
  * system.
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\Definition
+ * @package PMD\WorkflowBundle\Process
  */
-interface WorkflowDefinitionInterface
+interface ProcessInterface
 {
     /**
      * The process instance has been created, but may not yet be running.
@@ -75,13 +75,13 @@ interface WorkflowDefinitionInterface
 
     /**
      * @param Collection|ActivityInterface[] $activities
-     * @return WorkflowDefinitionInterface
+     * @return ProcessInterface
      */
     public function setActivities(Collection $activities);
 
     /**
      * @param ActivityInterface $activity
-     * @return WorkflowDefinitionInterface
+     * @return ProcessInterface
      */
     public function addActivity(ActivityInterface $activity);
 
@@ -92,13 +92,13 @@ interface WorkflowDefinitionInterface
 
     /**
      * @param Collection|TransitionInterface[] $transitions
-     * @return WorkflowDefinitionInterface
+     * @return ProcessInterface
      */
     public function setTransitions(Collection $transitions);
 
     /**
      * @param TransitionInterface $transition
-     * @return WorkflowDefinitionInterface
+     * @return ProcessInterface
      */
     public function addTransition(TransitionInterface $transition);
 

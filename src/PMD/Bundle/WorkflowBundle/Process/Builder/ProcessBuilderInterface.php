@@ -11,17 +11,17 @@
 
 namespace PMD\WorkflowBundle\Definition\Builder;
 
-use PMD\WorkflowBundle\Definition\Activity\ActivityInterface;
-use PMD\WorkflowBundle\Definition\Transition\TransitionInterface;
-use PMD\WorkflowBundle\Definition\WorkflowDefinitionInterface;
+use PMD\WorkflowBundle\Activity\ActivityInterface;
+use PMD\WorkflowBundle\Process\ProcessInterface;
+use PMD\WorkflowBundle\Transition\TransitionInterface;
 
 /**
- * Interface DefinitionBuilderInterface
+ * Interface ProcessBuilderInterface
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\Definition\Builder
+ * @package PMD\WorkflowBundle\Process\Builder
  */
-interface DefinitionBuilderInterface
+interface ProcessBuilderInterface
 {
     /**
      * @param string $type
@@ -31,14 +31,14 @@ interface DefinitionBuilderInterface
 
     /**
      * @param string $type
-     * @return ActivityInterface
+     * @return TransitionInterface
      */
     public function buildTransition($type);
 
     /**
      * @param TransitionInterface $transition
      * @param ActivityInterface $activity
-     * @return DefinitionBuilderInterface
+     * @return ProcessBuilderInterface
      */
     public function connectActivityInput(
         TransitionInterface $transition,
@@ -48,7 +48,7 @@ interface DefinitionBuilderInterface
     /**
      * @param ActivityInterface $activity
      * @param TransitionInterface $transition
-     * @return DefinitionBuilderInterface
+     * @return ProcessBuilderInterface
      */
     public function connectActivityOutput(
         ActivityInterface $activity,
@@ -56,7 +56,7 @@ interface DefinitionBuilderInterface
     );
 
     /**
-     * @return WorkflowDefinitionInterface
+     * @return ProcessInterface
      */
     public function getDefinition();
 }
