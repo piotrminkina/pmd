@@ -12,7 +12,7 @@
 namespace PMD\WorkflowBundle\WorkList;
 
 use Doctrine\Common\Collections\Collection;
-use PMD\WorkflowBundle\WorkList\Item\WorkListItemInterface;
+use PMD\WorkflowBundle\WorkItem\WorkItemInterface;
 
 /**
  * A list of work items associated with a given workflow participant.
@@ -23,19 +23,19 @@ use PMD\WorkflowBundle\WorkList\Item\WorkListItemInterface;
 interface WorkListInterface
 {
     /**
-     * @param Collection|WorkListItemInterface[] $workListItems
+     * @param Collection|WorkItemInterface[] $workItems
      * @return WorkListInterface
      */
-    public function setWorkListItems(Collection $workListItems);
+    public function setWorkItems(Collection $workItems);
 
     /**
-     * @param WorkListItemInterface $workListItem
+     * @param WorkItemInterface $workItem
      * @return WorkListInterface
      */
-    public function addWorkListItem(WorkListItemInterface $workListItem);
+    public function addWorkItem(WorkItemInterface $workItem);
 
     /**
-     * @return Collection|WorkListItemInterface[]
+     * @return Collection|WorkItemInterface[]
      */
-    public function getWorkListItems();
+    public function getWorkItems();
 }

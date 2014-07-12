@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\WorkList\Item;
+namespace PMD\WorkflowBundle\WorkItem;
 
 use PMD\WorkflowBundle\Activity\Instance\ActivityInstanceInterface;
 
@@ -18,13 +18,13 @@ use PMD\WorkflowBundle\Activity\Instance\ActivityInstanceInterface;
  * in the context of an activity within a process instance.
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\WorkList\Item
+ * @package PMD\WorkflowBundle\WorkItem
  */
-interface WorkListItemInterface
+interface WorkItemInterface
 {
     /**
      * @param ActivityInstanceInterface $activityInstance
-     * @return WorkListItemInterface
+     * @return WorkItemInterface
      */
     public function setActivityInstance(ActivityInstanceInterface $activityInstance);
 
