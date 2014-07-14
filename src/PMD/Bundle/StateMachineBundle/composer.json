@@ -1,0 +1,32 @@
+{
+    "name": "piotrminkina/state-machine-bundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "description": "Symfony2 State Machine Bundle to define state machines built with states, transitions and actions",
+    "authors": [
+        {
+            "name": "Piotr Minkina",
+            "email": "projekty@piotrminkina.pl",
+            "homepage": "http://www.piotrminkina.pl"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "PMD\\StateMachineBundle": "" }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/http-kernel": "~2.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "target-dir": "PMD/StateMachineBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
