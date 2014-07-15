@@ -1,8 +1,8 @@
 {
     "name": "piotrminkina/doctrine-bundle",
-    "license": "proprietary",
+    "license": "MIT",
     "type": "symfony-bundle",
-    "description": "Pre-configured Doctrine to works with future projects",
+    "description": "Symfony2 Doctrine Bundle that adds simple improvements to standard Doctrine Bundle",
     "authors": [
         {
             "name": "Piotr Minkina",
@@ -15,7 +15,16 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/framework-bundle": "~2.4"
+        "symfony/http-kernel": "~2.5",
+        "symfony/config": "~2.5",
+        "symfony/dependency-injection": "~2.5",
+        "doctrine/orm": "~2.2,>=2.2.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7"
+    },
+    "suggests": {
+        "doctrine/doctrine-bundle": "~1.2"
     },
     "config": {
         "bin-dir": "bin"
