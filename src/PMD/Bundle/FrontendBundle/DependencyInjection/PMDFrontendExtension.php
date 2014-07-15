@@ -15,6 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Class PMDFrontendExtension
@@ -27,7 +28,7 @@ class PMDFrontendExtension extends Extension
     /**
      * @inheritdoc
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $config, ContainerBuilder $container)
     {
         $loader = new XmlFileLoader(
             $container,
@@ -36,13 +37,61 @@ class PMDFrontendExtension extends Extension
         $loader->load('event.xml');
         $loader->load('templating.xml');
         $loader->load('twig.xml');
+
+        $configuration = new Configuration($this->getAlias());
+        $config = $this->processConfiguration($configuration, $config);
+
+        $this->processConfig($config, $container);
     }
 
     /**
-     * @inheritdoc
+     * @param array $config
+     * @param ContainerBuilder $container
      */
-    public function getAlias()
+    protected function processConfig(array $config, ContainerBuilder $container)
     {
-        return 'pmd_frontend';
+        $listeners = $config['listeners'];
+        $this->processViewListenerConfig($listeners['view_listener'], $container);
+    }
+
+    /**
+     * @param array $config
+     * @param ContainerBuilder $container
+     */
+    protected function processViewListenerConfig(array $config, ContainerBuilder $container)
+    {
+        $definition = $container->getDefinition('pmd_frontend.event_listener.view_listener');
+
+        $definition->addTag(
+            'kernel.event_listener',
+            array(
+                'event' => KernelEvents::CONTROLLER,
+                'method' => 'onKernelController',
+                'priority' => $config['controller_priority'],
+            )
+        );
+
+        $definition->addTag(
+            'kernel.event_listener',
+            array(
+                'event' => KernelEvents::VIEW,
+                'method' => 'onKernelView',
+                'priority' => $config['view_priority'],
+            )
+        );
+
+        $definition->addMethodCall(
+            'setViewAttribute',
+            array(
+                $config['view_attribute']
+            )
+        );
+
+        $definition->addMethodCall(
+            'setVarsAttribute',
+            array(
+                $config['vars_attribute']
+            )
+        );
     }
 }

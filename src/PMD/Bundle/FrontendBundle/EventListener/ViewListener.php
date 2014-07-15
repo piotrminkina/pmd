@@ -11,15 +11,13 @@
 
 namespace PMD\FrontendBundle\EventListener;
 
-use PMD\FrontendBundle\Templating\FrontendVariables;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
-use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
 use Sensio\Bundle\FrameworkExtraBundle\Templating\TemplateGuesser;
+use PMD\FrontendBundle\Templating\FrontendVariables;
 
 /**
  * Class ViewListener
@@ -27,7 +25,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Templating\TemplateGuesser;
  * @author Piotr Minkina <projekty@piotrminkina.pl>
  * @package PMD\FrontendBundle\EventListener
  */
-class ViewListener implements EventSubscriberInterface
+class ViewListener
 {
     /**
      * @var EngineInterface
@@ -55,6 +53,16 @@ class ViewListener implements EventSubscriberInterface
     protected $request;
 
     /**
+     * @var string
+     */
+    protected $viewAttribute = '_view';
+
+    /**
+     * @var string
+     */
+    protected $varsAttribute = '_vars';
+
+    /**
      * @param EngineInterface $engine
      * @param FrontendVariables $variables
      * @param TemplateGuesser $guesser
@@ -67,6 +75,44 @@ class ViewListener implements EventSubscriberInterface
         $this->engine = $engine;
         $this->variables = $variables;
         $this->guesser = $guesser;
+    }
+
+    /**
+     * @param string $viewAttribute
+     * @return ViewListener
+     */
+    public function setViewAttribute($viewAttribute)
+    {
+        $this->viewAttribute = $viewAttribute;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getViewAttribute()
+    {
+        return $this->viewAttribute;
+    }
+
+    /**
+     * @param string $varsAttribute
+     * @return ViewListener
+     */
+    public function setVarsAttribute($varsAttribute)
+    {
+        $this->varsAttribute = $varsAttribute;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVarsAttribute()
+    {
+        return $this->varsAttribute;
     }
 
     /**
@@ -91,8 +137,8 @@ class ViewListener implements EventSubscriberInterface
         }
         $this->request = $request;
 
-        $view = $attributes->get('_view');
-        $vars = $attributes->get('_vars');
+        $view = $attributes->get($this->viewAttribute, null, true);
+        $vars = $attributes->get($this->varsAttribute, null, true);
 
         if (empty($view) || !is_string($view)) {
             $view = $this->guessViewName();
@@ -108,17 +154,6 @@ class ViewListener implements EventSubscriberInterface
 
         $event->setResponse(
             $this->engine->renderResponse($view, $result)
-        );
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public static function getSubscribedEvents()
-    {
-        return array(
-            KernelEvents::CONTROLLER => array('onKernelController', -256),
-            KernelEvents::VIEW => array('onKernelView', 64),
         );
     }
 
