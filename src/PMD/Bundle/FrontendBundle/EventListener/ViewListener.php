@@ -140,6 +140,15 @@ class ViewListener
         $view = $attributes->get($this->viewAttribute, null, true);
         $vars = $attributes->get($this->varsAttribute, null, true);
 
+        if (is_array($view)) {
+            $action = basename($this->controller[1], 'Action');
+
+            if (array_key_exists($action, $view)) {
+                $view = $view[$action];
+            } elseif (!empty($view['_default'])) {
+                $view = $view['_default'];
+            }
+        }
         if (empty($view) || !is_string($view)) {
             $view = $this->guessViewName();
         }
