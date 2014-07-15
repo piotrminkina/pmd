@@ -18,15 +18,16 @@ use PMD\WorkflowBundle\Process\Instance\ProcessInstanceInterface;
  * The representation of an activity within a (single) enactment of a process,
  * i.e. within a process instance.
  *
- * TODO: Process Instance Data
- * TODO: Include Work Items and/or Invoked Applications
- * TODO: Generate work items?
- *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
  * @package PMD\WorkflowBundle\Activity\Instance
  */
 interface ActivityInstanceInterface
 {
+    /**
+     * @return string
+     */
+    public function getName();
+
     /**
      * @param string $state
      * @return ActivityInstanceInterface

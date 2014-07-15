@@ -16,13 +16,16 @@ use PMD\WorkflowBundle\Process\ProcessInterface;
 /**
  * The representation of a single enactment of a process.
  *
- * TODO: Process Instance Data
- *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
  * @package PMD\WorkflowBundle\Process\Instance
  */
 interface ProcessInstanceInterface
 {
+    /**
+     * @return string
+     */
+    public function getName();
+
     /**
      * @param string $state
      * @return ProcessInstanceInterface
