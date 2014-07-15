@@ -17,12 +17,12 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
 
 /**
- * Class PMDRouteExtension
+ * Class PMDRoutingExtension
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
  * @package PMD\RoutingBundle\DependencyInjection
  */
-class PMDRouteExtension extends Extension
+class PMDRoutingExtension extends Extension
 {
     /**
      * @inheritdoc
