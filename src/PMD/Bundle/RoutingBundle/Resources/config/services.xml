@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+
+<!--
+  - This file is part of the PMDRoutingBundle package.
+  -
+  - (c) Piotr Minkina <projekty@piotrminkina.pl>
+  -
+  - For the full copyright and license information, please view the LICENSE
+  - file that was distributed with this source code.
+ -->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="pmd_routing.routing_generator.url_generator.class">PMD\RoutingBundle\Routing\Generator\UrlGenerator</parameter>
+
+        <parameter key="router.options.generator_class">%pmd_routing.routing_generator.url_generator.class%</parameter>
+        <parameter key="router.options.generator_base_class">%pmd_routing.routing_generator.url_generator.class%</parameter>
+    </parameters>
+</container>
