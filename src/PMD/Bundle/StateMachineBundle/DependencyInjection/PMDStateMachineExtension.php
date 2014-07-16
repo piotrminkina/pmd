@@ -35,7 +35,25 @@ class PMDStateMachineExtension extends Extension
         );
         $loader->load('services.xml');
 
-        $configuration = new Configuration($this->getAlias());
+        $configuration = $this->createConfiguration();
         $config = $this->processConfiguration($configuration, $config);
+        $processor = $this->createConfigProcessor();
+        $processor->process($config, $container);
+    }
+
+    /**
+     * @return Configuration
+     */
+    protected function createConfiguration()
+    {
+        return new Configuration($this->getAlias());
+    }
+
+    /**
+     * @return ConfigProcessor
+     */
+    protected function createConfigProcessor()
+    {
+        return new ConfigProcessor();
     }
 }
