@@ -62,20 +62,64 @@ class Configuration implements ConfigurationInterface
 
         $node
             ->fixXmlConfig('definition')
-            ->useAttributeAsKey('id')
+            ->performNoDeepMerging()
+            ->useAttributeAsKey('name')
             ->prototype('array')
                 ->cannotBeOverwritten()
+                ->beforeNormalization()
+                    ->always(
+                        function (array $definition) {
+                            return $this->normalizeDefinition($definition);
+                        }
+                    )
+                ->end()
                 ->children()
-                    ->scalarNode('name')
-                        ->isRequired()
-                    ->end()
-                    ->scalarNode('description')
-                    ->end()
                     ->append($this->addStatesNode())
+                    ->append($this->addTransitionsNode())
                 ->end()
             ->end();
 
         return $node;
+    }
+
+    /**
+     * @param array $definition
+     * @return array
+     */
+    protected function normalizeDefinition(array $definition)
+    {
+        if (!isset($definition['transitions'])) {
+            $definition['transitions'] = array();
+        }
+
+        $states = array();
+        $transitions = $definition['transitions'];
+
+        foreach ($definition['states'] as $stateName => $stateValues) {
+            if (is_array($stateValues)) {
+                $states[] = $stateName;
+            } else {
+                $states[] = $stateValues;
+                continue;
+            }
+
+            if (!isset($stateValues['transitions'])) {
+                continue;
+            }
+
+            foreach ($stateValues['transitions'] as $transitionName => $targetStateName) {
+                $transitionName = $stateName . '_' . $transitionName;
+                $transitions[$transitionName] = array(
+                    'from' => $stateName,
+                    'to' => $targetStateName,
+                );
+            }
+        }
+
+        $definition['states'] = $states;
+        $definition['transitions'] = $transitions;
+
+        return $definition;
     }
 
     /**
@@ -88,12 +132,9 @@ class Configuration implements ConfigurationInterface
 
         $node
             ->fixXmlConfig('state')
-            ->useAttributeAsKey('name')
-            ->prototype('array')
-                ->cannotBeOverwritten()
-                ->children()
-                    ->append($this->addTransitionsNode())
-                ->end()
+            ->isRequired()
+            ->requiresAtLeastOneElement()
+            ->prototype('scalar')
             ->end();
 
         return $node;
@@ -109,8 +150,20 @@ class Configuration implements ConfigurationInterface
 
         $node
             ->fixXmlConfig('transition')
-            ->useAttributeAsKey('target')
-            ->prototype('scalar')
+            ->isRequired()
+            ->requiresAtLeastOneElement()
+            ->useAttributeAsKey('name')
+            ->prototype('array')
+                ->children()
+                    ->scalarNode('from')
+                        ->isRequired()
+                        ->cannotBeEmpty()
+                    ->end()
+                    ->scalarNode('to')
+                        ->isRequired()
+                        ->cannotBeEmpty()
+                    ->end()
+                ->end()
             ->end();
 
         return $node;
