@@ -46,7 +46,7 @@ class PMDStateMachineExtension extends Extension
      */
     protected function createConfiguration()
     {
-        return new Configuration($this->getAlias());
+        return new Configuration();
     }
 
     /**
