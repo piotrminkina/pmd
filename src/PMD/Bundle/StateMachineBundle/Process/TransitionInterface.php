@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Definition;
+namespace PMD\StateMachineBundle\Process;
 
 /**
  * Interface TransitionInterface
@@ -31,24 +31,24 @@ interface TransitionInterface
     public function getName();
 
     /**
-     * @param string $source
+     * @param StateInterface $sourceState
      * @return $this
      */
-    public function setSource($source);
+    public function setSourceState(StateInterface $sourceState);
 
     /**
      * @return string
      */
-    public function getSource();
+    public function getSourceState();
 
     /**
-     * @param string $target
+     * @param StateInterface $targetState
      * @return $this
      */
-    public function setTarget($target);
+    public function setTargetState(StateInterface $targetState);
 
     /**
      * @return string
      */
-    public function getTarget();
+    public function getTargetState();
 }

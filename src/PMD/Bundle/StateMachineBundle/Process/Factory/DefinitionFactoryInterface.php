@@ -9,32 +9,35 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Definition\Factory;
+namespace PMD\StateMachineBundle\Process\Factory;
 
-use PMD\StateMachineBundle\Definition\DefinitionInterface;
-use PMD\StateMachineBundle\Definition\StateInterface;
-use PMD\StateMachineBundle\Definition\TransitionInterface;
+use PMD\StateMachineBundle\Process\DefinitionInterface;
+use PMD\StateMachineBundle\Process\StateInterface;
+use PMD\StateMachineBundle\Process\TransitionInterface;
 
 /**
  * Interface DefinitionFactoryInterface
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Definition\Factory
+ * @package PMD\StateMachineBundle\Process\Factory
  */
 interface DefinitionFactoryInterface
 {
     /**
+     * @param string $name
      * @return DefinitionInterface
      */
-    public function createDefinition();
+    public function createDefinition($name);
 
     /**
+     * @param string $name
      * @return StateInterface
      */
-    public function createState();
+    public function createState($name);
 
     /**
+     * @param string $name
      * @return TransitionInterface
      */
-    public function createTransition();
+    public function createTransition($name);
 }

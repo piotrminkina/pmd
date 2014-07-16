@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Definition;
+namespace PMD\StateMachineBundle\Process;
 
 /**
  * Interface DefinitionInterface
