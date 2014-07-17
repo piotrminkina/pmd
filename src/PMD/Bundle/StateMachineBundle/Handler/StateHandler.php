@@ -34,25 +34,6 @@ class StateHandler implements HandlerInterface
     protected $actionPath;
 
     /**
-     * @param string $actionPath
-     * @return StateHandler
-     */
-    public function setActionPath($actionPath)
-    {
-        $this->actionPath = $actionPath;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getActionPath()
-    {
-        return $this->actionPath;
-    }
-
-    /**
      * @param string $processPath
      * @return StateHandler
      */
@@ -69,6 +50,25 @@ class StateHandler implements HandlerInterface
     public function getProcessPath()
     {
         return $this->processPath;
+    }
+
+    /**
+     * @param string $actionPath
+     * @return StateHandler
+     */
+    public function setActionPath($actionPath)
+    {
+        $this->actionPath = $actionPath;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActionPath()
+    {
+        return $this->actionPath;
     }
 
     /**
