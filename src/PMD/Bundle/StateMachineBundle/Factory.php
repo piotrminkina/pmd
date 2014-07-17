@@ -11,7 +11,7 @@
 
 namespace PMD\StateMachineBundle;
 
-use PMD\StateMachineBundle\Process\DefinitionInterface;
+use PMD\StateMachineBundle\Model\StatefulInterface;
 
 /**
  * Class Factory
@@ -37,10 +37,10 @@ class Factory implements FactoryInterface
     /**
      * @inheritdoc
      */
-    public function create($name)
+    public function create($name, StatefulInterface $object)
     {
         $definition = $this->createDefinition($name);
-        $stateMachine = new StateMachine($definition);
+        $stateMachine = new StateMachine($object, $definition);
 
         return $stateMachine;
     }

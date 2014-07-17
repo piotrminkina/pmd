@@ -11,6 +11,7 @@
 
 namespace PMD\StateMachineBundle;
 
+use PMD\StateMachineBundle\Model\StatefulInterface;
 use PMD\StateMachineBundle\Process\DefinitionInterface;
 
 /**
@@ -23,9 +24,10 @@ interface FactoryInterface
 {
     /**
      * @param string $name
+     * @param StatefulInterface $object
      * @return StateMachineInterface
      */
-    public function create($name);
+    public function create($name, StatefulInterface $object);
 
     /**
      * @param string $name

@@ -11,34 +11,12 @@
 
 namespace PMD\StateMachineBundle;
 
-use PMD\StateMachineBundle\Process\DefinitionInterface;
-
 /**
  * Class StateMachine
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
  * @package PMD\StateMachineBundle
  */
-class StateMachine implements StateMachineInterface
+class StateMachine extends AbstractStateMachine
 {
-    /**
-     * @var DefinitionInterface
-     */
-    protected $definition;
-
-    /**
-     * @param DefinitionInterface $definition
-     */
-    public function __construct(DefinitionInterface $definition)
-    {
-        $this->definition = $definition;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getDefinition()
-    {
-        return $this->definition;
-    }
 }

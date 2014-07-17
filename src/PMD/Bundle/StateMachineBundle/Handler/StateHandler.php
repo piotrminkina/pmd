@@ -11,6 +11,7 @@
 
 namespace PMD\StateMachineBundle\Handler;
 
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use PMD\StateMachineBundle\Model\StatefulInterface;
@@ -93,7 +94,11 @@ class StateHandler implements HandlerInterface
         $process = $request->attributes->get($this->processPath, null, true);
         $action = $request->attributes->get($this->actionPath, null, true);
 
-        $stateMachine = $this->factory->create($process);
+        $stateMachine = $this->factory->create($process, $object);
+
+        if (!$stateMachine->hasPossibleTransition($action)) {
+            throw new HttpException(404, 'Action not found');
+        }
 
         return new Response($process . ':' . $action);
     }
