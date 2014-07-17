@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ProcessRegistry implements ProcessRegistryInterface
 {
     /**
-     * @var DefinitionInterface[]
+     * @var string[]
      */
     protected $definitions;
 
@@ -33,7 +33,7 @@ class ProcessRegistry implements ProcessRegistryInterface
     protected $container;
 
     /**
-     * @param DefinitionInterface[] $definitions
+     * @param string[] $definitions
      * @param ContainerInterface $container
      */
     public function __construct(
