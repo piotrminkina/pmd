@@ -11,7 +11,9 @@
 
 namespace PMD\StateMachineBundle;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use PMD\StateMachineBundle\DependencyInjection\Compiler\DefinitionPass;
 
 /**
  * Class PMDStateMachineBundle
@@ -21,4 +23,11 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class PMDStateMachineBundle extends Bundle
 {
+    /**
+     * @inheritdoc
+     */
+    public function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new DefinitionPass());
+    }
 }

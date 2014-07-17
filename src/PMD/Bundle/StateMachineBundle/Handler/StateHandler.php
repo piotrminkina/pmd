@@ -14,6 +14,7 @@ namespace PMD\StateMachineBundle\Handler;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use PMD\StateMachineBundle\Model\StatefulInterface;
+use PMD\StateMachineBundle\FactoryInterface;
 
 /**
  * Class StateHandler
@@ -24,6 +25,11 @@ use PMD\StateMachineBundle\Model\StatefulInterface;
 class StateHandler implements HandlerInterface
 {
     /**
+     * @var FactoryInterface
+     */
+    protected $factory;
+
+    /**
      * @var string
      */
     protected $processPath;
@@ -32,6 +38,14 @@ class StateHandler implements HandlerInterface
      * @var string
      */
     protected $actionPath;
+
+    /**
+     * @param FactoryInterface $factory
+     */
+    public function __construct(FactoryInterface $factory)
+    {
+        $this->factory = $factory;
+    }
 
     /**
      * @param string $processPath
@@ -78,6 +92,8 @@ class StateHandler implements HandlerInterface
     {
         $process = $request->attributes->get($this->processPath, null, true);
         $action = $request->attributes->get($this->actionPath, null, true);
+
+        $stateMachine = $this->factory->create($process);
 
         return new Response($process . ':' . $action);
     }
