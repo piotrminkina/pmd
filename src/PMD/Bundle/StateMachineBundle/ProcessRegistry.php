@@ -11,7 +11,6 @@
 
 namespace PMD\StateMachineBundle;
 
-use PMD\StateMachineBundle\Process\DefinitionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
