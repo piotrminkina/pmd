@@ -33,10 +33,43 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->append($this->addRequestNode())
                 ->append($this->addDefinitionsNode())
             ->end();
 
         return $treeBuilder;
+    }
+
+    /**
+     * @return NodeDefinition
+     */
+    protected function addRequestNode()
+    {
+        $treeBuilder = $this->createTreeBuilder();
+        $node = $treeBuilder->root('request');
+
+        $node
+            ->fixXmlConfig('attribute')
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('attribute')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('process_path')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                            ->defaultValue('_state_process')
+                        ->end()
+                        ->scalarNode('action_path')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                            ->defaultValue('_state_action')
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
+
+        return $node;
     }
 
     /**

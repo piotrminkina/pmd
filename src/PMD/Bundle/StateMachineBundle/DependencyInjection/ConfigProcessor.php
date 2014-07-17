@@ -35,10 +35,23 @@ class ConfigProcessor
     {
         $this->container = $container;
 
-        $servicesDefinitions = $this->processDefinitions(
-            $config['definitions']
+        $this->processRequest($config['request']);
+        $this->processDefinitions($config['definitions']);
+    }
+
+    /**
+     * @param array $request
+     */
+    protected function processRequest(array $request)
+    {
+        $definition = $this->container->getDefinition(
+            'pmd_state_machine.handler.state_handler'
         );
-        $container->addDefinitions($servicesDefinitions);
+        $attribute = $request['attribute'];
+
+        $definition
+            ->addMethodCall('setProcessPath', array($attribute['process_path']))
+            ->addMethodCall('setActionPath', array($attribute['action_path']));
     }
 
     /**
@@ -76,7 +89,7 @@ class ConfigProcessor
             $servicesDefinitions[$processName] = $processDefinition;
         }
 
-        return $servicesDefinitions;
+        $this->container->addDefinitions($servicesDefinitions);
     }
 
     /**

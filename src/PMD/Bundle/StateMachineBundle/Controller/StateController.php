@@ -40,14 +40,10 @@ class StateController
     /**
      * @param Request $request
      * @param StatefulInterface $object
-     * @param string $action
      * @return mixed|Response
      */
-    public function handleAction(
-        Request $request,
-        StatefulInterface $object,
-        $action
-    ) {
-        return $this->handler->handle($request, $object, $action);
+    public function handleAction(Request $request, StatefulInterface $object)
+    {
+        return $this->handler->handle($request, $object);
     }
 }

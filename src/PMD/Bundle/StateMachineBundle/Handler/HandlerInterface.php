@@ -26,12 +26,7 @@ interface HandlerInterface
     /**
      * @param Request $request
      * @param StatefulInterface $object
-     * @param string $action
      * @return mixed|Response
      */
-    public function handle(
-        Request $request,
-        StatefulInterface $object,
-        $action
-    );
+    public function handle(Request $request, StatefulInterface $object);
 }

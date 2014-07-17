@@ -24,13 +24,61 @@ use PMD\StateMachineBundle\Model\StatefulInterface;
 class StateHandler implements HandlerInterface
 {
     /**
+     * @var string
+     */
+    protected $processPath;
+
+    /**
+     * @var string
+     */
+    protected $actionPath;
+
+    /**
+     * @param string $actionPath
+     * @return StateHandler
+     */
+    public function setActionPath($actionPath)
+    {
+        $this->actionPath = $actionPath;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActionPath()
+    {
+        return $this->actionPath;
+    }
+
+    /**
+     * @param string $processPath
+     * @return StateHandler
+     */
+    public function setProcessPath($processPath)
+    {
+        $this->processPath = $processPath;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProcessPath()
+    {
+        return $this->processPath;
+    }
+
+    /**
      * @inheritdoc
      */
-    public function handle(
-        Request $request,
-        StatefulInterface $object,
-        $action
-    ) {
-        return new Response($action);
+    public function handle(Request $request, StatefulInterface $object)
+    {
+        $process = $request->attributes->get($this->processPath, null, true);
+        $action = $request->attributes->get($this->actionPath, null, true);
+
+        return new Response($process . ':' . $action);
     }
 }
