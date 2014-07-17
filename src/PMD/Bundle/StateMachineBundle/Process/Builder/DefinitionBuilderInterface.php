@@ -29,9 +29,10 @@ interface DefinitionBuilderInterface
 
     /**
      * @param string $name
+     * @param string $label
      * @return $this
      */
-    public function addTransition($name);
+    public function addTransition($name, $label);
 
     /**
      * @param string $sourceState

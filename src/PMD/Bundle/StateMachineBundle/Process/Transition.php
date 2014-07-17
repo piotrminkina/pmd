@@ -25,6 +25,11 @@ class Transition implements TransitionInterface
     protected $name;
 
     /**
+     * @var string
+     */
+    protected $label;
+
+    /**
      * @var StateInterface
      */
     protected $sourceState;
@@ -50,6 +55,24 @@ class Transition implements TransitionInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getLabel()
+    {
+        return $this->label;
     }
 
     /**

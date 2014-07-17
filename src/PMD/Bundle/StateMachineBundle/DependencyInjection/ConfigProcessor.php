@@ -113,18 +113,18 @@ class ConfigProcessor
         Definition $serviceDefinition,
         array $transitions
     ) {
-        foreach ($transitions as $transition => $links) {
+        foreach ($transitions as $transitionName => $transition) {
             $serviceDefinition->addMethodCall(
                 'addTransition',
-                array($transition)
+                array($transitionName, $transition['label'])
             );
 
             $serviceDefinition->addMethodCall(
                 'linkStates',
                 array(
-                    $links['from'],
-                    $transition,
-                    $links['to'],
+                    $transition['from'],
+                    $transitionName,
+                    $transition['to'],
                 )
             );
         }

@@ -127,9 +127,10 @@ class Configuration implements ConfigurationInterface
                 continue;
             }
 
-            foreach ($stateValues['transitions'] as $transitionName => $targetStateName) {
-                $transitionName = $stateName . '_' . $transitionName;
+            foreach ($stateValues['transitions'] as $transitionLabel => $targetStateName) {
+                $transitionName = $stateName . '_' . $transitionLabel;
                 $transitions[$transitionName] = array(
+                    'label' => $transitionLabel,
                     'from' => $stateName,
                     'to' => $targetStateName,
                 );
@@ -175,6 +176,10 @@ class Configuration implements ConfigurationInterface
             ->useAttributeAsKey('name')
             ->prototype('array')
                 ->children()
+                    ->scalarNode('label')
+                        ->isRequired()
+                        ->cannotBeEmpty()
+                    ->end()
                     ->scalarNode('from')
                         ->isRequired()
                         ->cannotBeEmpty()

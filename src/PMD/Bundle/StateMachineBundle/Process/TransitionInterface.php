@@ -31,6 +31,17 @@ interface TransitionInterface
     public function getName();
 
     /**
+     * @param string $label
+     * @return $this
+     */
+    public function setLabel($label);
+
+    /**
+     * @return string
+     */
+    public function getLabel();
+
+    /**
      * @param StateInterface $sourceState
      * @return $this
      */
