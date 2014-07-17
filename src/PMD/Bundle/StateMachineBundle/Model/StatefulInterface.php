@@ -26,7 +26,7 @@ interface StatefulInterface
     public function setState($state);
 
     /**
-     * @return $this
+     * @return string
      */
     public function getState();
 }
