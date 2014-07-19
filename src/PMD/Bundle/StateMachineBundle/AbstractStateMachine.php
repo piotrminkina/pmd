@@ -35,6 +35,11 @@ abstract class AbstractStateMachine implements StateMachineInterface
     protected $definition;
 
     /**
+     * @var StateMachineCoordinatorInterface
+     */
+    protected $coordinator;
+
+    /**
      * @var StateInterface
      */
     protected $currentState;
@@ -54,9 +59,17 @@ abstract class AbstractStateMachine implements StateMachineInterface
     ) {
         $this->object = $object;
         $this->definition = $definition;
+        $this->coordinator = $this->createCoordinator();
 
-        $this->initCurrentState();
-        $this->initPossibleTransitions();
+        $this->update();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getObject()
+    {
+        return $this->object;
     }
 
     /**
@@ -92,31 +105,33 @@ abstract class AbstractStateMachine implements StateMachineInterface
     }
 
     /**
+     * @inheritdoc
      */
-    protected function initCurrentState()
+    public function flowBy($label)
     {
-        $states = $this->definition->getStates();
-        $stateName = $this->object->getState();
+        if (!isset($this->possibleTransitions[$label])) {
+            throw new \Exception('Cannot flow by %s, because transition of this label doesn\'t exits');
+        }
+        $transition = $this->possibleTransitions[$label];
+        $state = $this->coordinator->transit($transition);
 
-        $this->currentState = $states[$stateName];
+        if (null !== $state) {
+            $this->object->setState($state->getName());
+            $this->update();
+        }
     }
 
     /**
      */
-    protected function initPossibleTransitions()
+    protected function update()
     {
-        $possibleTransitions = array();
-        $currentState = $this->currentState;
-
-        foreach ($this->definition->getTransitions() as $transition) {
-            $sourceState = $transition->getSourceState();
-
-            if ($currentState === $sourceState) {
-                $label = $transition->getLabel();
-                $possibleTransitions[$label] = $transition;
-            }
-        }
-
-        $this->possibleTransitions = $possibleTransitions;
+        $coordinator = $this->coordinator;
+        $this->currentState = $coordinator->getCurrentState();
+        $this->possibleTransitions = $coordinator->getPossibleTransitions();
     }
+
+    /**
+     * @return StateMachineCoordinatorInterface
+     */
+    abstract protected function createCoordinator();
 }

@@ -99,6 +99,7 @@ class StateHandler implements HandlerInterface
         if (!$stateMachine->hasPossibleTransition($action)) {
             throw new HttpException(404, 'Action not found');
         }
+        $stateMachine->flowBy($action);
 
         return new Response($process . ':' . $action);
     }

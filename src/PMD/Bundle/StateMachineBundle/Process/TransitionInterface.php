@@ -48,7 +48,7 @@ interface TransitionInterface
     public function setSourceState(StateInterface $sourceState);
 
     /**
-     * @return string
+     * @return StateInterface
      */
     public function getSourceState();
 
@@ -59,7 +59,7 @@ interface TransitionInterface
     public function setTargetState(StateInterface $targetState);
 
     /**
-     * @return string
+     * @return StateInterface
      */
     public function getTargetState();
 }

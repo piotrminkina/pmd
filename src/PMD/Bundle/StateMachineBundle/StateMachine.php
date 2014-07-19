@@ -19,4 +19,11 @@ namespace PMD\StateMachineBundle;
  */
 class StateMachine extends AbstractStateMachine
 {
+    /**
+     * @return StateMachineCoordinatorInterface
+     */
+    protected function createCoordinator()
+    {
+        return new StateMachineCoordinator($this);
+    }
 }
