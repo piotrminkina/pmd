@@ -12,8 +12,8 @@
 namespace PMD\StateMachineBundle;
 
 use PMD\StateMachineBundle\Process\DefinitionInterface;
+use PMD\StateMachineBundle\Process\StateInterface;
 use PMD\StateMachineBundle\Process\TransitionInterface;
-use PMD\StateMachineBundle\Model\StatefulInterface;
 
 /**
  * Class StateMachineCoordinator
@@ -24,53 +24,46 @@ use PMD\StateMachineBundle\Model\StatefulInterface;
 class StateMachineCoordinator implements StateMachineCoordinatorInterface
 {
     /**
-     * @var StateMachineInterface
-     */
-    protected $stateMachine;
-
-    /**
-     * @var StatefulInterface
-     */
-    protected $object;
-
-    /**
      * @var DefinitionInterface
      */
     protected $definition;
 
     /**
-     * @param StateMachineInterface $stateMachine
+     * @param DefinitionInterface $definition
      */
-    public function __construct(StateMachineInterface $stateMachine)
+    public function __construct(DefinitionInterface $definition)
     {
-        $this->stateMachine = $stateMachine;
-        $this->object = $stateMachine->getObject();
-        $this->definition = $stateMachine->getDefinition();
+        $this->definition = $definition;
     }
 
     /**
      * @inheritdoc
      */
-    public function getCurrentState()
+    public function getDefinition()
+    {
+        return $this->definition;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getStateObject($name)
     {
         $states = $this->definition->getStates();
-        $stateName = $this->object->getState();
+        $state = $states[$name];
 
-        return $states[$stateName];
+        return $state;
     }
 
     /**
      * @inheritdoc
      */
-    public function getPossibleTransitions()
+    public function getAllowedTransitions(StateInterface $state)
     {
         $possibleTransitions = array();
-        $currentState = $this->stateMachine->getCurrentState();
 
         foreach ($this->definition->getTransitions() as $transition) {
-            $sourceState = $transition->getSourceState();
-
-            if ($currentState === $sourceState) {
+            if ($state === $transition->getSourceState()) {
                 $label = $transition->getLabel();
                 $possibleTransitions[$label] = $transition;
             }
@@ -90,7 +83,7 @@ class StateMachineCoordinator implements StateMachineCoordinatorInterface
     /**
      * @inheritdoc
      */
-    public function isComplete()
+    public function isCompleted()
     {
         return true;
     }

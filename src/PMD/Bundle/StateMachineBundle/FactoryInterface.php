@@ -35,4 +35,10 @@ interface FactoryInterface
      * @throws \Exception
      */
     public function createDefinition($name);
+
+    /**
+     * @param DefinitionInterface $definition
+     * @return StateMachineCoordinatorInterface
+     */
+    public function createCoordinator(DefinitionInterface $definition);
 }

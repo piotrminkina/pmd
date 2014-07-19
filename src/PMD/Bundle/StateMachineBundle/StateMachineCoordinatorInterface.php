@@ -11,6 +11,7 @@
 
 namespace PMD\StateMachineBundle;
 
+use PMD\StateMachineBundle\Process\DefinitionInterface;
 use PMD\StateMachineBundle\Process\StateInterface;
 use PMD\StateMachineBundle\Process\TransitionInterface;
 
@@ -23,14 +24,21 @@ use PMD\StateMachineBundle\Process\TransitionInterface;
 interface StateMachineCoordinatorInterface
 {
     /**
-     * @return StateInterface
+     * @return DefinitionInterface
      */
-    public function getCurrentState();
+    public function getDefinition();
 
     /**
+     * @param string $name
+     * @return StateInterface
+     */
+    public function getStateObject($name);
+
+    /**
+     * @param StateInterface $state
      * @return TransitionInterface[]
      */
-    public function getPossibleTransitions();
+    public function getAllowedTransitions(StateInterface $state);
 
     /**
      * @param TransitionInterface $transition
@@ -42,5 +50,5 @@ interface StateMachineCoordinatorInterface
     /**
      * @return boolean
      */
-    public function isComplete();
+    public function isCompleted();
 }

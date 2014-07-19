@@ -11,10 +11,8 @@
 
 namespace PMD\StateMachineBundle;
 
-use PMD\StateMachineBundle\Process\DefinitionInterface;
 use PMD\StateMachineBundle\Process\StateInterface;
 use PMD\StateMachineBundle\Process\TransitionInterface;
-use PMD\StateMachineBundle\Model\StatefulInterface;
 
 /**
  * Interface StateMachineInterface
@@ -25,30 +23,20 @@ use PMD\StateMachineBundle\Model\StatefulInterface;
 interface StateMachineInterface
 {
     /**
-     * @return StatefulInterface
-     */
-    public function getObject();
-
-    /**
-     * @return DefinitionInterface
-     */
-    public function getDefinition();
-
-    /**
      * @return StateInterface
      */
-    public function getCurrentState();
+    public function getState();
 
     /**
      * @return TransitionInterface[]
      */
-    public function getPossibleTransitions();
+    public function getTransitions();
 
     /**
      * @param string $label
      * @return boolean
      */
-    public function hasPossibleTransition($label);
+    public function hasTransition($label);
 
     /**
      * @param string $label

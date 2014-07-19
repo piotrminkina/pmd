@@ -11,7 +11,6 @@
 
 namespace PMD\StateMachineBundle;
 
-use PMD\StateMachineBundle\Process\DefinitionInterface;
 use PMD\StateMachineBundle\Process\StateInterface;
 use PMD\StateMachineBundle\Process\TransitionInterface;
 use PMD\StateMachineBundle\Model\StatefulInterface;
@@ -30,11 +29,6 @@ abstract class AbstractStateMachine implements StateMachineInterface
     protected $object;
 
     /**
-     * @var DefinitionInterface
-     */
-    protected $definition;
-
-    /**
      * @var StateMachineCoordinatorInterface
      */
     protected $coordinator;
@@ -42,66 +36,49 @@ abstract class AbstractStateMachine implements StateMachineInterface
     /**
      * @var StateInterface
      */
-    protected $currentState;
+    protected $state;
 
     /**
      * @var TransitionInterface[]
      */
-    protected $possibleTransitions;
+    protected $transitions;
 
     /**
      * @param StatefulInterface $object
-     * @param DefinitionInterface $definition
+     * @param StateMachineCoordinatorInterface $coordinator
      */
     public function __construct(
         StatefulInterface $object,
-        DefinitionInterface $definition
+        StateMachineCoordinatorInterface $coordinator
     ) {
         $this->object = $object;
-        $this->definition = $definition;
-        $this->coordinator = $this->createCoordinator();
+        $this->coordinator = $coordinator;
 
-        $this->update();
+        $this->updateMachine($object);
     }
 
     /**
      * @inheritdoc
      */
-    public function getObject()
+    public function getState()
     {
-        return $this->object;
+        return $this->state;
     }
 
     /**
      * @inheritdoc
      */
-    public function getDefinition()
+    public function getTransitions()
     {
-        return $this->definition;
+        return $this->transitions;
     }
 
     /**
      * @inheritdoc
      */
-    public function getCurrentState()
+    public function hasTransition($label)
     {
-        return $this->currentState;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getPossibleTransitions()
-    {
-        return $this->possibleTransitions;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function hasPossibleTransition($label)
-    {
-        return isset($this->possibleTransitions[$label]);
+        return isset($this->transitions[$label]);
     }
 
     /**
@@ -109,32 +86,38 @@ abstract class AbstractStateMachine implements StateMachineInterface
      */
     public function transit($label, $inputData = null)
     {
-        if (!isset($this->possibleTransitions[$label])) {
+        if (!isset($this->transitions[$label])) {
             throw new \Exception('Cannot flow by %s, because transition of this label doesn\'t exits');
         }
-        $transition = $this->possibleTransitions[$label];
+        $transition = $this->transitions[$label];
         $outputData = $this->coordinator->transit($transition, $inputData);
 
-        if ($this->coordinator->isComplete()) {
+        if ($this->coordinator->isCompleted()) {
             $state = $transition->getTargetState();
-            $this->object->setState($state->getName());
-            $this->update();
+            $this->updateObject($state);
+            $this->updateMachine($this->object);
         }
 
         return $outputData;
     }
 
     /**
+     * @param StateInterface $state
      */
-    protected function update()
+    protected function updateObject(StateInterface $state)
     {
-        $coordinator = $this->coordinator;
-        $this->currentState = $coordinator->getCurrentState();
-        $this->possibleTransitions = $coordinator->getPossibleTransitions();
+        $this->object->setState($state->getName());
     }
 
     /**
-     * @return StateMachineCoordinatorInterface
+     * @param StatefulInterface $object
      */
-    abstract protected function createCoordinator();
+    protected function updateMachine(StatefulInterface $object)
+    {
+        $stateName = $object->getState();
+        $coordinator = $this->coordinator;
+
+        $this->state = $coordinator->getStateObject($stateName);
+        $this->transitions = $coordinator->getAllowedTransitions($this->state);
+    }
 }
