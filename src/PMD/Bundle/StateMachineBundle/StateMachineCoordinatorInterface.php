@@ -34,7 +34,13 @@ interface StateMachineCoordinatorInterface
 
     /**
      * @param TransitionInterface $transition
+     * @param mixed $data
      * @return StateInterface|null
      */
-    public function transit(TransitionInterface $transition);
+    public function transit(TransitionInterface $transition, $data = null);
+
+    /**
+     * @return boolean
+     */
+    public function isComplete();
 }

@@ -107,18 +107,21 @@ abstract class AbstractStateMachine implements StateMachineInterface
     /**
      * @inheritdoc
      */
-    public function flowBy($label)
+    public function transit($label, $inputData = null)
     {
         if (!isset($this->possibleTransitions[$label])) {
             throw new \Exception('Cannot flow by %s, because transition of this label doesn\'t exits');
         }
         $transition = $this->possibleTransitions[$label];
-        $state = $this->coordinator->transit($transition);
+        $outputData = $this->coordinator->transit($transition, $inputData);
 
-        if (null !== $state) {
+        if ($this->coordinator->isComplete()) {
+            $state = $transition->getTargetState();
             $this->object->setState($state->getName());
             $this->update();
         }
+
+        return $outputData;
     }
 
     /**

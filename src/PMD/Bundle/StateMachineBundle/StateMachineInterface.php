@@ -52,7 +52,9 @@ interface StateMachineInterface
 
     /**
      * @param string $label
+     * @param mixed $inputData
+     * @return mixed
      * @throws \Exception
      */
-    public function flowBy($label);
+    public function transit($label, $inputData = null);
 }

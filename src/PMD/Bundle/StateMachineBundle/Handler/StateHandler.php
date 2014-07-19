@@ -93,14 +93,13 @@ class StateHandler implements HandlerInterface
     {
         $process = $request->attributes->get($this->processPath, null, true);
         $action = $request->attributes->get($this->actionPath, null, true);
-
         $stateMachine = $this->factory->create($process, $object);
 
         if (!$stateMachine->hasPossibleTransition($action)) {
             throw new HttpException(404, 'Action not found');
         }
-        $stateMachine->flowBy($action);
+        $response = $stateMachine->transit($action, $request);
 
-        return new Response($process . ':' . $action);
+        return $response;
     }
 }
