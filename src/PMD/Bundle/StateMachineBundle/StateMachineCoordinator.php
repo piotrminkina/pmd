@@ -75,9 +75,12 @@ class StateMachineCoordinator implements StateMachineCoordinatorInterface
     /**
      * @inheritdoc
      */
-    public function transit(TransitionInterface $transition, $data = null)
-    {
-        return null;
+    public function complete(
+        TransitionInterface $transition,
+        $context,
+        $data = null
+    ) {
+        return $context;
     }
 
     /**

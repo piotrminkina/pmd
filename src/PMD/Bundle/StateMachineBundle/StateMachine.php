@@ -13,6 +13,7 @@ namespace PMD\StateMachineBundle;
 
 use PMD\StateMachineBundle\Process\StateInterface;
 use PMD\StateMachineBundle\Process\TransitionInterface;
+use PMD\StateMachineBundle\Model\ContextualInterface;
 use PMD\StateMachineBundle\Model\StatefulInterface;
 
 /**
@@ -37,6 +38,11 @@ class StateMachine implements StateMachineInterface
      * @var StateInterface
      */
     protected $state;
+
+    /**
+     * @var mixed
+     */
+    protected $context;
 
     /**
      * @var TransitionInterface[]
@@ -68,6 +74,14 @@ class StateMachine implements StateMachineInterface
     /**
      * @inheritdoc
      */
+    public function getContext()
+    {
+        return $this->context;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getTransitions()
     {
         return $this->transitions;
@@ -84,13 +98,17 @@ class StateMachine implements StateMachineInterface
     /**
      * @inheritdoc
      */
-    public function transit($label, $inputData = null)
+    public function applyTransition($label, $inputData = null)
     {
         if (!isset($this->transitions[$label])) {
             throw new \Exception('Cannot flow by %s, because transition of this label doesn\'t exits');
         }
         $transition = $this->transitions[$label];
-        $outputData = $this->coordinator->transit($transition, $inputData);
+        $outputData = $this->coordinator->complete(
+            $transition,
+            $this->context,
+            $inputData
+        );
 
         if ($this->coordinator->isCompleted()) {
             $state = $transition->getTargetState();
@@ -119,5 +137,11 @@ class StateMachine implements StateMachineInterface
 
         $this->state = $coordinator->getStateObject($stateName);
         $this->transitions = $coordinator->getAllowedTransitions($this->state);
+
+        if ($object instanceof ContextualInterface) {
+            $this->context = $object->getContext();
+        } else {
+            $this->context = $object;
+        }
     }
 }

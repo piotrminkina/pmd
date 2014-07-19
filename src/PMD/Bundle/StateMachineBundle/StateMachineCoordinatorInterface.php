@@ -36,16 +36,22 @@ interface StateMachineCoordinatorInterface
 
     /**
      * @param StateInterface $state
+     * @param mixed $context
      * @return TransitionInterface[]
      */
-    public function getAllowedTransitions(StateInterface $state);
+    public function getAllowedTransitions(StateInterface $state, $context);
 
     /**
      * @param TransitionInterface $transition
+     * @param mixed $context
      * @param mixed $data
-     * @return StateInterface|null
+     * @return mixed
      */
-    public function transit(TransitionInterface $transition, $data = null);
+    public function complete(
+        TransitionInterface $transition,
+        $context,
+        $data = null
+    );
 
     /**
      * @return boolean

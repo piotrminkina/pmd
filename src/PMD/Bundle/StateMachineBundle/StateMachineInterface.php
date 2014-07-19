@@ -39,10 +39,15 @@ interface StateMachineInterface
     public function hasTransition($label);
 
     /**
+     * @return mixed
+     */
+    public function getContext();
+
+    /**
      * @param string $label
      * @param mixed $inputData
      * @return mixed
      * @throws \Exception
      */
-    public function transit($label, $inputData = null);
+    public function applyTransition($label, $inputData = null);
 }
