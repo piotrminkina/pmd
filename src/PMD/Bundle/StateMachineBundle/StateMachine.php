@@ -135,13 +135,16 @@ class StateMachine implements StateMachineInterface
         $stateName = $object->getState();
         $coordinator = $this->coordinator;
 
-        $this->state = $coordinator->getStateObject($stateName);
-        $this->transitions = $coordinator->getAllowedTransitions($this->state);
-
         if ($object instanceof ContextualInterface) {
             $this->context = $object->getContext();
         } else {
             $this->context = $object;
         }
+
+        $this->state = $coordinator->getStateObject($stateName);
+        $this->transitions = $coordinator->getAllowedTransitions(
+            $this->state,
+            $this->context
+        );
     }
 }

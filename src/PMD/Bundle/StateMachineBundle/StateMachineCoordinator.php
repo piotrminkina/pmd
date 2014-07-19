@@ -58,7 +58,7 @@ class StateMachineCoordinator implements StateMachineCoordinatorInterface
     /**
      * @inheritdoc
      */
-    public function getAllowedTransitions(StateInterface $state)
+    public function getAllowedTransitions(StateInterface $state, $context)
     {
         $possibleTransitions = array();
 
