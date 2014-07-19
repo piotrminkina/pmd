@@ -64,26 +64,13 @@ class ConfigProcessor
 
         foreach ($definitions as $name => $definition) {
             $builderName = sprintf('pmd_state_machine.%s_builder', $name);
-            $builderDefinition = clone $this->container->getDefinition(
-                'pmd_state_machine.process_builder.definition_builder'
-            );
             $processName = sprintf('pmd_state_machine.%s_definition', $name);
-            $processDefinition = new Definition(
-                'PMD\StateMachineBundle\Process\DefinitionInterface'
-            );
 
-            $builderDefinition->addMethodCall('setName', array($name));
+            $builderDefinition = $this->getBuilderDefinition($name);
+            $processDefinition = $this->getProcessDefinition($builderName, $name);
 
             $this->processStates($builderDefinition, $definition['states']);
             $this->processTransitions($builderDefinition, $definition['transitions']);
-
-            $processDefinition
-                ->setFactoryService($builderName)
-                ->setFactoryMethod('getDefinition')
-                ->addTag(
-                    'pmd_state_machine.definition',
-                    array('alias' => $name)
-                );
 
             $servicesDefinitions[$builderName] = $builderDefinition;
             $servicesDefinitions[$processName] = $processDefinition;
@@ -128,5 +115,42 @@ class ConfigProcessor
                 )
             );
         }
+    }
+
+    /**
+     * @param string $definitionName
+     * @return Definition
+     */
+    protected function getBuilderDefinition($definitionName)
+    {
+        $builderDefinition = clone $this->container->getDefinition(
+            'pmd_state_machine.process_builder.definition_builder'
+        );
+
+        $builderDefinition->addMethodCall('setName', array($definitionName));
+
+        return $builderDefinition;
+    }
+
+    /**
+     * @param string $builderName
+     * @param string $definitionName
+     * @return Definition
+     */
+    protected function getProcessDefinition($builderName, $definitionName)
+    {
+        $processDefinition = new Definition(
+            'PMD\StateMachineBundle\Process\DefinitionInterface'
+        );
+
+        $processDefinition
+            ->setFactoryService($builderName)
+            ->setFactoryMethod('getDefinition')
+            ->addTag(
+                'pmd_state_machine.definition',
+                array('alias' => $definitionName)
+            );
+
+        return $processDefinition;
     }
 }
