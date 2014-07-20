@@ -30,7 +30,7 @@ class StateMachine implements StateMachineInterface
     protected $object;
 
     /**
-     * @var StateMachineCoordinatorInterface
+     * @var CoordinatorInterface
      */
     protected $coordinator;
 
@@ -51,11 +51,11 @@ class StateMachine implements StateMachineInterface
 
     /**
      * @param StatefulInterface $object
-     * @param StateMachineCoordinatorInterface $coordinator
+     * @param CoordinatorInterface $coordinator
      */
     public function __construct(
         StatefulInterface $object,
-        StateMachineCoordinatorInterface $coordinator
+        CoordinatorInterface $coordinator
     ) {
         $this->object = $object;
         $this->coordinator = $coordinator;

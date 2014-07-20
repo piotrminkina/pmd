@@ -38,7 +38,7 @@ interface FactoryInterface
 
     /**
      * @param DefinitionInterface $definition
-     * @return StateMachineCoordinatorInterface
+     * @return CoordinatorInterface
      */
     public function createCoordinator(DefinitionInterface $definition);
 }

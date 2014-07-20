@@ -16,12 +16,12 @@ use PMD\StateMachineBundle\Process\StateInterface;
 use PMD\StateMachineBundle\Process\TransitionInterface;
 
 /**
- * Class StateMachineCoordinator
+ * Class Coordinator
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
  * @package PMD\StateMachineBundle
  */
-class StateMachineCoordinator implements StateMachineCoordinatorInterface
+class Coordinator implements CoordinatorInterface
 {
     /**
      * @var DefinitionInterface

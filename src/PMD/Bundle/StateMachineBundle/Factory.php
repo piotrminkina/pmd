@@ -66,6 +66,6 @@ class Factory implements FactoryInterface
      */
     public function createCoordinator(DefinitionInterface $definition)
     {
-        return new StateMachineCoordinator($definition);
+        return new Coordinator($definition);
     }
 }
