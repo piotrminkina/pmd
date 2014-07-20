@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle;
+namespace PMD\StateMachineBundle\Process\Registry;
 
 use PMD\StateMachineBundle\Process\DefinitionInterface;
 
 /**
- * Interface ProcessRegistryInterface
+ * Interface DefinitionRegistryInterface
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
  * @package PMD\StateMachineBundle
  */
-interface ProcessRegistryInterface
+interface DefinitionRegistryInterface
 {
     /**
      * @param string $name

@@ -11,8 +11,9 @@
 
 namespace PMD\StateMachineBundle;
 
-use PMD\StateMachineBundle\Model\StatefulInterface;
+use PMD\StateMachineBundle\Process\Registry\DefinitionRegistryInterface;
 use PMD\StateMachineBundle\Process\DefinitionInterface;
+use PMD\StateMachineBundle\Model\StatefulInterface;
 
 /**
  * Class Factory
@@ -23,14 +24,14 @@ use PMD\StateMachineBundle\Process\DefinitionInterface;
 class Factory implements FactoryInterface
 {
     /**
-     * @var ProcessRegistryInterface
+     * @var DefinitionRegistryInterface
      */
     protected $registry;
 
     /**
-     * @param ProcessRegistryInterface $registry
+     * @param DefinitionRegistryInterface $registry
      */
-    public function __construct(ProcessRegistryInterface $registry)
+    public function __construct(DefinitionRegistryInterface $registry)
     {
         $this->registry = $registry;
     }

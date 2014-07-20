@@ -32,7 +32,7 @@ class DefinitionPass implements CompilerPassInterface
             'pmd_state_machine.definition'
         );
         $registryDefinition = $container->getDefinition(
-            'pmd_state_machine.process_registry'
+            'pmd_state_machine.process_registry.definition_registry'
         );
 
         foreach ($servicesIds as $serviceId => $tag) {

@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle;
+namespace PMD\StateMachineBundle\Process\Registry;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class ProcessRegistry
+ * Class DefinitionRegistry
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
  * @package PMD\StateMachineBundle
  */
-class ProcessRegistry implements ProcessRegistryInterface
+class DefinitionRegistry implements DefinitionRegistryInterface
 {
     /**
      * @var string[]
