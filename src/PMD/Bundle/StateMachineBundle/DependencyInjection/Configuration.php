@@ -77,6 +77,7 @@ class Configuration implements ConfigurationInterface
      */
     protected function addDefinitionsNode()
     {
+        $context = $this;
         $treeBuilder = $this->createTreeBuilder();
         $node = $treeBuilder->root('definitions');
 
@@ -88,8 +89,8 @@ class Configuration implements ConfigurationInterface
                 ->cannotBeOverwritten()
                 ->beforeNormalization()
                     ->always(
-                        function (array $definition) {
-                            return $this->normalizeDefinition($definition);
+                        function (array $definition) use ($context) {
+                            return $context->normalizeDefinition($definition);
                         }
                     )
                 ->end()
