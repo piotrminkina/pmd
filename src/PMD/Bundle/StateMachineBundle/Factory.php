@@ -11,6 +11,7 @@
 
 namespace PMD\StateMachineBundle;
 
+use PMD\StateMachineBundle\Process\CoordinatorInterface;
 use PMD\StateMachineBundle\Process\RegistryInterface;
 use PMD\StateMachineBundle\Model\StatefulInterface;
 
@@ -47,7 +48,9 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * @inheritdoc
+     * @param string $name
+     * @throws \Exception
+     * @return CoordinatorInterface
      */
     protected function getCoordinator($name)
     {

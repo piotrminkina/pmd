@@ -36,6 +36,7 @@ class PMDStateMachineExtension extends Extension
         $loader->load('controller.xml');
         $loader->load('handler.xml');
         $loader->load('process.xml');
+        $loader->load('decorator.xml');
         $loader->load('services.xml');
 
         $configuration = $this->createConfiguration();

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+  - This file is part of the PMDStateMachineBundle package.
+  -
+  - (c) Piotr Minkina <projekty@piotrminkina.pl>
+  -
+  - For the full copyright and license information, please view the LICENSE
+  - file that was distributed with this source code.
+ -->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <!-- Coordinator decorators -->
+        <parameter key="pmd_state_machine.process_decorator.guard_coordinator_decorator.class">PMD\StateMachineBundle\Process\Decorator\GuardCoordinatorDecorator</parameter>
+        <parameter key="pmd_state_machine.process_decorator.action_coordinator_decorator.class">PMD\StateMachineBundle\Process\Decorator\ActionCoordinatorDecorator</parameter>
+    </parameters>
+
+    <services>
+        <!-- Coordinator decorators -->
+        <service id="pmd_state_machine.process_decorator.guard_coordinator_decorator"
+                 class="%pmd_state_machine.process_decorator.guard_coordinator_decorator.class%">
+            <argument type="service"
+                      id="pmd_state_machine.process_decorator.guard_coordinator_decorator.inner"/>
+            <tag name="pmd_state_machine.coordinator_decorator" alias="guard" priority="256"/>
+        </service>
+
+        <service id="pmd_state_machine.process_decorator.action_coordinator_decorator"
+                 class="%pmd_state_machine.process_decorator.action_coordinator_decorator.class%">
+            <argument type="service"
+                      id="pmd_state_machine.process_decorator.action_coordinator_decorator.inner"/>
+            <tag name="pmd_state_machine.coordinator_decorator" alias="action"/>
+        </service>
+    </services>
+</container>
