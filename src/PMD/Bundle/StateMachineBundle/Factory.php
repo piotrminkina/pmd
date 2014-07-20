@@ -11,8 +11,7 @@
 
 namespace PMD\StateMachineBundle;
 
-use PMD\StateMachineBundle\Process\Registry\DefinitionRegistryInterface;
-use PMD\StateMachineBundle\Process\DefinitionInterface;
+use PMD\StateMachineBundle\Process\RegistryInterface;
 use PMD\StateMachineBundle\Model\StatefulInterface;
 
 /**
@@ -24,14 +23,14 @@ use PMD\StateMachineBundle\Model\StatefulInterface;
 class Factory implements FactoryInterface
 {
     /**
-     * @var DefinitionRegistryInterface
+     * @var RegistryInterface
      */
     protected $registry;
 
     /**
-     * @param DefinitionRegistryInterface $registry
+     * @param RegistryInterface $registry
      */
-    public function __construct(DefinitionRegistryInterface $registry)
+    public function __construct(RegistryInterface $registry)
     {
         $this->registry = $registry;
     }
@@ -41,8 +40,7 @@ class Factory implements FactoryInterface
      */
     public function create($name, StatefulInterface $object)
     {
-        $definition = $this->createDefinition($name);
-        $coordinator = $this->createCoordinator($definition);
+        $coordinator = $this->getCoordinator($name);
         $stateMachine = new StateMachine($object, $coordinator);
 
         return $stateMachine;
@@ -51,22 +49,17 @@ class Factory implements FactoryInterface
     /**
      * @inheritdoc
      */
-    public function createDefinition($name)
+    protected function getCoordinator($name)
     {
-        if (!$this->registry->hasDefinition($name)) {
+        if (!$this->registry->hasCoordinator($name)) {
             throw new \Exception(
-                sprintf('Cannot create State Machine with definition named "%s", because definition is unknown', $name)
+                sprintf(
+                    'Cannot create State Machine, because coordinator named "%s" is unknown',
+                    $name
+                )
             );
         }
 
-        return $this->registry->getDefinition($name);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function createCoordinator(DefinitionInterface $definition)
-    {
-        return new Coordinator($definition);
+        return $this->registry->getCoordinator($name);
     }
 }

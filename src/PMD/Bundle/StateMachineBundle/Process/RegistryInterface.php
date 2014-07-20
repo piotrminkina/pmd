@@ -9,17 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Process\Registry;
-
-use PMD\StateMachineBundle\Process\DefinitionInterface;
+namespace PMD\StateMachineBundle\Process;
 
 /**
- * Interface DefinitionRegistryInterface
+ * Interface RegistryInterface
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle
+ * @package PMD\StateMachineBundle\Process
  */
-interface DefinitionRegistryInterface
+interface RegistryInterface
 {
     /**
      * @param string $name
@@ -32,4 +30,16 @@ interface DefinitionRegistryInterface
      * @return boolean
      */
     public function hasDefinition($name);
+    
+    /**
+     * @param string $name
+     * @return CoordinatorInterface
+     */
+    public function getCoordinator($name);
+
+    /**
+     * @param string $name
+     * @return boolean
+     */
+    public function hasCoordinator($name);
 }

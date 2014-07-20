@@ -12,7 +12,6 @@
 namespace PMD\StateMachineBundle\Handler;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use PMD\StateMachineBundle\Model\StatefulInterface;
 use PMD\StateMachineBundle\FactoryInterface;

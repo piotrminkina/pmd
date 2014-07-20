@@ -11,8 +11,9 @@
 
 namespace PMD\StateMachineBundle;
 
-use PMD\StateMachineBundle\Process\StateInterface;
-use PMD\StateMachineBundle\Process\TransitionInterface;
+use PMD\StateMachineBundle\Process\CoordinatorInterface;
+use PMD\StateMachineBundle\Process\Definition\StateInterface;
+use PMD\StateMachineBundle\Process\Definition\TransitionInterface;
 use PMD\StateMachineBundle\Model\ContextualInterface;
 use PMD\StateMachineBundle\Model\StatefulInterface;
 

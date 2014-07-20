@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Process;
+namespace PMD\StateMachineBundle\Process\Definition;
 
 /**
  * Interface StateInterface
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Definition
+ * @package PMD\StateMachineBundle\Process\Definition
  */
 interface StateInterface
 {

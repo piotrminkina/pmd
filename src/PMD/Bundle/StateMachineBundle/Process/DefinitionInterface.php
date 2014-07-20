@@ -11,11 +11,14 @@
 
 namespace PMD\StateMachineBundle\Process;
 
+use PMD\StateMachineBundle\Process\Definition\StateInterface;
+use PMD\StateMachineBundle\Process\Definition\TransitionInterface;
+
 /**
  * Interface DefinitionInterface
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Definition
+ * @package PMD\StateMachineBundle\Process
  */
 interface DefinitionInterface
 {

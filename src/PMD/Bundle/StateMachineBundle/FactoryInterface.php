@@ -12,7 +12,6 @@
 namespace PMD\StateMachineBundle;
 
 use PMD\StateMachineBundle\Model\StatefulInterface;
-use PMD\StateMachineBundle\Process\DefinitionInterface;
 
 /**
  * Interface FactoryInterface
@@ -28,17 +27,4 @@ interface FactoryInterface
      * @return StateMachineInterface
      */
     public function create($name, StatefulInterface $object);
-
-    /**
-     * @param string $name
-     * @return DefinitionInterface
-     * @throws \Exception
-     */
-    public function createDefinition($name);
-
-    /**
-     * @param DefinitionInterface $definition
-     * @return CoordinatorInterface
-     */
-    public function createCoordinator(DefinitionInterface $definition);
 }

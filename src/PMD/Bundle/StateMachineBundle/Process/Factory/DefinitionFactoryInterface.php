@@ -11,9 +11,9 @@
 
 namespace PMD\StateMachineBundle\Process\Factory;
 
+use PMD\StateMachineBundle\Process\Definition\StateInterface;
+use PMD\StateMachineBundle\Process\Definition\TransitionInterface;
 use PMD\StateMachineBundle\Process\DefinitionInterface;
-use PMD\StateMachineBundle\Process\StateInterface;
-use PMD\StateMachineBundle\Process\TransitionInterface;
 
 /**
  * Interface DefinitionFactoryInterface

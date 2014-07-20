@@ -15,21 +15,21 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * Class DefinitionPass
+ * Class CoordinatorPass
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
  * @package PMD\StateMachineBundle\DependencyInjection\Compiler
  */
-class DefinitionPass implements CompilerPassInterface
+class CoordinatorPass implements CompilerPassInterface
 {
     /**
      * @inheritdoc
      */
     public function process(ContainerBuilder $container)
     {
-        $definitions = array();
+        $coordinators = array();
         $servicesIds = $container->findTaggedServiceIds(
-            'pmd_state_machine.definition'
+            'pmd_state_machine.coordinator'
         );
         $registryDefinition = $container->getDefinition(
             'pmd_state_machine.process.registry'
@@ -40,9 +40,9 @@ class DefinitionPass implements CompilerPassInterface
                 ? $tag[0]['alias']
                 : $serviceId;
 
-            $definitions[$alias] = $serviceId;
+            $coordinators[$alias] = $serviceId;
         }
 
-        $registryDefinition->replaceArgument(0, $definitions);
+        $registryDefinition->replaceArgument(1, $coordinators);
     }
 }

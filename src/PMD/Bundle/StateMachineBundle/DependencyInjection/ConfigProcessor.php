@@ -13,6 +13,8 @@ namespace PMD\StateMachineBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\DefinitionDecorator;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * Class ConfigProcessor
@@ -60,23 +62,26 @@ class ConfigProcessor
      */
     protected function processDefinitions(array $definitions)
     {
-        $servicesDefinitions = array();
+        $services = array();
 
         foreach ($definitions as $name => $definition) {
-            $builderName = sprintf('pmd_state_machine.%s_builder', $name);
-            $processName = sprintf('pmd_state_machine.%s_definition', $name);
+            $builderName = sprintf('pmd_state_machine.%s_process_builder', $name);
+            $processName = sprintf('pmd_state_machine.%s_process', $name);
+            $coordinatorName = sprintf('pmd_state_machine.%s_coordinator', $name);
 
-            $builderDefinition = $this->getBuilderDefinition($name);
-            $processDefinition = $this->getProcessDefinition($builderName, $name);
+            $builder = $this->getBuilderDefinition($name);
+            $process = $this->getProcessDefinition($builderName, $name);
+            $coordinator = $this->getCoordinatorDefinition($processName, $name);
 
-            $this->processStates($builderDefinition, $definition['states']);
-            $this->processTransitions($builderDefinition, $definition['transitions']);
+            $this->processStates($builder, $definition['states']);
+            $this->processTransitions($builder, $definition['transitions']);
 
-            $servicesDefinitions[$builderName] = $builderDefinition;
-            $servicesDefinitions[$processName] = $processDefinition;
+            $services[$builderName] = $builder;
+            $services[$processName] = $process;
+            $services[$coordinatorName] = $coordinator;
         }
 
-        $this->container->addDefinitions($servicesDefinitions);
+        $this->container->addDefinitions($services);
     }
 
     /**
@@ -123,13 +128,13 @@ class ConfigProcessor
      */
     protected function getBuilderDefinition($definitionName)
     {
-        $builderDefinition = clone $this->container->getDefinition(
+        $builder = new DefinitionDecorator(
             'pmd_state_machine.process_builder.definition_builder'
         );
 
-        $builderDefinition->addMethodCall('setName', array($definitionName));
+        $builder->addMethodCall('setName', array($definitionName));
 
-        return $builderDefinition;
+        return $builder;
     }
 
     /**
@@ -139,11 +144,11 @@ class ConfigProcessor
      */
     protected function getProcessDefinition($builderName, $definitionName)
     {
-        $processDefinition = new Definition(
-            'PMD\StateMachineBundle\Process\DefinitionInterface'
+        $process = new DefinitionDecorator(
+            'pmd_state_machine.process.definition'
         );
 
-        $processDefinition
+        $process
             ->setFactoryService($builderName)
             ->setFactoryMethod('getDefinition')
             ->addTag(
@@ -151,6 +156,27 @@ class ConfigProcessor
                 array('alias' => $definitionName)
             );
 
-        return $processDefinition;
+        return $process;
+    }
+
+    /**
+     * @param string $processName
+     * @param string $definitionName
+     * @return Definition
+     */
+    protected function getCoordinatorDefinition($processName, $definitionName)
+    {
+        $coordinator = new DefinitionDecorator(
+            'pmd_state_machine.process.coordinator'
+        );
+
+        $coordinator
+            ->addArgument(new Reference($processName))
+            ->addTag(
+                'pmd_state_machine.coordinator',
+                array('alias' => $definitionName)
+            );
+
+        return $coordinator;
     }
 }

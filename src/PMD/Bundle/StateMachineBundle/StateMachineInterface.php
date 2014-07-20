@@ -11,8 +11,8 @@
 
 namespace PMD\StateMachineBundle;
 
-use PMD\StateMachineBundle\Process\StateInterface;
-use PMD\StateMachineBundle\Process\TransitionInterface;
+use PMD\StateMachineBundle\Process\Definition\StateInterface;
+use PMD\StateMachineBundle\Process\Definition\TransitionInterface;
 
 /**
  * Interface StateMachineInterface

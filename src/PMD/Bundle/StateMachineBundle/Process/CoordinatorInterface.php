@@ -9,17 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle;
+namespace PMD\StateMachineBundle\Process;
 
-use PMD\StateMachineBundle\Process\DefinitionInterface;
-use PMD\StateMachineBundle\Process\StateInterface;
-use PMD\StateMachineBundle\Process\TransitionInterface;
+use PMD\StateMachineBundle\Process\Definition\StateInterface;
+use PMD\StateMachineBundle\Process\Definition\TransitionInterface;
 
 /**
  * Interface CoordinatorInterface
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle
+ * @package PMD\StateMachineBundle\Process
  */
 interface CoordinatorInterface
 {

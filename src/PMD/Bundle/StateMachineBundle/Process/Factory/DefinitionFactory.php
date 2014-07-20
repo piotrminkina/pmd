@@ -11,9 +11,9 @@
 
 namespace PMD\StateMachineBundle\Process\Factory;
 
+use PMD\StateMachineBundle\Process\Definition\State;
+use PMD\StateMachineBundle\Process\Definition\Transition;
 use PMD\StateMachineBundle\Process\Definition;
-use PMD\StateMachineBundle\Process\Transition;
-use PMD\StateMachineBundle\Process\State;
 
 /**
  * Class DefinitionFactory

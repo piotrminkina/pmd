@@ -9,22 +9,27 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Process\Registry;
+namespace PMD\StateMachineBundle\Process;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class DefinitionRegistry
+ * Class Registry
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle
+ * @package PMD\StateMachineBundle\Process
  */
-class DefinitionRegistry implements DefinitionRegistryInterface
+class Registry implements RegistryInterface
 {
     /**
      * @var string[]
      */
     protected $definitions;
+
+    /**
+     * @var string[]
+     */
+    protected $coordinators;
 
     /**
      * @var ContainerInterface
@@ -33,13 +38,16 @@ class DefinitionRegistry implements DefinitionRegistryInterface
 
     /**
      * @param string[] $definitions
+     * @param string[] $coordinators
      * @param ContainerInterface $container
      */
     public function __construct(
         array $definitions,
+        array $coordinators,
         ContainerInterface $container
     ) {
         $this->definitions = $definitions;
+        $this->coordinators = $coordinators;
         $this->container = $container;
     }
 
@@ -59,5 +67,23 @@ class DefinitionRegistry implements DefinitionRegistryInterface
     public function hasDefinition($name)
     {
         return isset($this->definitions[$name]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getCoordinator($name)
+    {
+        $serviceId = $this->coordinators[$name];
+
+        return $this->container->get($serviceId);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function hasCoordinator($name)
+    {
+        return isset($this->coordinators[$name]);
     }
 }

@@ -11,9 +11,9 @@
 
 namespace PMD\StateMachineBundle\Process\Builder;
 
+use PMD\StateMachineBundle\Process\Definition\StateInterface;
+use PMD\StateMachineBundle\Process\Definition\TransitionInterface;
 use PMD\StateMachineBundle\Process\Factory\DefinitionFactoryInterface;
-use PMD\StateMachineBundle\Process\StateInterface;
-use PMD\StateMachineBundle\Process\TransitionInterface;
 
 /**
  * Class DefinitionBuilder
