@@ -25,6 +25,7 @@
                  class="%pmd_state_machine.process_decorator.guard_coordinator_decorator.class%">
             <argument type="service"
                       id="pmd_state_machine.process_decorator.guard_coordinator_decorator.inner"/>
+            <argument type="service" id="security.context"/>
             <tag name="pmd_state_machine.coordinator_decorator" alias="guard" priority="256"/>
         </service>
 
