@@ -11,9 +11,9 @@
 
 namespace PMD\StateMachineBundle;
 
-use PMD\StateMachineBundle\Process\CoordinatorInterface;
 use PMD\StateMachineBundle\Process\Definition\StateInterface;
-use PMD\StateMachineBundle\Process\Definition\TransitionInterface;
+use PMD\StateMachineBundle\Process\CoordinatorInterface;
+use PMD\StateMachineBundle\Process\TokenInterface;
 use PMD\StateMachineBundle\Model\ContextualInterface;
 use PMD\StateMachineBundle\Model\StatefulInterface;
 
@@ -46,9 +46,9 @@ class StateMachine implements StateMachineInterface
     protected $context;
 
     /**
-     * @var TransitionInterface[]
+     * @var TokenInterface[]
      */
-    protected $transitions;
+    protected $tokens;
 
     /**
      * @param StatefulInterface $object
@@ -83,36 +83,34 @@ class StateMachine implements StateMachineInterface
     /**
      * @inheritdoc
      */
-    public function getTransitions()
+    public function getTokens()
     {
-        return $this->transitions;
+        return $this->tokens;
     }
 
     /**
      * @inheritdoc
      */
-    public function hasTransition($label)
+    public function hasToken($name)
     {
-        return isset($this->transitions[$label]);
+        return isset($this->tokens[$name]);
     }
 
     /**
      * @inheritdoc
      */
-    public function applyTransition($label, $inputData = null)
+    public function applyToken($name, $inputData = null)
     {
-        if (!isset($this->transitions[$label])) {
-            throw new \Exception('Cannot flow by %s, because transition of this label doesn\'t exits');
+        if (!isset($this->tokens[$name])) {
+            throw new \Exception(
+                sprintf('Cannot flow by %s, because token of this name doesn\'t exits', $name)
+            );
         }
-        $transition = $this->transitions[$label];
-        $outputData = $this->coordinator->complete(
-            $transition,
-            $this->context,
-            $inputData
-        );
+        $token = $this->tokens[$name];
+        $outputData = $this->coordinator->consume($token, $inputData);
 
-        if ($this->coordinator->isCompleted()) {
-            $state = $transition->getTargetState();
+        if ($token->isConsumed()) {
+            $state = $token->getState();
             $this->updateObject($state);
             $this->updateMachine($this->object);
         }
@@ -133,7 +131,7 @@ class StateMachine implements StateMachineInterface
      */
     protected function updateMachine(StatefulInterface $object)
     {
-        $stateName = $object->getState();
+        $state = $object->getState();
         $coordinator = $this->coordinator;
 
         if ($object instanceof ContextualInterface) {
@@ -142,10 +140,7 @@ class StateMachine implements StateMachineInterface
             $this->context = $object;
         }
 
-        $this->state = $coordinator->getStateObject($stateName);
-        $this->transitions = $coordinator->getAllowedTransitions(
-            $this->state,
-            $this->context
-        );
+        $this->state = $coordinator->getState($state);
+        $this->tokens = $coordinator->getTokens($this, $this->context);
     }
 }

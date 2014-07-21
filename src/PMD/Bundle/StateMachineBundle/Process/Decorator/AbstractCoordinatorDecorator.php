@@ -12,8 +12,8 @@
 namespace PMD\StateMachineBundle\Process\Decorator;
 
 use PMD\StateMachineBundle\Process\CoordinatorInterface;
-use PMD\StateMachineBundle\Process\Definition\StateInterface;
-use PMD\StateMachineBundle\Process\Definition\TransitionInterface;
+use PMD\StateMachineBundle\Process\TokenInterface;
+use PMD\StateMachineBundle\StateMachineInterface;
 
 /**
  * Class AbstractCoordinatorDecorator
@@ -47,35 +47,24 @@ abstract class AbstractCoordinatorDecorator implements CoordinatorInterface
     /**
      * @inheritdoc
      */
-    public function getStateObject($name)
+    public function getState($name)
     {
-        return $this->coordinator->getStateObject($name);
+        return $this->coordinator->getState($name);
     }
 
     /**
      * @inheritdoc
      */
-    public function getAllowedTransitions(StateInterface $state, $context)
+    public function getTokens(StateMachineInterface $instance, $context)
     {
-        return $this->coordinator->getAllowedTransitions($state, $context);
+        return $this->coordinator->getTokens($instance, $context);
     }
 
     /**
      * @inheritdoc
      */
-    public function complete(
-        TransitionInterface $transition,
-        $context,
-        $data = null
-    ) {
-        return $this->coordinator->complete($transition, $context, $data);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function isCompleted()
+    public function consume(TokenInterface $token, $data = null)
     {
-        return $this->coordinator->isCompleted();
+        return $this->coordinator->consume($token, $data);
     }
 }

@@ -12,7 +12,7 @@
 namespace PMD\StateMachineBundle\Process;
 
 use PMD\StateMachineBundle\Process\Definition\StateInterface;
-use PMD\StateMachineBundle\Process\Definition\TransitionInterface;
+use PMD\StateMachineBundle\StateMachineInterface;
 
 /**
  * Interface CoordinatorInterface
@@ -31,29 +31,20 @@ interface CoordinatorInterface
      * @param string $name
      * @return StateInterface
      */
-    public function getStateObject($name);
+    public function getState($name);
 
     /**
-     * @param StateInterface $state
+     * @param StateMachineInterface $instance
      * @param mixed $context
-     * @return TransitionInterface[]
+     * @return TokenInterface[]
      */
-    public function getAllowedTransitions(StateInterface $state, $context);
+    public function getTokens(StateMachineInterface $instance, $context);
 
     /**
-     * @param TransitionInterface $transition
-     * @param mixed $context
+     * @param TokenInterface $token
      * @param mixed $data
+     * @throws \Exception
      * @return mixed
      */
-    public function complete(
-        TransitionInterface $transition,
-        $context,
-        $data = null
-    );
-
-    /**
-     * @return boolean
-     */
-    public function isCompleted();
+    public function consume(TokenInterface $token, $data = null);
 }

@@ -94,10 +94,10 @@ class StateHandler implements HandlerInterface
         $action = $request->attributes->get($this->actionPath, null, true);
         $stateMachine = $this->factory->create($process, $object);
 
-        if (!$stateMachine->hasTransition($action)) {
+        if (!$stateMachine->hasToken($action)) {
             throw new HttpException(404, 'Action not found');
         }
-        $response = $stateMachine->applyTransition($action, $request);
+        $response = $stateMachine->applyToken($action, $request);
 
         return $response;
     }

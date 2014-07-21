@@ -12,7 +12,7 @@
 namespace PMD\StateMachineBundle;
 
 use PMD\StateMachineBundle\Process\Definition\StateInterface;
-use PMD\StateMachineBundle\Process\Definition\TransitionInterface;
+use PMD\StateMachineBundle\Process\TokenReadInterface;
 
 /**
  * Interface StateMachineInterface
@@ -28,26 +28,26 @@ interface StateMachineInterface
     public function getState();
 
     /**
-     * @return TransitionInterface[]
-     */
-    public function getTransitions();
-
-    /**
-     * @param string $label
-     * @return boolean
-     */
-    public function hasTransition($label);
-
-    /**
      * @return mixed
      */
     public function getContext();
 
     /**
-     * @param string $label
-     * @param mixed $inputData
-     * @return mixed
-     * @throws \Exception
+     * @return TokenReadInterface[]
      */
-    public function applyTransition($label, $inputData = null);
+    public function getTokens();
+
+    /**
+     * @param string $name
+     * @return boolean
+     */
+    public function hasToken($name);
+
+    /**
+     * @param string $name
+     * @param mixed $inputData
+     * @throws \Exception
+     * @return mixed
+     */
+    public function applyToken($name, $inputData = null);
 }
