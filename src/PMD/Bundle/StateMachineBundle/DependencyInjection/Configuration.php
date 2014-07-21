@@ -97,8 +97,7 @@ class Configuration implements ConfigurationInterface
                 ->children()
                     ->append($this->addStatesNode())
                     ->append($this->addTransitionsNode())
-                    ->append($this->addGuardsNode())
-                    ->append($this->addActionsNode())
+                    ->append($this->addBehaviorsNode())
                 ->end()
             ->end();
 
@@ -113,8 +112,7 @@ class Configuration implements ConfigurationInterface
     {
         $states = array();
         $transitions = array();
-        $guards = array();
-        $actions = array();
+        $behaviors = array();
 
         foreach ($definition as $stateName => $stateValues) {
             $states[] = $stateName;
@@ -130,30 +128,23 @@ class Configuration implements ConfigurationInterface
 
                 if (is_array($transitionValues)) {
                     $toStateName = $transitionValues['to'];
+                    unset($transitionValues['to']);
 
-                    if (isset($transitionValues['guards'])) {
-                        foreach ($transitionValues['guards'] as $guardType => $guardValues) {
-                            $guardName = $transitionName . '_' . $guardType;
-
-                            $guards[$guardName] = array(
-                                'type' => $guardType,
-                                'transition' => $transitionName,
-                                'options' => $guardValues,
-                            );
-                        }
-                    }
-
-                    if (isset($transitionValues['actions'])) {
-                        foreach ($transitionValues['actions'] as $actionType => $actionValues) {
-                            $actionName = $transitionName . '_' . $actionType;
-
-                            $actions[$actionName] = array(
-                                'type' => $actionType,
-                                'transition' => $transitionName,
-                                'options' => $actionValues,
-                            );
+                    foreach ($transitionValues as $behaviorsGroup => $behaviorGroupValues) {
+                        if (!isset($behaviors[$behaviorsGroup])) {
+                            $behaviors[$behaviorsGroup] = array();
                         }
 
+                        foreach ($behaviorGroupValues as $behaviorType => $behaviorTypeValues) {
+                            $behaviorName = $transitionName . '_' . $behaviorType;
+
+                            $behaviors[$behaviorsGroup][$behaviorName] = array(
+                                'type' => $behaviorType,
+                                'state' => $stateName,
+                                'transition' => $transitionLabel,
+                                'options' => $behaviorTypeValues
+                            );
+                        }
                     }
                 }
 
@@ -168,8 +159,7 @@ class Configuration implements ConfigurationInterface
         return array(
             'states' => $states,
             'transitions' => $transitions,
-            'guards' => $guards,
-            'actions' => $actions,
+            'behaviors' => $behaviors,
         );
     }
 
@@ -227,56 +217,33 @@ class Configuration implements ConfigurationInterface
     /**
      * @return NodeDefinition
      */
-    protected function addGuardsNode()
+    protected function addBehaviorsNode()
     {
         $treeBuilder = $this->createTreeBuilder();
-        $node = $treeBuilder->root('guards');
+        $node = $treeBuilder->root('behaviors');
 
         $node
-            ->fixXmlConfig('guard')
-            ->useAttributeAsKey('name')
+            ->fixXmlConfig('behavior')
+            ->useAttributeAsKey('group')
             ->prototype('array')
-                ->children()
-                    ->scalarNode('type')
-                        ->isRequired()
-                        ->cannotBeEmpty()
-                    ->end()
-                    ->scalarNode('transition')
-                        ->isRequired()
-                        ->cannotBeEmpty()
-                    ->end()
-                    ->variableNode('options')
-                        ->treatNullLike(array())
-                    ->end()
-                ->end()
-            ->end();
-
-        return $node;
-    }
-
-    /**
-     * @return NodeDefinition
-     */
-    protected function addActionsNode()
-    {
-        $treeBuilder = $this->createTreeBuilder();
-        $node = $treeBuilder->root('actions');
-
-        $node
-            ->fixXmlConfig('action')
-            ->useAttributeAsKey('name')
-            ->prototype('array')
-                ->children()
-                    ->scalarNode('type')
-                        ->isRequired()
-                        ->cannotBeEmpty()
-                    ->end()
-                    ->scalarNode('transition')
-                        ->isRequired()
-                        ->cannotBeEmpty()
-                    ->end()
-                    ->variableNode('options')
-                        ->treatNullLike(array())
+                ->useAttributeAsKey('name')
+                ->prototype('array')
+                    ->children()
+                        ->scalarNode('type')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                        ->scalarNode('state')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                        ->scalarNode('transition')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                        ->variableNode('options')
+                            ->treatNullLike(array())
+                        ->end()
                     ->end()
                 ->end()
             ->end();
