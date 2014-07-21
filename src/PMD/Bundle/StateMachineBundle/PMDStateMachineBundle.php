@@ -16,6 +16,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use PMD\StateMachineBundle\DependencyInjection\Compiler\DefinitionPass;
 use PMD\StateMachineBundle\DependencyInjection\Compiler\CoordinatorPass;
 use PMD\StateMachineBundle\DependencyInjection\Compiler\CoordinatorDecoratorPass;
+use PMD\StateMachineBundle\DependencyInjection\Compiler\TokenConfigurablePass;
 
 /**
  * Class PMDStateMachineBundle
@@ -33,5 +34,6 @@ class PMDStateMachineBundle extends Bundle
         $container->addCompilerPass(new DefinitionPass());
         $container->addCompilerPass(new CoordinatorPass());
         $container->addCompilerPass(new CoordinatorDecoratorPass());
+        $container->addCompilerPass(new TokenConfigurablePass());
     }
 }
