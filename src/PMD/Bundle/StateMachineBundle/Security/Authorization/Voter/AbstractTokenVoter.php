@@ -1,0 +1,105 @@
+<?php
+
+/*
+ * This file is part of the PMDStateMachineBundle package.
+ *
+ * (c) Piotr Minkina <projekty@piotrminkina.pl>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace PMD\StateMachineBundle\Security\Authorization\Voter;
+
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
+use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
+use PMD\StateMachineBundle\Behavior\Resolver\TokenOptionsResolverInterface;
+use PMD\StateMachineBundle\Behavior\TokenConfigurableInterface;
+
+/**
+ * Class AbstractTokenVoter
+ * 
+ * @author Piotr Minkina <projekty@piotrminkina.pl>
+ * @package PMD\StateMachineBundle\Security\Authorization\Voter
+ */
+abstract class AbstractTokenVoter implements VoterInterface, TokenConfigurableInterface
+{
+    const VIEW = 'view';
+    const CREATE = 'create';
+    const CONSUME = 'consume';
+
+    /**
+     * @var TokenOptionsResolverInterface
+     */
+    protected $resolver;
+
+    /**
+     * @inheritdoc
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setTokenOptionsResolver(
+        TokenOptionsResolverInterface $resolver
+    ) {
+        $this->resolver = $resolver;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function supportsAttribute($attribute)
+    {
+        return in_array(
+            $attribute,
+            array(
+                self::VIEW,
+                self::CREATE,
+                self::CONSUME,
+            )
+        );
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function supportsClass($class)
+    {
+        $supportedInterface = 'PMD\StateMachineBundle\Process\TokenInterface';
+        $refClass = new \ReflectionClass($class);
+
+        return $refClass->implementsInterface($supportedInterface);
+    }
+
+    /**
+     * @param object $object
+     * @param array $attributes
+     * @return integer|null
+     * @throws InvalidArgumentException
+     */
+    protected function preVote($object, array $attributes)
+    {
+        if (!$this->supportsClass(get_class($object))) {
+            return VoterInterface::ACCESS_ABSTAIN;
+        }
+
+        if (1 !== count($attributes)) {
+            throw new InvalidArgumentException(
+                'Only one attribute is allowed for VIEW, CREATE or CONSUME'
+            );
+        }
+
+        $attribute = $attributes[0];
+
+        if (!$this->supportsAttribute($attribute)) {
+            return VoterInterface::ACCESS_ABSTAIN;
+        }
+
+        return null;
+    }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+  - This file is part of the PMDStateMachineBundle package.
+  -
+  - (c) Piotr Minkina <projekty@piotrminkina.pl>
+  -
+  - For the full copyright and license information, please view the LICENSE
+  - file that was distributed with this source code.
+ -->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="pmd_state_machine.security_authorization_voter.token_role_voter.class">PMD\StateMachineBundle\Security\Authorization\Voter\TokenRoleVoter</parameter>
+    </parameters>
+
+    <services>
+        <service id="pmd_state_machine.security_authorization_voter.token_role_voter"
+                 class="%pmd_state_machine.security_authorization_voter.token_role_voter.class%">
+            <tag name="security.voter"/>
+            <tag name="pmd_state_machine.token_configurable"
+                 group="guards"
+                 type="roles"/>
+        </service>
+    </services>
+</container>
