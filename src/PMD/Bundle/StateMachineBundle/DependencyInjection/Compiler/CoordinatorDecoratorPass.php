@@ -36,8 +36,8 @@ class CoordinatorDecoratorPass implements CompilerPassInterface
         );
 
         foreach ($decoratorsIds as $decoratorId => $decoratorTag) {
-            $decoratorAlias = isset($decoratorTag[0]['alias'])
-                ? $decoratorTag[0]['alias']
+            $decoratorGroup = isset($decoratorTag[0]['group'])
+                ? $decoratorTag[0]['group']
                 : $decoratorId;
             $decoratorPriority = isset($decoratorTag[0]['priority'])
                 ? $decoratorTag[0]['priority']
@@ -48,7 +48,7 @@ class CoordinatorDecoratorPass implements CompilerPassInterface
             $decoratorDefinition->setAbstract(true);
 
             foreach (array_keys($coordinatorsIds) as $coordinatorId) {
-                $concreteId = $coordinatorId.'.'.$decoratorAlias.'_decorator';
+                $concreteId = $coordinatorId.'.'.$decoratorGroup.'_decorator';
                 $concreteIdInner = $decoratorId.'.inner';
 
                 // Not works with DefinitionDecorator :(
