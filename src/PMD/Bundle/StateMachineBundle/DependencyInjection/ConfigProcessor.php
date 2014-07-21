@@ -75,6 +75,7 @@ class ConfigProcessor
 
             $this->processStates($builder, $definition['states']);
             $this->processTransitions($builder, $definition['transitions']);
+            $this->processBehaviors($name, $definition['behaviors']);
 
             $services[$builderName] = $builder;
             $services[$processName] = $process;
@@ -119,6 +120,47 @@ class ConfigProcessor
                     $transition['to'],
                 )
             );
+        }
+    }
+
+    /**
+     * @param string $definitionName
+     * @param array $groupedBehaviors
+     */
+    protected function processBehaviors($definitionName, array $groupedBehaviors)
+    {
+        foreach ($groupedBehaviors as $groupName => $behaviors) {
+            foreach ($behaviors as $behavior) {
+                $stateName = $behavior['state'];
+                $transitionName = $behavior['transition'];
+
+                $accessKey = array($definitionName, $stateName, $transitionName);
+                $accessKey = join('.', $accessKey);
+
+                $typeName = $behavior['type'];
+                $options = $behavior['options'];
+
+                $serviceId = sprintf(
+                    'pmd_state_machine.behavior.%s_%s_options',
+                    $groupName,
+                    $typeName
+                );
+
+                if (!$this->container->hasDefinition($serviceId)) {
+                    $this->container->setDefinition(
+                        $serviceId,
+                        new DefinitionDecorator(
+                            'pmd_state_machine.behavior_options.options_registry'
+                        )
+                    );
+                }
+
+                $serviceDefinition = $this->container->getDefinition($serviceId);
+                $serviceDefinition->addMethodCall(
+                    'add',
+                    array($accessKey, $options)
+                );
+            }
         }
     }
 
