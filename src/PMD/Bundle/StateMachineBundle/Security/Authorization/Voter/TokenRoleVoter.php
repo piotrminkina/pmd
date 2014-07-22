@@ -12,10 +12,10 @@
 namespace PMD\StateMachineBundle\Security\Authorization\Voter;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface as SecurityToken;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use PMD\StateMachineBundle\Process\TokenInterface as ProcessTokenInterface;
+use PMD\StateMachineBundle\Process\TokenInterface;
 
 /**
  * Class TokenRoleVoter
@@ -52,13 +52,11 @@ class TokenRoleVoter extends AbstractTokenVoter
     /**
      * @inheritdoc
      */
-    public function vote(TokenInterface $token, $object, array $attributes)
-    {
-        /** @var ProcessTokenInterface $object */
-        if (null !== ($vote = $this->preVote($object, $attributes))) {
-            return $vote;
-        }
-
+    protected function postVote(
+        SecurityToken $token,
+        TokenInterface $object,
+        array $attributes
+    ) {
         $attribute = $attributes[0];
         $user = $token->getUser();
         $options = $this->getOptions($object);

@@ -12,6 +12,7 @@
 namespace PMD\StateMachineBundle\Security\Authorization\Voter;
 
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface as SecurityToken;
 use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
 use PMD\StateMachineBundle\Behavior\AbstractConfigurableBehavior;
 use PMD\StateMachineBundle\Behavior\Resolver\TokenOptionsResolverInterface;
@@ -61,12 +62,9 @@ abstract class AbstractTokenVoter extends AbstractConfigurableBehavior implement
     }
 
     /**
-     * @param object $object
-     * @param array $attributes
-     * @return integer|null
-     * @throws InvalidArgumentException
+     * @inheritdoc
      */
-    protected function preVote($object, array $attributes)
+    public function vote(SecurityToken $token, $object, array $attributes)
     {
         if (!$this->supportsClass(get_class($object))) {
             return VoterInterface::ACCESS_ABSTAIN;
@@ -89,6 +87,18 @@ abstract class AbstractTokenVoter extends AbstractConfigurableBehavior implement
             return VoterInterface::ACCESS_ABSTAIN;
         }
 
-        return null;
+        return $this->postVote($token, $object, $attributes);
     }
+
+    /**
+     * @param SecurityToken $token
+     * @param TokenInterface $object
+     * @param array $attributes
+     * @return int
+     */
+    abstract protected function postVote(
+        SecurityToken $token,
+        TokenInterface $object,
+        array $attributes
+    );
 }
