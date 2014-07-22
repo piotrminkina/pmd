@@ -147,6 +147,10 @@ class ConfigProcessor
                 $typeName = $behavior['type'];
                 $options = $behavior['options'];
 
+                if (!isset($options['enabled'])) {
+                    $options['enabled'] = true;
+                }
+
                 $serviceId = sprintf(
                     'pmd_state_machine.behavior.%s_%s_options',
                     $groupName,

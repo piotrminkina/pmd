@@ -11,11 +11,11 @@
 
 namespace PMD\StateMachineBundle\Security\Authorization\Voter;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
+use PMD\StateMachineBundle\Behavior\AbstractConfigurableBehavior;
 use PMD\StateMachineBundle\Behavior\Resolver\TokenOptionsResolverInterface;
-use PMD\StateMachineBundle\Behavior\TokenConfigurableInterface;
+use PMD\StateMachineBundle\Process\TokenInterface;
 
 /**
  * Class AbstractTokenVoter
@@ -23,7 +23,7 @@ use PMD\StateMachineBundle\Behavior\TokenConfigurableInterface;
  * @author Piotr Minkina <projekty@piotrminkina.pl>
  * @package PMD\StateMachineBundle\Security\Authorization\Voter
  */
-abstract class AbstractTokenVoter implements VoterInterface, TokenConfigurableInterface
+abstract class AbstractTokenVoter extends AbstractConfigurableBehavior implements VoterInterface
 {
     const VIEW = 'view';
     const CREATE = 'create';
@@ -33,22 +33,6 @@ abstract class AbstractTokenVoter implements VoterInterface, TokenConfigurableIn
      * @var TokenOptionsResolverInterface
      */
     protected $resolver;
-
-    /**
-     * @inheritdoc
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setTokenOptionsResolver(
-        TokenOptionsResolverInterface $resolver
-    ) {
-        $this->resolver = $resolver;
-    }
 
     /**
      * @inheritdoc
@@ -97,6 +81,11 @@ abstract class AbstractTokenVoter implements VoterInterface, TokenConfigurableIn
         $attribute = $attributes[0];
 
         if (!$this->supportsAttribute($attribute)) {
+            return VoterInterface::ACCESS_ABSTAIN;
+        }
+
+        /** @var TokenInterface $object */
+        if (!$this->isEnabled($object)) {
             return VoterInterface::ACCESS_ABSTAIN;
         }
 

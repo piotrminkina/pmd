@@ -30,6 +30,8 @@ class TokenRoleVoter extends AbstractTokenVoter
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        parent::setDefaultOptions($resolver);
+
         $resolver->setDefaults(
             array(
                 'view' => array(),
@@ -59,7 +61,7 @@ class TokenRoleVoter extends AbstractTokenVoter
 
         $attribute = $attributes[0];
         $user = $token->getUser();
-        $options = $this->resolver->resolveOptions($object);
+        $options = $this->getOptions($object);
         $roles = $options[$attribute];
 
         if (!$roles) {
