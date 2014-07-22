@@ -17,6 +17,7 @@ use PMD\StateMachineBundle\DependencyInjection\Compiler\DefinitionPass;
 use PMD\StateMachineBundle\DependencyInjection\Compiler\CoordinatorPass;
 use PMD\StateMachineBundle\DependencyInjection\Compiler\CoordinatorDecoratorPass;
 use PMD\StateMachineBundle\DependencyInjection\Compiler\TokenConfigurablePass;
+use PMD\StateMachineBundle\DependencyInjection\Compiler\ActionPass;
 
 /**
  * Class PMDStateMachineBundle
@@ -35,5 +36,6 @@ class PMDStateMachineBundle extends Bundle
         $container->addCompilerPass(new CoordinatorPass());
         $container->addCompilerPass(new CoordinatorDecoratorPass());
         $container->addCompilerPass(new TokenConfigurablePass());
+        $container->addCompilerPass(new ActionPass());
     }
 }

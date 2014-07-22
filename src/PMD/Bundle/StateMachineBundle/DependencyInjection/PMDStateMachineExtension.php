@@ -40,6 +40,7 @@ class PMDStateMachineExtension extends Extension
         $loader->load('decorator.xml');
         $loader->load('security.xml');
         $loader->load('behavior.xml');
+        $loader->load('action.xml');
         $loader->load('services.xml');
         $loader->load('twig.xml');
 
