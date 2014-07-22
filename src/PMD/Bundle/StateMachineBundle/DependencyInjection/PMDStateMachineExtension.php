@@ -34,12 +34,14 @@ class PMDStateMachineExtension extends Extension
             new FileLocator(__DIR__ . '/../Resources/config')
         );
         $loader->load('controller.xml');
+        $loader->load('provider.xml');
         $loader->load('handler.xml');
         $loader->load('process.xml');
         $loader->load('decorator.xml');
         $loader->load('security.xml');
         $loader->load('behavior.xml');
         $loader->load('services.xml');
+        $loader->load('twig.xml');
 
         $configuration = $this->createConfiguration();
         $config = $this->processConfiguration($configuration, $config);

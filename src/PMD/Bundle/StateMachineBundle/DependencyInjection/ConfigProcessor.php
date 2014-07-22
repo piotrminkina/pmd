@@ -55,6 +55,12 @@ class ConfigProcessor
             ->addMethodCall('setProcessPath', array($attribute['process_path']))
             ->addMethodCall('setActionPath', array($attribute['action_path']))
             ->addMethodCall('setResponsePath', array($attribute['response_path']));
+
+        $definition = $this->container->getDefinition(
+            'pmd_state_machine.provider.tokens_provider'
+        );
+        $definition
+            ->addMethodCall('setProcessPath', array($attribute['process_path']));
     }
 
     /**
