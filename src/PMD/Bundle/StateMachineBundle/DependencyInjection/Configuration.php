@@ -65,6 +65,11 @@ class Configuration implements ConfigurationInterface
                             ->cannotBeEmpty()
                             ->defaultValue('_state_action')
                         ->end()
+                        ->scalarNode('response_path')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                            ->defaultValue('_state_response')
+                        ->end()
                     ->end()
                 ->end()
             ->end();

@@ -53,7 +53,8 @@ class ConfigProcessor
 
         $definition
             ->addMethodCall('setProcessPath', array($attribute['process_path']))
-            ->addMethodCall('setActionPath', array($attribute['action_path']));
+            ->addMethodCall('setActionPath', array($attribute['action_path']))
+            ->addMethodCall('setResponsePath', array($attribute['response_path']));
     }
 
     /**

@@ -22,6 +22,8 @@
                  class="%pmd_state_machine.handler.state_handler.class%">
             <argument type="service"
                       id="pmd_state_machine.factory"/>
+            <argument type="service"
+                      id="router"/>
         </service>
     </services>
 </container>

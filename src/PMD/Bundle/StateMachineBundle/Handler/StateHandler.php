@@ -11,8 +11,11 @@
 
 namespace PMD\StateMachineBundle\Handler;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RouterInterface;
 use PMD\StateMachineBundle\Model\StatefulInterface;
 use PMD\StateMachineBundle\FactoryInterface;
 
@@ -30,6 +33,11 @@ class StateHandler implements HandlerInterface
     protected $factory;
 
     /**
+     * @var RouterInterface
+     */
+    protected $router;
+
+    /**
      * @var string
      */
     protected $processPath;
@@ -40,11 +48,20 @@ class StateHandler implements HandlerInterface
     protected $actionPath;
 
     /**
-     * @param FactoryInterface $factory
+     * @var string
      */
-    public function __construct(FactoryInterface $factory)
-    {
+    protected $responsePath;
+
+    /**
+     * @param FactoryInterface $factory
+     * @param RouterInterface $router
+     */
+    public function __construct(
+        FactoryInterface $factory,
+        RouterInterface $router
+    ) {
         $this->factory = $factory;
+        $this->router = $router;
     }
 
     /**
@@ -86,6 +103,25 @@ class StateHandler implements HandlerInterface
     }
 
     /**
+     * @param string $responsePath
+     * @return StateHandler
+     */
+    public function setResponsePath($responsePath)
+    {
+        $this->responsePath = $responsePath;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponsePath()
+    {
+        return $this->responsePath;
+    }
+
+    /**
      * @inheritdoc
      */
     public function handle(Request $request, StatefulInterface $object)
@@ -99,6 +135,60 @@ class StateHandler implements HandlerInterface
         }
         $response = $stateMachine->applyToken($action, $request);
 
+        if (null === $response) {
+            $response = $this->prepareResponse($request);
+        }
+
         return $response;
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    protected function prepareResponse(Request $request)
+    {
+        $responseParams = $request->attributes->get($this->responsePath, array(), true);
+        $url = null;
+
+        if (is_array($responseParams) && count($responseParams) <= 2) {
+            $name = $responseParams[0];
+            $parameters = $responseParams[1];
+
+            if (is_array($parameters)) {
+                foreach ($parameters as $parameter => $value) {
+                    $parameters[$parameter] = $this->parseRouteParameter(
+                        $value,
+                        $request
+                    );
+                }
+            } else {
+                $parameters = $this->parseRouteParameter($parameters, $request);
+            }
+
+            $url = $this->router->generate($name, $parameters);
+        } elseif (is_string($responseParams)) {
+            $url = $responseParams;
+        } else {
+            return null;
+        }
+
+        return new RedirectResponse($url);
+    }
+
+    /**
+     * @param string $value
+     * @param Request $request
+     * @return mixed
+     */
+    protected function parseRouteParameter($value, Request $request)
+    {
+        if ('$' == $value{0}) {
+            $value = $request->attributes->get(
+                substr($value, 1)
+            );
+        }
+
+        return $value;
     }
 }
