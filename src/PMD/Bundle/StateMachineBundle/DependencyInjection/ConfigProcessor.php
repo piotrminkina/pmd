@@ -116,7 +116,7 @@ class ConfigProcessor
         foreach ($transitions as $transitionName => $transition) {
             $serviceDefinition->addMethodCall(
                 'addTransition',
-                array($transitionName, $transition['label'])
+                array($transitionName, $transition['label'], $transition['method'])
             );
 
             $serviceDefinition->addMethodCall(

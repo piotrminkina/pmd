@@ -37,8 +37,7 @@ interface DefinitionFactoryInterface
 
     /**
      * @param string $name
-     * @param string $label
      * @return TransitionInterface
      */
-    public function createTransition($name, $label);
+    public function createTransition($name);
 }

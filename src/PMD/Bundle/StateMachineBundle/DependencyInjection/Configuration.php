@@ -130,10 +130,14 @@ class Configuration implements ConfigurationInterface
                 $transitionName = $stateName . '_' . $transitionLabel;
                 $fromStateName = $stateName;
                 $toStateName = $transitionValues;
+                $requestMethod = null;
 
                 if (is_array($transitionValues)) {
                     $toStateName = $transitionValues['to'];
-                    unset($transitionValues['to']);
+                    $requestMethod = isset($transitionValues['method'])
+                        ? $transitionValues['method']
+                        : null;
+                    unset($transitionValues['to'], $transitionValues['method']);
 
                     foreach ($transitionValues as $behaviorsGroup => $behaviorGroupValues) {
                         if (!isset($behaviors[$behaviorsGroup])) {
@@ -155,6 +159,7 @@ class Configuration implements ConfigurationInterface
 
                 $transitions[$transitionName] = array(
                     'label' => $transitionLabel,
+                    'method' => $requestMethod,
                     'from' => $fromStateName,
                     'to' => $toStateName,
                 );
@@ -204,6 +209,11 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('label')
                         ->isRequired()
                         ->cannotBeEmpty()
+                    ->end()
+                    ->scalarNode('method')
+                        ->isRequired()
+                        ->cannotBeEmpty()
+                        ->treatNullLike('post')
                     ->end()
                     ->scalarNode('from')
                         ->isRequired()

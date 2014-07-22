@@ -86,10 +86,17 @@ class DefinitionBuilder implements DefinitionBuilderInterface
 
     /**
      * @inheritdoc
+     * @param string $name
+     * @param string $label
+     * @param $method
+     * @return $this
      */
-    public function addTransition($name, $label)
+    public function addTransition($name, $label, $method)
     {
-        $type = $this->factory->createTransition($name, $label);
+        $type = $this->factory->createTransition($name);
+        $type
+            ->setLabel($label)
+            ->setMethod($method);
         $this->transitions[$name] = $type;
 
         return $this;

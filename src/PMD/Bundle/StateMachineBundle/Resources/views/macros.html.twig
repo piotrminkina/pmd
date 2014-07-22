@@ -15,12 +15,14 @@
             _state_action: token.transition.label,
         }) %}
         {% set tag_attrs = tag_attrs|merge({
-            href: path(route_name, route_params),
+            type: "submit",
+            formaction: path(route_name, route_params),
+            formmethod: token.transition.method
         }) %}
 
-        <a{{ macros.tag_attrs(tag_attrs) }}>
+        <button{{ macros.tag_attrs(tag_attrs) }}>
             {{ token.transition.label|humanize }}
-        </a>
+        </button>
     {% endfor %}
 {% endmacro %}
 

@@ -48,11 +48,10 @@ class DefinitionFactory implements DefinitionFactoryInterface
     /**
      * @inheritdoc
      */
-    public function createTransition($name, $label)
+    public function createTransition($name)
     {
         $type = new Transition();
         $type->setName($name);
-        $type->setLabel($label);
 
         return $type;
     }
