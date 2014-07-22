@@ -11,6 +11,7 @@
 
 namespace PMD\StateMachineBundle\Process\Decorator;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use PMD\StateMachineBundle\Process\CoordinatorInterface;
@@ -64,12 +65,12 @@ class GuardCoordinatorDecorator extends AbstractCoordinatorDecorator
     /**
      * @inheritdoc
      */
-    public function consume(TokenInterface $token, $data = null)
+    public function consume(TokenInterface $token, Request $request)
     {
         if (!$this->security->isGranted(AbstractTokenVoter::CONSUME, $token)) {
             throw new AccessDeniedException();
         }
 
-        return parent::consume($token, $data);
+        return parent::consume($token, $request);
     }
 }

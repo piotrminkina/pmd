@@ -11,6 +11,8 @@
 
 namespace PMD\StateMachineBundle\Process;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use PMD\StateMachineBundle\Process\Definition\StateInterface;
 use PMD\StateMachineBundle\StateMachineInterface;
 
@@ -42,9 +44,8 @@ interface CoordinatorInterface
 
     /**
      * @param TokenInterface $token
-     * @param mixed $data
-     * @throws \Exception
-     * @return mixed
+     * @param Request $request
+     * @return Response|mixed
      */
-    public function consume(TokenInterface $token, $data = null);
+    public function consume(TokenInterface $token, Request $request);
 }

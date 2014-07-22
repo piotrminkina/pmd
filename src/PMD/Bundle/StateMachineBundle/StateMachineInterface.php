@@ -11,6 +11,8 @@
 
 namespace PMD\StateMachineBundle;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use PMD\StateMachineBundle\Process\Definition\StateInterface;
 use PMD\StateMachineBundle\Process\TokenReadInterface;
 
@@ -45,9 +47,8 @@ interface StateMachineInterface
 
     /**
      * @param string $name
-     * @param mixed $inputData
-     * @throws \Exception
-     * @return mixed
+     * @param Request $request
+     * @return Response|mixed
      */
-    public function applyToken($name, $inputData = null);
+    public function applyToken($name, Request $request);
 }

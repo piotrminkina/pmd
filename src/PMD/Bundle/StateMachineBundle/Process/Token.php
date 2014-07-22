@@ -56,7 +56,7 @@ class Token implements TokenInterface
     /**
      * @var StateInterface
      */
-    protected $state;
+    protected $targetState;
 
     /**
      * @inheritdoc
@@ -169,9 +169,9 @@ class Token implements TokenInterface
     /**
      * @inheritdoc
      */
-    public function setState(StateInterface $state)
+    public function setTargetState(StateInterface $targetState)
     {
-        $this->state = $state;
+        $this->targetState = $targetState;
 
         return $this;
     }
@@ -179,8 +179,8 @@ class Token implements TokenInterface
     /**
      * @inheritdoc
      */
-    public function getState()
+    public function getTargetState()
     {
-        return $this->state;
+        return $this->targetState;
     }
 }

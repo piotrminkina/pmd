@@ -11,6 +11,7 @@
 
 namespace PMD\StateMachineBundle;
 
+use Symfony\Component\HttpFoundation\Request;
 use PMD\StateMachineBundle\Process\Definition\StateInterface;
 use PMD\StateMachineBundle\Process\CoordinatorInterface;
 use PMD\StateMachineBundle\Process\TokenInterface;
@@ -99,7 +100,7 @@ class StateMachine implements StateMachineInterface
     /**
      * @inheritdoc
      */
-    public function applyToken($name, $inputData = null)
+    public function applyToken($name, Request $request)
     {
         if (!isset($this->tokens[$name])) {
             throw new \Exception(
@@ -107,15 +108,15 @@ class StateMachine implements StateMachineInterface
             );
         }
         $token = $this->tokens[$name];
-        $outputData = $this->coordinator->consume($token, $inputData);
+        $response = $this->coordinator->consume($token, $request);
 
         if ($token->isConsumed()) {
-            $state = $token->getState();
+            $state = $token->getTargetState();
             $this->updateObject($state);
             $this->updateMachine($this->object);
         }
 
-        return $outputData;
+        return $response;
     }
 
     /**

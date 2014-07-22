@@ -25,43 +25,43 @@ interface TokenWriteInterface
 {
     /**
      * @param string $name
-     * @return Token
+     * @return $this
      */
     public function setName($name);
 
     /**
      * @param boolean $consumed
-     * @return Token
+     * @return $this
      */
     public function setConsumed($consumed);
 
     /**
      * @param mixed $context
-     * @return Token
+     * @return $this
      */
     public function setContext($context);
 
     /**
      * @param StateMachineInterface $instance
-     * @return Token
+     * @return $this
      */
     public function setInstance(StateMachineInterface $instance);
 
     /**
      * @param DefinitionInterface $definition
-     * @return Token
+     * @return $this
      */
     public function setDefinition(DefinitionInterface $definition);
 
     /**
      * @param TransitionInterface $transition
-     * @return Token
+     * @return $this
      */
     public function setTransition(TransitionInterface $transition);
 
     /**
-     * @param StateInterface $state
-     * @return Token
+     * @param StateInterface $targetState
+     * @return $this
      */
-    public function setState(StateInterface $state);
+    public function setTargetState(StateInterface $targetState);
 }

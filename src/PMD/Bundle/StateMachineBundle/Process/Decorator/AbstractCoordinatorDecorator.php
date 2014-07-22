@@ -11,6 +11,7 @@
 
 namespace PMD\StateMachineBundle\Process\Decorator;
 
+use Symfony\Component\HttpFoundation\Request;
 use PMD\StateMachineBundle\Process\CoordinatorInterface;
 use PMD\StateMachineBundle\Process\TokenInterface;
 use PMD\StateMachineBundle\StateMachineInterface;
@@ -63,8 +64,8 @@ abstract class AbstractCoordinatorDecorator implements CoordinatorInterface
     /**
      * @inheritdoc
      */
-    public function consume(TokenInterface $token, $data = null)
+    public function consume(TokenInterface $token, Request $request)
     {
-        return $this->coordinator->consume($token, $data);
+        return $this->coordinator->consume($token, $request);
     }
 }

@@ -11,6 +11,8 @@
 
 namespace PMD\StateMachineBundle\Process;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use PMD\StateMachineBundle\Process\Definition\TransitionInterface;
 use PMD\StateMachineBundle\StateMachineInterface;
 
@@ -79,7 +81,7 @@ class Coordinator implements CoordinatorInterface
     /**
      * @inheritdoc
      */
-    public function consume(TokenInterface $token, $data = null)
+    public function consume(TokenInterface $token, Request $request)
     {
         if ($token->isConsumed()) {
             throw new \Exception(
@@ -91,7 +93,7 @@ class Coordinator implements CoordinatorInterface
         }
         $token->setConsumed(true);
 
-        return $data;
+        return null;
     }
 
     /**
@@ -113,7 +115,7 @@ class Coordinator implements CoordinatorInterface
             ->setInstance($instance)
             ->setDefinition($this->definition)
             ->setTransition($transition)
-            ->setState($transition->getTargetState());
+            ->setTargetState($transition->getTargetState());
 
         return $token;
     }

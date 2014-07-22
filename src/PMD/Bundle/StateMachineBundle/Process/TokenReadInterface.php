@@ -56,5 +56,5 @@ interface TokenReadInterface
     /**
      * @return StateInterface
      */
-    public function getState();
+    public function getTargetState();
 }
