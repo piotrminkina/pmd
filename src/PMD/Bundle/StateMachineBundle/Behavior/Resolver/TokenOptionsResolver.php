@@ -25,7 +25,7 @@ use PMD\StateMachineBundle\Process\TokenInterface;
 class TokenOptionsResolver implements TokenOptionsResolverInterface
 {
     /**
-     * @var OptionsRegistryInterface
+     * @var OptionsRegistryInterface|null
      */
     protected $registry;
 
@@ -37,7 +37,7 @@ class TokenOptionsResolver implements TokenOptionsResolverInterface
     /**
      * @param OptionsRegistryInterface $registry
      */
-    public function __construct(OptionsRegistryInterface $registry)
+    public function __construct(OptionsRegistryInterface $registry = null)
     {
         $this->registry = $registry;
         $this->defaultOptions = $this->createOptionsResolver();
@@ -75,7 +75,7 @@ class TokenOptionsResolver implements TokenOptionsResolverInterface
         $accessKey = join('.', $accessKey);
         $options = array();
 
-        if ($this->registry->has($accessKey)) {
+        if ($this->registry && $this->registry->has($accessKey)) {
             $options = $this->registry->get($accessKey);
         }
 

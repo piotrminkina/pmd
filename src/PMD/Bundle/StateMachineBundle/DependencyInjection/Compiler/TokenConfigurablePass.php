@@ -59,7 +59,10 @@ class TokenConfigurablePass implements CompilerPassInterface
                 $group,
                 $type
             );
-            $optionsReference = new Reference($optionsId);
+            $optionsReference = new Reference(
+                $optionsId,
+                ContainerInterface::NULL_ON_INVALID_REFERENCE
+            );
 
             // Configure options resolver
             $resolverId = sprintf(
