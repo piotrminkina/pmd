@@ -94,6 +94,10 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('_vars')
                     ->cannotBeEmpty()
                 ->end()
+                ->booleanNode('auto_guess')
+                    ->defaultValue(true)
+                    ->treatNullLike(true)
+                ->end()
             ->end();
 
         return $node;

@@ -1,0 +1,42 @@
+{#
+ # This file is part of the PMDFrontendBundle package.
+ #
+ # (c) Piotr Minkina <projekty@piotrminkina.pl>
+ #
+ # For the full copyright and license information, please view the LICENSE
+ # file that was distributed with this source code.
+-#}
+
+{% extends '@PMDFrontend/Block/semantic.html.twig' %}
+
+{% import '@PMDFrontend/macros.html.twig' as macro %}
+
+
+{% block block %}
+    {%- set block = {
+        controls: block('controls'),
+    } + block + {
+        controls_class: 'block-controls',
+        controls_attrs: {},
+    } -%}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block block_header_content %}
+    {{ block('block_controls') }}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block block_controls %}
+    {% if block.controls is not empty %}
+        <div{{ macro.tag_attrs(block.controls_attrs, block.controls_class) }}>
+            {{ block('block_controls_content') }}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block block_controls_content %}
+    {{ block.controls|raw }}
+{% endblock %}

@@ -93,5 +93,12 @@ class PMDFrontendExtension extends Extension
                 $config['vars_attribute']
             )
         );
+
+        $definition->addMethodCall(
+            'setAutoGuess',
+            array(
+                $config['auto_guess']
+            )
+        );
     }
 }

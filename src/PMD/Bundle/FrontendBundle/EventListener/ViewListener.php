@@ -63,6 +63,11 @@ class ViewListener
     protected $varsAttribute = '_vars';
 
     /**
+     * @var boolean
+     */
+    protected $autoGuess = true;
+
+    /**
      * @param EngineInterface $engine
      * @param FrontendVariables $variables
      * @param TemplateGuesser $guesser
@@ -116,11 +121,41 @@ class ViewListener
     }
 
     /**
+     * @param boolean $autoGuess
+     * @return ViewListener
+     */
+    public function setAutoGuess($autoGuess)
+    {
+        $this->autoGuess = $autoGuess;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getAutoGuess()
+    {
+        return $this->autoGuess;
+    }
+
+    /**
      * @param FilterControllerEvent $event
      */
     public function onKernelController(FilterControllerEvent $event)
     {
+        $request = $event->getRequest();
+        $attributes = $request->attributes;
+
         $this->controller = $event->getController();
+        $this->request = $request;
+
+        $vars = $attributes->get($this->varsAttribute, null, true);
+
+        if (empty($vars) || !is_array($vars)) {
+            $vars = array();
+        }
+        $this->variables->replace($vars);
     }
 
     /**
@@ -135,10 +170,8 @@ class ViewListener
         if (!is_array($this->controller) || !is_array($result)) {
             return;
         }
-        $this->request = $request;
 
         $view = $attributes->get($this->viewAttribute, null, true);
-        $vars = $attributes->get($this->varsAttribute, null, true);
 
         if (is_array($view)) {
             $action = basename($this->controller[1], 'Action');
@@ -149,21 +182,19 @@ class ViewListener
                 $view = $view['_default'];
             }
         }
-        if (empty($view) || !is_string($view)) {
+        if ((empty($view) || !is_string($view)) && $this->autoGuess) {
             $view = $this->guessViewName();
-        }
-        if (empty($vars) || !is_array($vars)) {
-            $vars = array();
         }
 
         if (!$this->engine->exists($view)) {
             return;
         }
-        $this->variables->replace($vars);
 
-        $event->setResponse(
-            $this->engine->renderResponse($view, $result)
-        );
+        if ($view) {
+            $event->setResponse(
+                $this->engine->renderResponse($view, $result)
+            );
+        }
     }
 
     /**
