@@ -1,0 +1,36 @@
+{
+    "name": "piotrminkina/routing-bundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "description": "Symfony2 Routing Bundle that adds simple improvements to standard Symfony Routing Component",
+    "authors": [
+        {
+            "name": "Piotr Minkina",
+            "email": "projekty@piotrminkina.pl",
+            "homepage": "http://www.piotrminkina.pl"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "PMD\\RoutingBundle": "" }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/http-kernel": "~2.5",
+        "symfony/config": "~2.5",
+        "symfony/dependency-injection": "~2.5",
+        "symfony/routing": "~2.5",
+        "doctrine/inflector": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "target-dir": "PMD/RoutingBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
