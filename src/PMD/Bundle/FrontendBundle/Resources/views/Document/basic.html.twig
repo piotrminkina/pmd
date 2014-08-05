@@ -1,0 +1,63 @@
+{#
+ # This file is part of the PMDFrontendBundle package.
+ #
+ # (c) Piotr Minkina <projekty@piotrminkina.pl>
+ #
+ # For the full copyright and license information, please view the LICENSE
+ # file that was distributed with this source code.
+-#}
+
+{% extends '@PMDFrontend/Document/_base.html.twig' %}
+
+{% import '@PMDFrontend/macros.html.twig' as macro %}
+
+
+{% block document %}
+    {%- set document = document + {
+        class: '',
+        attrs: {},
+        head_class: '',
+        head_attrs: {},
+        body_class: '',
+        body_attrs: {},
+    } -%}
+
+    <html{{ macro.tag_attrs(document.attrs, document.class) }}>
+    {{ parent() }}
+    </html>
+{% endblock %}
+
+{% block document_content %}
+    {{ block('document_head') }}
+    {{ parent() }}
+{% endblock %}
+
+{% block document_head %}
+    <head{{ macro.tag_attrs(document.head_attrs, document.head_class) }}>
+        {{ block('document_head_content') }}
+    </head>
+{% endblock %}
+
+{% block document_head_content %}
+    {{ block('document_metadata') }}
+    <title>{{ block('document_title') }}</title>
+    {{ block('document_links') }}
+    {{ block('document_javascripts') }}
+    {{ block('document_stylesheets') }}
+{% endblock %}
+
+{% block document_metadata %}{% endblock %}
+
+{% block document_title %}{% endblock %}
+
+{% block document_links %}{% endblock %}
+
+{% block document_javascripts %}{% endblock %}
+
+{% block document_stylesheets %}{% endblock %}
+
+{% block document_body %}
+    <body{{ macro.tag_attrs(document.body_attrs, document.body_class) }}>
+    {{ parent() }}
+    </body>
+{% endblock %}

@@ -1,0 +1,86 @@
+{#
+ # This file is part of the PMDFrontendBundle package.
+ #
+ # (c) Piotr Minkina <projekty@piotrminkina.pl>
+ #
+ # For the full copyright and license information, please view the LICENSE
+ # file that was distributed with this source code.
+-#}
+
+{% extends '@PMDFrontend/Block/basic.html.twig' %}
+
+{% import '@PMDFrontend/macros.html.twig' as macro %}
+
+
+{% block block %}
+    {%- set block = {
+        header: block('header'),
+        footer: block('footer'),
+    } + block + {
+        tag: 'section',
+        header_class: 'block-header',
+        header_attrs: {},
+        title: block('title'),
+        title_tag: 'h1',
+        title_class: 'block-title',
+        title_attrs: {},
+        body_class: 'block-body',
+        body_attrs: {},
+        footer_class: 'block-footer',
+        footer_attrs: {},
+    } -%}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block block_content %}
+    {{ block('block_header') }}
+
+    {{ parent() }}
+
+    {{ block('block_footer') }}
+{% endblock %}
+
+{% block block_header %}
+    {% if block.title is not empty or block.header is not empty %}
+        <header{{ macro.tag_attrs(block.header_attrs, block.header_class) }}>
+            {{ block('block_header_content') }}
+        </header>
+    {% endif %}
+{% endblock %}
+
+{% block block_header_content %}
+    {{ block('block_title') }}
+
+    {{ block.header|raw }}
+{% endblock %}
+
+{% block block_title %}
+    {% if block.title is not empty %}
+        <{{ block.title_tag }}{{ macro.tag_attrs(block.title_attrs, block.title_class) }}>
+            {{ block('block_title_content') }}
+        </{{ block.title_tag }}>
+    {% endif %}
+{% endblock %}
+
+{% block block_title_content %}
+    {{ block.title|raw }}
+{% endblock %}
+
+{% block block_body %}
+    <div{{ macro.tag_attrs(block.body_attrs, block.body_class) }}>
+        {{ parent() }}
+    </div>
+{% endblock %}
+
+{% block block_footer %}
+    {% if block.footer is not empty %}
+        <footer{{ macro.tag_attrs(block.footer_attrs, block.footer_class) }}>
+            {{ block('block_footer_content') }}
+        </footer>
+    {% endif %}
+{% endblock %}
+
+{% block block_footer_content %}
+    {{ block.footer|raw }}
+{% endblock %}

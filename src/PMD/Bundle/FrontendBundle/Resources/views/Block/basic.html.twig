@@ -1,0 +1,31 @@
+{#
+ # This file is part of the PMDFrontendBundle package.
+ #
+ # (c) Piotr Minkina <projekty@piotrminkina.pl>
+ #
+ # For the full copyright and license information, please view the LICENSE
+ # file that was distributed with this source code.
+-#}
+
+{% extends '@PMDFrontend/Block/_base.html.twig' %}
+
+{% import '@PMDFrontend/macros.html.twig' as macro %}
+
+
+{% block block %}
+    {%- set block = {
+        body: block('body'),
+    } + block + {
+        tag: 'div',
+        class: 'block',
+        attrs: {},
+    } -%}
+
+    <{{ block.tag }}{{ macro.tag_attrs(block.attrs, block.class) }}>
+        {{ parent() }}
+    </{{ block.tag }}>
+{% endblock %}
+
+{% block block_body_content %}
+    {{ block.body|raw }}
+{% endblock %}

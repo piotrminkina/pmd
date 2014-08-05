@@ -1,0 +1,19 @@
+{#
+ # This file is part of the PMDFrontendBundle package.
+ #
+ # (c) Piotr Minkina <projekty@piotrminkina.pl>
+ #
+ # For the full copyright and license information, please view the LICENSE
+ # file that was distributed with this source code.
+-#}
+
+{% set document = pmd_frontend_document_vars_or({}) -%}
+
+{% block document %}
+{% block document_content %}
+{% block document_body %}
+{% block document_body_content %}
+{% endblock document_body_content %}
+{% endblock document_body %}
+{% endblock document_content %}
+{% endblock document %}

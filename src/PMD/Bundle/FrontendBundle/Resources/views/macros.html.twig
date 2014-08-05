@@ -1,0 +1,22 @@
+{#
+ # This file is part of the PMDFrontendBundle package.
+ #
+ # (c) Piotr Minkina <projekty@piotrminkina.pl>
+ #
+ # For the full copyright and license information, please view the LICENSE
+ # file that was distributed with this source code.
+-#}
+
+{% macro tag_attrs(attrs, class) %}
+    {%- set class = class|default('') -%}
+
+    {%- if class -%}
+        {% set attrs = attrs|merge({
+            class: (class ~ ' ' ~ attrs.class|default(''))|trim
+        }) %}
+    {%- endif -%}
+
+    {%- for attrname, attrvalue in attrs -%}
+        {{ " " ~ attrname }}="{{ attrvalue }}"
+    {%- endfor -%}
+{% endmacro tag_attrs %}
