@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+  - This file is part of the PMDStateMachineBundle package.
+  -
+  - (c) Piotr Minkina <projekty@piotrminkina.pl>
+  -
+  - For the full copyright and license information, please view the LICENSE
+  - file that was distributed with this source code.
+ -->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="pmd_state_machine.process_builder.definition_builder.class">PMD\StateMachineBundle\Process\Builder\DefinitionBuilder</parameter>
+        <parameter key="pmd_state_machine.process_factory.definition_factory.class">PMD\StateMachineBundle\Process\Factory\DefinitionFactory</parameter>
+        <parameter key="pmd_state_machine.process.definition.class">PMD\StateMachineBundle\Process\Definition</parameter>
+        <parameter key="pmd_state_machine.process.coordinator.class">PMD\StateMachineBundle\Process\Coordinator</parameter>
+        <parameter key="pmd_state_machine.process.registry.class">PMD\StateMachineBundle\Process\Registry</parameter>
+    </parameters>
+
+    <services>
+        <service id="pmd_state_machine.process_builder.definition_builder"
+                 class="%pmd_state_machine.process_builder.definition_builder.class%">
+            <argument type="service"
+                      id="pmd_state_machine.process_factory.definition_factory"/>
+        </service>
+
+        <service id="pmd_state_machine.process_factory.definition_factory"
+                 class="%pmd_state_machine.process_factory.definition_factory.class%">
+        </service>
+
+        <service id="pmd_state_machine.process.definition"
+                 class="%pmd_state_machine.process.definition.class%"
+                 abstract="true">
+        </service>
+
+        <service id="pmd_state_machine.process.coordinator"
+                 class="%pmd_state_machine.process.coordinator.class%"
+                 abstract="true">
+        </service>
+
+        <service id="pmd_state_machine.process.registry"
+                 class="%pmd_state_machine.process.registry.class%">
+            <argument type="collection"/>
+            <argument type="collection"/>
+            <argument type="service" id="service_container"/>
+        </service>
+    </services>
+</container>

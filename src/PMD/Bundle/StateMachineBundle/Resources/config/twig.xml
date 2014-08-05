@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+  - This file is part of the PMDStateMachineBundle package.
+  -
+  - (c) Piotr Minkina <projekty@piotrminkina.pl>
+  -
+  - For the full copyright and license information, please view the LICENSE
+  - file that was distributed with this source code.
+ -->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="pmd_state_machine.twig.state_machine_extension.class">PMD\StateMachineBundle\Twig\PMDStateMachineExtension</parameter>
+    </parameters>
+
+    <services>
+        <service id="pmd_state_machine.twig.state_machine_extension"
+                 class="%pmd_state_machine.twig.state_machine_extension.class%">
+            <argument type="service"
+                      id="pmd_state_machine.provider.tokens_provider"/>
+            <tag name="twig.extension"/>
+        </service>
+    </services>
+</container>

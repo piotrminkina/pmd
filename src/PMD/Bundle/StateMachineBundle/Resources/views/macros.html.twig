@@ -1,0 +1,41 @@
+{#
+ # This file is part of the PMDStateMachineBundle package.
+ #
+ # (c) Piotr Minkina <projekty@piotrminkina.pl>
+ #
+ # For the full copyright and license information, please view the LICENSE
+ # file that was distributed with this source code.
+-#}
+
+{% macro tokens(object, route_name, route_params, tag_attrs) %}
+    {% import _self as macros %}
+
+    {% for token in pmd_state_machine_tokens(object) %}
+        {% set route_params = route_params|merge({
+            _state_action: token.transition.label,
+        }) %}
+        {% set tag_attrs = tag_attrs|merge({
+            type: "submit",
+            formaction: path(route_name, route_params),
+            formmethod: token.transition.method
+        }) %}
+
+        <button{{ macros.tag_attrs(tag_attrs) }}>
+            {{ token.transition.label|humanize }}
+        </button>
+    {% endfor %}
+{% endmacro %}
+
+{% macro tag_attrs(attrs, class) %}
+    {%- set class = class|default('') -%}
+
+    {%- if class -%}
+        {% set attrs = attrs|merge({
+        class: (class ~ ' ' ~ attrs.class|default(''))|trim
+        }) %}
+    {%- endif -%}
+
+    {%- for attrname, attrvalue in attrs -%}
+        {{ " " ~ attrname }}="{{ attrvalue }}"
+    {%- endfor -%}
+{% endmacro tag_attrs %}

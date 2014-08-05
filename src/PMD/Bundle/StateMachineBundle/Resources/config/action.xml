@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+  - This file is part of the PMDStateMachineBundle package.
+  -
+  - (c) Piotr Minkina <projekty@piotrminkina.pl>
+  -
+  - For the full copyright and license information, please view the LICENSE
+  - file that was distributed with this source code.
+ -->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="pmd_state_machine.action.registry.class">PMD\StateMachineBundle\Action\Registry</parameter>
+        <parameter key="pmd_state_machine.action.token_form_action.class">PMD\StateMachineBundle\Action\TokenFormAction</parameter>
+    </parameters>
+
+    <services>
+        <service id="pmd_state_machine.action.registry"
+                 class="%pmd_state_machine.action.registry.class%">
+            <argument type="collection"/>
+            <argument type="service" id="service_container"/>
+        </service>
+
+        <service id="pmd_state_machine.action.token_form_action"
+                 class="%pmd_state_machine.action.token_form_action.class%">
+            <argument type="service" id="form.factory"/>
+            <argument type="service" id="templating"/>
+            <tag name="pmd_state_machine.action" alias="form"/>
+            <tag name="pmd_state_machine.token_configurable"
+                 group="actions"
+                 type="form"/>
+        </service>
+    </services>
+</container>
