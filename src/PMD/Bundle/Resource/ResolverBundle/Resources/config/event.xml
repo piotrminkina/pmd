@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<!--
+  - This file is part of the PMDResourcesResolverBundle package.
+  -
+  - (c) Piotr Minkina <projekty@piotrminkina.pl>
+  -
+  - For the full copyright and license information, please view the LICENSE
+  - file that was distributed with this source code.
+ -->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="pmd_resources_resolver.event_listener.controller_listener.class">PMD\ResourcesResolverBundle\EventListener\ControllerListener</parameter>
+    </parameters>
+
+    <services>
+        <service id="pmd_resources_resolver.event_listener.controller_listener"
+                 class="%pmd_resources_resolver.event_listener.controller_listener.class%">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service"
+                      id="pmd_resources_resolver.factory.request_controller_factory"/>
+        </service>
+    </services>
+
+</container>

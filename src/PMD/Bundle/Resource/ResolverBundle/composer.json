@@ -1,0 +1,35 @@
+{
+    "name": "piotrminkina/resources-resolver-bundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "description": "Symfony2 Resources Resolver Bundle that resolves dependencies from controllers actions by inject configured resources",
+    "authors": [
+        {
+            "name": "Piotr Minkina",
+            "email": "projekty@piotrminkina.pl",
+            "homepage": "http://www.piotrminkina.pl"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "PMD\\ResourcesResolverBundle": "" }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "doctrine/inflector": "~1.0",
+        "symfony/config": "~2.5",
+        "symfony/dependency-injection": "~2.5",
+        "symfony/event-dispatcher": "~2.5",
+        "symfony/expression-language": "~2.5",
+        "symfony/http-kernel": "~2.5",
+        "symfony/http-foundation": "~2.5"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "target-dir": "PMD/ResourcesResolverBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
