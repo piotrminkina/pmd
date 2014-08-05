@@ -12,7 +12,6 @@
 namespace PMD\Bundle\StateMachineBundle\Process;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use PMD\Bundle\StateMachineBundle\Process\Definition\TransitionInterface;
 use PMD\Bundle\StateMachineBundle\StateMachineInterface;
 

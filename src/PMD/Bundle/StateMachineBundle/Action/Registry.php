@@ -12,7 +12,6 @@
 namespace PMD\Bundle\StateMachineBundle\Action;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Traversable;
 
 /**
  * Class Registry

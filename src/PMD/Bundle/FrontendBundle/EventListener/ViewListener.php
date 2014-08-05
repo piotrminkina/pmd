@@ -134,7 +134,7 @@ class ViewListener
     /**
      * @return boolean
      */
-    public function getAutoGuess()
+    public function isAutoGuess()
     {
         return $this->autoGuess;
     }

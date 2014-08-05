@@ -12,7 +12,6 @@
 namespace PMD\Bundle\StateMachineBundle\Twig;
 
 use PMD\Bundle\StateMachineBundle\Provider\TokensProviderInterface;
-use PMD\Bundle\StateMachineBundle\Model\StatefulInterface;
 
 /**
  * Class PMDStateMachineExtension
