@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,20 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Action;
+namespace PMD\Bundle\StateMachineBundle\Action;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Templating\EngineInterface;
-use PMD\StateMachineBundle\Process\TokenInterface;
+use PMD\Bundle\StateMachineBundle\Process\TokenInterface;
 
 /**
  * Class TokenFormAction
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Action
+ * @package PMD\Bundle\StateMachineBundle\Action
  */
 class TokenFormAction extends AbstractTokenAction
 {

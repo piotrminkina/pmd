@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDResourcesResolverBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\ResourcesResolverBundle\DependencyInjection;
+namespace PMD\Bundle\Resource\ResolverBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -17,12 +17,12 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
 
 /**
- * Class PMDResourcesResolverExtension
+ * Class PMDResourceResolverExtension
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle\DependencyInjection
+ * @package PMD\Bundle\Resource\ResolverBundle\DependencyInjection
  */
-class PMDResourcesResolverExtension extends Extension
+class PMDResourceResolverExtension extends Extension
 {
     /**
      * @inheritdoc
@@ -42,6 +42,6 @@ class PMDResourcesResolverExtension extends Extension
      */
     public function getAlias()
     {
-        return 'pmd_resources_resolver';
+        return 'pmd_resource_resolver';
     }
 }

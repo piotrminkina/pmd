@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDDoctrineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\DoctrineBundle\ORM\Mapping;
+namespace PMD\Bundle\DoctrineBundle\ORM\Mapping;
 
 use Doctrine\ORM\Mapping\UnderscoreNamingStrategy as BaseNamingStrategy;
-use PMD\DoctrineBundle\Util\ReflectionBundle;
+use PMD\Bundle\DoctrineBundle\Util\ReflectionBundle;
 
 /**
  * Class NamingStrategyUnderscore
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\DoctrineBundle\ORM\Mapping
+ * @package PMD\Bundle\DoctrineBundle\ORM\Mapping
  */
 class NamingStrategyUnderscore extends BaseNamingStrategy
 {

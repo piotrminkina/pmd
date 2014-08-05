@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDDoctrineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\DoctrineBundle;
+namespace PMD\Bundle\DoctrineBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  * Class PMDDoctrineBundle
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\DoctrineBundle
+ * @package PMD\Bundle\DoctrineBundle
  */
 class PMDDoctrineBundle extends Bundle
 {

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,19 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Security\Authorization\Voter;
+namespace PMD\Bundle\StateMachineBundle\Security\Authorization\Voter;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface as SecurityToken;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use PMD\StateMachineBundle\Process\TokenInterface;
+use PMD\Bundle\StateMachineBundle\Process\TokenInterface;
 
 /**
  * Class TokenRoleVoter
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Security\Authorization\Voter
+ * @package PMD\Bundle\StateMachineBundle\Security\Authorization\Voter
  */
 class TokenRoleVoter extends AbstractTokenVoter
 {

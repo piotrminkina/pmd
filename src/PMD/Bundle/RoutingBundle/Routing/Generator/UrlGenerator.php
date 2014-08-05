@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDRoutingBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\RoutingBundle\Routing\Generator;
+namespace PMD\Bundle\RoutingBundle\Routing\Generator;
 
 use Symfony\Component\Routing\Generator\UrlGenerator as BaseUrlGenerator;
 use Doctrine\Common\Inflector\Inflector;
@@ -18,7 +18,7 @@ use Doctrine\Common\Inflector\Inflector;
  * Class UrlGenerator
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\RoutingBundle\Routing\Generator
+ * @package PMD\Bundle\RoutingBundle\Routing\Generator
  */
 class UrlGenerator extends BaseUrlGenerator
 {

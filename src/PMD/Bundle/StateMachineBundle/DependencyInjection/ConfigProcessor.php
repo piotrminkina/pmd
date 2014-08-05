@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\DependencyInjection;
+namespace PMD\Bundle\StateMachineBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\Reference;
  * Class ConfigProcessor
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\DependencyInjection
+ * @package PMD\Bundle\StateMachineBundle\DependencyInjection
  */
 class ConfigProcessor
 {

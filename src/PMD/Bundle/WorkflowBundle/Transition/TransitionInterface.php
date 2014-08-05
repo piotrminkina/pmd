@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDWorkflowBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\Transition;
+namespace PMD\Bundle\WorkflowBundle\Transition;
 
-use PMD\WorkflowBundle\Activity\ActivityInterface;
+use PMD\Bundle\WorkflowBundle\Activity\ActivityInterface;
 
 /**
  * A point during the execution of a process instance where one activity
  * completes and the thread of control passes to another, which starts.
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\Transition
+ * @package PMD\Bundle\WorkflowBundle\Transition
  */
 interface TransitionInterface
 {

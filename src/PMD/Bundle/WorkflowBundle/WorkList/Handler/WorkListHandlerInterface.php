@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDWorkflowBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\WorkList\Handler;
+namespace PMD\Bundle\WorkflowBundle\WorkList\Handler;
 
-use PMD\WorkflowBundle\WorkList\WorkListInterface;
+use PMD\Bundle\WorkflowBundle\WorkList\WorkListInterface;
 
 /**
  * A software component that manages the interaction between the user (or
  * group of users) and the work list maintained by a workflow engine.
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\WorkList\Handler
+ * @package PMD\Bundle\WorkflowBundle\WorkList\Handler
  */
 interface WorkListHandlerInterface
 {

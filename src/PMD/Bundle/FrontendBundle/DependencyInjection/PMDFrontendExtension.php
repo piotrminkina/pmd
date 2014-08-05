@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDFrontendBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\FrontendBundle\DependencyInjection;
+namespace PMD\Bundle\FrontendBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -21,7 +21,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  * Class PMDFrontendExtension
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\FrontendBundle\DependencyInjection
+ * @package PMD\Bundle\FrontendBundle\DependencyInjection
  */
 class PMDFrontendExtension extends Extension
 {

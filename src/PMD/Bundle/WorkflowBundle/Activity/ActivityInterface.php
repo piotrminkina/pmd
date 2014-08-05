@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDWorkflowBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\Activity;
+namespace PMD\Bundle\WorkflowBundle\Activity;
 
 use Doctrine\Common\Collections\Collection;
-use PMD\WorkflowBundle\Transition\TransitionInterface;
+use PMD\Bundle\WorkflowBundle\Transition\TransitionInterface;
 
 /**
  * A description of a piece of work that forms one logical step within
  * a process.
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\Activity
+ * @package PMD\Bundle\WorkflowBundle\Activity
  */
 interface ActivityInterface
 {

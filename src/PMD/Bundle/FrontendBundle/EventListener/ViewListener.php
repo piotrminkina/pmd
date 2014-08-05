@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDFrontendBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\FrontendBundle\EventListener;
+namespace PMD\Bundle\FrontendBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
@@ -17,13 +17,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
 use Sensio\Bundle\FrameworkExtraBundle\Templating\TemplateGuesser;
-use PMD\FrontendBundle\Templating\FrontendVariables;
+use PMD\Bundle\FrontendBundle\Templating\FrontendVariables;
 
 /**
  * Class ViewListener
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\FrontendBundle\EventListener
+ * @package PMD\Bundle\FrontendBundle\EventListener
  */
 class ViewListener
 {

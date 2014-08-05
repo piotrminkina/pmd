@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDWorkflowBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\Process;
+namespace PMD\Bundle\WorkflowBundle\Process;
 
 use Doctrine\Common\Collections\Collection;
-use PMD\WorkflowBundle\Activity\ActivityInterface;
-use PMD\WorkflowBundle\Transition\TransitionInterface;
+use PMD\Bundle\WorkflowBundle\Activity\ActivityInterface;
+use PMD\Bundle\WorkflowBundle\Transition\TransitionInterface;
 
 /**
  * The representation of a business process in a form which supports automated
@@ -21,7 +21,7 @@ use PMD\WorkflowBundle\Transition\TransitionInterface;
  * system.
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\Process
+ * @package PMD\Bundle\WorkflowBundle\Process
  */
 interface ProcessInterface
 {

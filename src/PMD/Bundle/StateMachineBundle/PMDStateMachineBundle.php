@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,21 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle;
+namespace PMD\Bundle\StateMachineBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use PMD\StateMachineBundle\DependencyInjection\Compiler\DefinitionPass;
-use PMD\StateMachineBundle\DependencyInjection\Compiler\CoordinatorPass;
-use PMD\StateMachineBundle\DependencyInjection\Compiler\CoordinatorDecoratorPass;
-use PMD\StateMachineBundle\DependencyInjection\Compiler\TokenConfigurablePass;
-use PMD\StateMachineBundle\DependencyInjection\Compiler\ActionPass;
+use PMD\Bundle\StateMachineBundle\DependencyInjection\Compiler\DefinitionPass;
+use PMD\Bundle\StateMachineBundle\DependencyInjection\Compiler\CoordinatorPass;
+use PMD\Bundle\StateMachineBundle\DependencyInjection\Compiler\CoordinatorDecoratorPass;
+use PMD\Bundle\StateMachineBundle\DependencyInjection\Compiler\TokenConfigurablePass;
+use PMD\Bundle\StateMachineBundle\DependencyInjection\Compiler\ActionPass;
 
 /**
  * Class PMDStateMachineBundle
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle
+ * @package PMD\Bundle\StateMachineBundle
  */
 class PMDStateMachineBundle extends Bundle
 {

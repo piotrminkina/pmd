@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle;
+namespace PMD\Bundle\StateMachineBundle;
 
-use PMD\StateMachineBundle\Process\CoordinatorInterface;
-use PMD\StateMachineBundle\Process\RegistryInterface;
-use PMD\StateMachineBundle\Model\StatefulInterface;
+use PMD\Bundle\StateMachineBundle\Process\CoordinatorInterface;
+use PMD\Bundle\StateMachineBundle\Process\RegistryInterface;
+use PMD\Bundle\StateMachineBundle\Model\StatefulInterface;
 
 /**
  * Class Factory
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle
+ * @package PMD\Bundle\StateMachineBundle
  */
 class Factory implements FactoryInterface
 {

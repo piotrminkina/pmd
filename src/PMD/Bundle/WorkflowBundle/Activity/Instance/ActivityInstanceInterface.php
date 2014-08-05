@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDWorkflowBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\Activity\Instance;
+namespace PMD\Bundle\WorkflowBundle\Activity\Instance;
 
-use PMD\WorkflowBundle\Activity\ActivityInterface;
-use PMD\WorkflowBundle\Process\Instance\ProcessInstanceInterface;
+use PMD\Bundle\WorkflowBundle\Activity\ActivityInterface;
+use PMD\Bundle\WorkflowBundle\Process\Instance\ProcessInstanceInterface;
 
 /**
  * The representation of an activity within a (single) enactment of a process,
  * i.e. within a process instance.
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\Activity\Instance
+ * @package PMD\Bundle\WorkflowBundle\Activity\Instance
  */
 interface ActivityInstanceInterface
 {

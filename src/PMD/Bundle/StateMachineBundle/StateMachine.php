@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,20 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle;
+namespace PMD\Bundle\StateMachineBundle;
 
 use Symfony\Component\HttpFoundation\Request;
-use PMD\StateMachineBundle\Process\Definition\StateInterface;
-use PMD\StateMachineBundle\Process\CoordinatorInterface;
-use PMD\StateMachineBundle\Process\TokenInterface;
-use PMD\StateMachineBundle\Model\ContextualInterface;
-use PMD\StateMachineBundle\Model\StatefulInterface;
+use PMD\Bundle\StateMachineBundle\Process\Definition\StateInterface;
+use PMD\Bundle\StateMachineBundle\Process\CoordinatorInterface;
+use PMD\Bundle\StateMachineBundle\Process\TokenInterface;
+use PMD\Bundle\StateMachineBundle\Model\ContextualInterface;
+use PMD\Bundle\StateMachineBundle\Model\StatefulInterface;
 
 /**
  * Class StateMachine
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle
+ * @package PMD\Bundle\StateMachineBundle
  */
 class StateMachine implements StateMachineInterface
 {

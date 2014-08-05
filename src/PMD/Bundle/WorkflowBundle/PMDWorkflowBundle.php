@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDWorkflowBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle;
+namespace PMD\Bundle\WorkflowBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  * Class PMDWorkflowBundle
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle
+ * @package PMD\Bundle\WorkflowBundle
  */
 class PMDWorkflowBundle extends Bundle
 {

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Process\Builder;
+namespace PMD\Bundle\StateMachineBundle\Process\Builder;
 
-use PMD\StateMachineBundle\Process\DefinitionInterface;
+use PMD\Bundle\StateMachineBundle\Process\DefinitionInterface;
 
 /**
  * Interface DefinitionBuilderInterface
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Process\Builder
+ * @package PMD\Bundle\StateMachineBundle\Process\Builder
  */
 interface DefinitionBuilderInterface
 {

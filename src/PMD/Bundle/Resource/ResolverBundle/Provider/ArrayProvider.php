@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDResourcesResolverBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\ResourcesResolverBundle\Provider;
+namespace PMD\Bundle\Resource\ResolverBundle\Provider;
 
-use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
-use PMD\ResourcesResolverBundle\Exception\NotFoundException;
+use PMD\Bundle\Resource\ResolverBundle\Exception\InvalidArgumentException;
+use PMD\Bundle\Resource\ResolverBundle\Exception\NotFoundException;
 
 /**
  * Class ArrayProvider
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle\Provider
+ * @package PMD\Bundle\Resource\ResolverBundle\Provider
  */
 class ArrayProvider implements ProviderInterface
 {

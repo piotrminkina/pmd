@@ -11,7 +11,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "PMD\\RoutingBundle": "" }
+        "psr-0": { "PMD\\Bundle\\RoutingBundle": "" }
     },
     "require": {
         "php": ">=5.3.3",
@@ -27,7 +27,7 @@
     "config": {
         "bin-dir": "bin"
     },
-    "target-dir": "PMD/RoutingBundle",
+    "target-dir": "PMD/Bundle/RoutingBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "0.1-dev"

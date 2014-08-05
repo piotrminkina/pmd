@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDResourcesResolverBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,20 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\ResourcesResolverBundle\Factory;
+namespace PMD\Bundle\Resource\ResolverBundle\Factory;
 
-use PMD\ResourcesResolverBundle\Collector\CollectorInterface;
-use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
-use PMD\ResourcesResolverBundle\Injector\InjectorInterface;
-use PMD\ResourcesResolverBundle\Parser\ParserInterface;
-use PMD\ResourcesResolverBundle\Provider\ProviderInterface;
-use PMD\ResourcesResolverBundle\Resolver\ResolverInterface;
+use PMD\Bundle\Resource\ResolverBundle\Collector\CollectorInterface;
+use PMD\Bundle\Resource\ResolverBundle\Exception\InvalidArgumentException;
+use PMD\Bundle\Resource\ResolverBundle\Injector\InjectorInterface;
+use PMD\Bundle\Resource\ResolverBundle\Parser\ParserInterface;
+use PMD\Bundle\Resource\ResolverBundle\Provider\ProviderInterface;
+use PMD\Bundle\Resource\ResolverBundle\Resolver\ResolverInterface;
 
 /**
  * Interface FactoryInterface
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle\Factory
+ * @package PMD\Bundle\Resource\ResolverBundle\Factory
  */
 interface FactoryInterface
 {

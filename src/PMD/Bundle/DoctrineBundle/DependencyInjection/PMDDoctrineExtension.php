@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDDoctrineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\DoctrineBundle\DependencyInjection;
+namespace PMD\Bundle\DoctrineBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -20,7 +20,7 @@ use Symfony\Component\Config\FileLocator;
  * Class PMDDoctrineExtension
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\DoctrineBundle\DependencyInjection
+ * @package PMD\Bundle\DoctrineBundle\DependencyInjection
  */
 class PMDDoctrineExtension extends Extension
 {

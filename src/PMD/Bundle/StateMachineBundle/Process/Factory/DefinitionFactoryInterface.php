@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Process\Factory;
+namespace PMD\Bundle\StateMachineBundle\Process\Factory;
 
-use PMD\StateMachineBundle\Process\Definition\StateInterface;
-use PMD\StateMachineBundle\Process\Definition\TransitionInterface;
-use PMD\StateMachineBundle\Process\DefinitionInterface;
+use PMD\Bundle\StateMachineBundle\Process\Definition\StateInterface;
+use PMD\Bundle\StateMachineBundle\Process\Definition\TransitionInterface;
+use PMD\Bundle\StateMachineBundle\Process\DefinitionInterface;
 
 /**
  * Interface DefinitionFactoryInterface
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Process\Factory
+ * @package PMD\Bundle\StateMachineBundle\Process\Factory
  */
 interface DefinitionFactoryInterface
 {

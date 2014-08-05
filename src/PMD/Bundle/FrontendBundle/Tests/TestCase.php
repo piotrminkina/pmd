@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDFrontendBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\FrontendBundle\Tests;
+namespace PMD\Bundle\FrontendBundle\Tests;
 
 /**
  * Class TestCase
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle\Tests
+ * @package PMD\Bundle\ResourcesResolverBundle\Tests
  */
 class TestCase extends \PHPUnit_Framework_TestCase
 {

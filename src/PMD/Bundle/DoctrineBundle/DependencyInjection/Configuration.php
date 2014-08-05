@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDDoctrineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\DoctrineBundle\DependencyInjection;
+namespace PMD\Bundle\DoctrineBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -19,7 +19,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * Class Configuration
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\DoctrineBundle\DependencyInjection
+ * @package PMD\Bundle\DoctrineBundle\DependencyInjection
  */
 class Configuration implements ConfigurationInterface
 {

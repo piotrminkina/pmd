@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\RoutingBundle\Tests;
+namespace PMD\Bundle\RoutingBundle\Tests;
 
 /**
  * Class TestCase
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\RoutingBundle\Tests
+ * @package PMD\Bundle\RoutingBundle\Tests
  */
 class TestCase extends \PHPUnit_Framework_TestCase
 {

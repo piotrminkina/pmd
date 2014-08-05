@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDResourcesResolverBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,30 +9,30 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\ResourcesResolverBundle\Factory;
+namespace PMD\Bundle\Resource\ResolverBundle\Factory;
 
-use PMD\ResourcesResolverBundle\Parser\ExpressionParser;
-use PMD\ResourcesResolverBundle\Parser\ParserChain;
-use PMD\ResourcesResolverBundle\Parser\ServiceParser;
+use PMD\Bundle\Resource\ResolverBundle\Parser\ExpressionParser;
+use PMD\Bundle\Resource\ResolverBundle\Parser\ParserChain;
+use PMD\Bundle\Resource\ResolverBundle\Parser\ServiceParser;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use PMD\ResourcesResolverBundle\Collector\Decorator\FilterExistsRequestAttribute;
-use PMD\ResourcesResolverBundle\Collector\Decorator\FilterRequestClass;
-use PMD\ResourcesResolverBundle\Collector\FunctionRequirements;
-use PMD\ResourcesResolverBundle\Collector\MethodRequirements;
-use PMD\ResourcesResolverBundle\Exception\InvalidArgumentException;
-use PMD\ResourcesResolverBundle\Injector\RequestAttributeInjector;
-use PMD\ResourcesResolverBundle\Parser\ParserInterface;
-use PMD\ResourcesResolverBundle\Parser\RecursiveParser;
-use PMD\ResourcesResolverBundle\Provider\Decorator\ParseDecorator;
-use PMD\ResourcesResolverBundle\Provider\RequestProvider;
-use PMD\ResourcesResolverBundle\Resolver\Resolver;
+use PMD\Bundle\Resource\ResolverBundle\Collector\Decorator\FilterExistsRequestAttribute;
+use PMD\Bundle\Resource\ResolverBundle\Collector\Decorator\FilterRequestClass;
+use PMD\Bundle\Resource\ResolverBundle\Collector\FunctionRequirements;
+use PMD\Bundle\Resource\ResolverBundle\Collector\MethodRequirements;
+use PMD\Bundle\Resource\ResolverBundle\Exception\InvalidArgumentException;
+use PMD\Bundle\Resource\ResolverBundle\Injector\RequestAttributeInjector;
+use PMD\Bundle\Resource\ResolverBundle\Parser\ParserInterface;
+use PMD\Bundle\Resource\ResolverBundle\Parser\RecursiveParser;
+use PMD\Bundle\Resource\ResolverBundle\Provider\Decorator\ParseDecorator;
+use PMD\Bundle\Resource\ResolverBundle\Provider\RequestProvider;
+use PMD\Bundle\Resource\ResolverBundle\Resolver\Resolver;
 
 /**
  * Class RequestControllerFactory
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle\Factory
+ * @package PMD\Bundle\Resource\ResolverBundle\Factory
  */
 class RequestControllerFactory implements FactoryInterface
 {

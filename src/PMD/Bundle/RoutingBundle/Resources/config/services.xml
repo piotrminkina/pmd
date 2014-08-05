@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <!--
-  - This file is part of the PMDRoutingBundle package.
+  - This file is part of the PMD package.
   -
   - (c) Piotr Minkina <projekty@piotrminkina.pl>
   -
@@ -14,7 +14,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="pmd_routing.routing_generator.url_generator.class">PMD\RoutingBundle\Routing\Generator\UrlGenerator</parameter>
+        <parameter key="pmd_routing.routing_generator.url_generator.class">PMD\Bundle\RoutingBundle\Routing\Generator\UrlGenerator</parameter>
 
         <parameter key="router.options.generator_class">%pmd_routing.routing_generator.url_generator.class%</parameter>
         <parameter key="router.options.generator_base_class">%pmd_routing.routing_generator.url_generator.class%</parameter>

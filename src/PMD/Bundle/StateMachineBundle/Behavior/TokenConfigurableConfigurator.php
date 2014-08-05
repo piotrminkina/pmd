@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Behavior;
+namespace PMD\Bundle\StateMachineBundle\Behavior;
 
-use PMD\StateMachineBundle\Behavior\Resolver\TokenOptionsResolver;
+use PMD\Bundle\StateMachineBundle\Behavior\Resolver\TokenOptionsResolver;
 
 /**
  * Class TokenConfigurableConfigurator
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Behavior
+ * @package PMD\Bundle\StateMachineBundle\Behavior
  */
 class TokenConfigurableConfigurator
 {

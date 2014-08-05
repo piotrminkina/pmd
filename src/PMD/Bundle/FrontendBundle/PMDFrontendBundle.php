@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDFrontendBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\FrontendBundle;
+namespace PMD\Bundle\FrontendBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  * Class PMDFrontendBundle
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\FrontendBundle
+ * @package PMD\Bundle\FrontendBundle
  */
 class PMDFrontendBundle extends Bundle
 {

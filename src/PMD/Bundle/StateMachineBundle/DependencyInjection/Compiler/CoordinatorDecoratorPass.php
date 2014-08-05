@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\DependencyInjection\Compiler;
+namespace PMD\Bundle\StateMachineBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  * Class CoordinatorDecoratorPass
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\DependencyInjection\Compiler
+ * @package PMD\Bundle\StateMachineBundle\DependencyInjection\Compiler
  */
 class CoordinatorDecoratorPass implements CompilerPassInterface
 {

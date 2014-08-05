@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDResourcesResolverBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\ResourcesResolverBundle\Collector;
+namespace PMD\Bundle\Resource\ResolverBundle\Collector;
 
-use PMD\ResourcesResolverBundle\Requirement\CallbackParameter;
-use PMD\ResourcesResolverBundle\Requirement\RequirementInterface;
+use PMD\Bundle\Resource\ResolverBundle\Requirement\CallbackParameter;
+use PMD\Bundle\Resource\ResolverBundle\Requirement\RequirementInterface;
 
 /**
  * Class AbstractCallableRequirements
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle\Collector
+ * @package PMD\Bundle\Resource\ResolverBundle\Collector
  */
 abstract class AbstractCallableRequirements implements CollectorInterface
 {

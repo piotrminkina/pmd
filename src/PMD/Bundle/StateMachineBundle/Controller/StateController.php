@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Controller;
+namespace PMD\Bundle\StateMachineBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use PMD\StateMachineBundle\Handler\HandlerInterface;
-use PMD\StateMachineBundle\Model\StatefulInterface;
+use PMD\Bundle\StateMachineBundle\Handler\HandlerInterface;
+use PMD\Bundle\StateMachineBundle\Model\StatefulInterface;
 
 /**
  * Class StateController
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Controller
+ * @package PMD\Bundle\StateMachineBundle\Controller
  */
 class StateController
 {

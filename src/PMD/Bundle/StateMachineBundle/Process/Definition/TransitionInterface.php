@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Process\Definition;
+namespace PMD\Bundle\StateMachineBundle\Process\Definition;
 
 /**
  * Interface TransitionInterface
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Process\Definition
+ * @package PMD\Bundle\StateMachineBundle\Process\Definition
  */
 interface TransitionInterface
 {

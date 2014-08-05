@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDResourcesResolverBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\ResourcesResolverBundle\Provider;
+namespace PMD\Bundle\Resource\ResolverBundle\Provider;
 
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class RequestProvider
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle\Provider
+ * @package PMD\Bundle\Resource\ResolverBundle\Provider
  */
 class RequestProvider extends ArrayProvider
 {

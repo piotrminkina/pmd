@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!--
-  - This file is part of the PMDStateMachineBundle package.
+  - This file is part of the PMD package.
   -
   - (c) Piotr Minkina <projekty@piotrminkina.pl>
   -
@@ -14,7 +14,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="pmd_state_machine.factory.class">PMD\StateMachineBundle\Factory</parameter>
+        <parameter key="pmd_state_machine.factory.class">PMD\Bundle\StateMachineBundle\Factory</parameter>
     </parameters>
 
     <services>

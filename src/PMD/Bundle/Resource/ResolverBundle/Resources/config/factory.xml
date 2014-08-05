@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <!--
-  - This file is part of the PMDResourcesResolverBundle package.
+  - This file is part of the PMD package.
   -
   - (c) Piotr Minkina <projekty@piotrminkina.pl>
   -
@@ -14,12 +14,12 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="pmd_resources_resolver.factory.request_controller_factory.class">PMD\ResourcesResolverBundle\Factory\RequestControllerFactory</parameter>
+        <parameter key="pmd_resource_resolver.factory.request_controller_factory.class">PMD\Bundle\Resource\ResolverBundle\Factory\RequestControllerFactory</parameter>
     </parameters>
 
     <services>
-        <service id="pmd_resources_resolver.factory.request_controller_factory"
-                 class="%pmd_resources_resolver.factory.request_controller_factory.class%">
+        <service id="pmd_resource_resolver.factory.request_controller_factory"
+                 class="%pmd_resource_resolver.factory.request_controller_factory.class%">
             <argument type="service" id="service_container"/>
         </service>
     </services>

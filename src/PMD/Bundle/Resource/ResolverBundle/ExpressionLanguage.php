@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDResourcesResolverBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\ResourcesResolverBundle;
+namespace PMD\Bundle\Resource\ResolverBundle;
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage as BaseExpressionLanguage;
 
@@ -17,7 +17,7 @@ use Symfony\Component\ExpressionLanguage\ExpressionLanguage as BaseExpressionLan
  * Class ExpressionLanguage
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle
+ * @package PMD\Bundle\Resource\ResolverBundle
  */
 class ExpressionLanguage extends BaseExpressionLanguage
 {

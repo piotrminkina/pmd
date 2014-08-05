@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDWorkflowBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\WorkList;
+namespace PMD\Bundle\WorkflowBundle\WorkList;
 
 use Doctrine\Common\Collections\Collection;
-use PMD\WorkflowBundle\WorkItem\WorkItemInterface;
+use PMD\Bundle\WorkflowBundle\WorkItem\WorkItemInterface;
 
 /**
  * A list of work items associated with a given workflow participant.
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\WorkList
+ * @package PMD\Bundle\WorkflowBundle\WorkList
  */
 interface WorkListInterface
 {

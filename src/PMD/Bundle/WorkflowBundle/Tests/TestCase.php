@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDWorkflowBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\Tests;
+namespace PMD\Bundle\WorkflowBundle\Tests;
 
 /**
  * Class TestCase
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\Tests
+ * @package PMD\Bundle\WorkflowBundle\Tests
  */
 class TestCase extends \PHPUnit_Framework_TestCase
 {

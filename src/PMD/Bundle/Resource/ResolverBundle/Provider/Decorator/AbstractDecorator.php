@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDResourcesResolverBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\ResourcesResolverBundle\Provider\Decorator;
+namespace PMD\Bundle\Resource\ResolverBundle\Provider\Decorator;
 
-use PMD\ResourcesResolverBundle\Provider\ProviderInterface;
+use PMD\Bundle\Resource\ResolverBundle\Provider\ProviderInterface;
 
 /**
  * Class AbstractDecorator
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle\Provider\Decorator
+ * @package PMD\Bundle\Resource\ResolverBundle\Provider\Decorator
  */
 abstract class AbstractDecorator implements ProviderInterface
 {

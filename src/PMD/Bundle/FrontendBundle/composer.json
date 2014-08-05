@@ -11,7 +11,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "PMD\\FrontendBundle": "" }
+        "psr-0": { "PMD\\Bundle\\FrontendBundle": "" }
     },
     "require": {
         "php": ">=5.3.3",
@@ -30,7 +30,7 @@
     "config": {
         "bin-dir": "bin"
     },
-    "target-dir": "PMD/FrontendBundle",
+    "target-dir": "PMD/Bundle/FrontendBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "0.1-dev"

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Process\Decorator;
+namespace PMD\Bundle\StateMachineBundle\Process\Decorator;
 
 use Symfony\Component\HttpFoundation\Request;
-use PMD\StateMachineBundle\Process\CoordinatorInterface;
-use PMD\StateMachineBundle\Process\TokenInterface;
-use PMD\StateMachineBundle\StateMachineInterface;
+use PMD\Bundle\StateMachineBundle\Process\CoordinatorInterface;
+use PMD\Bundle\StateMachineBundle\Process\TokenInterface;
+use PMD\Bundle\StateMachineBundle\StateMachineInterface;
 
 /**
  * Class AbstractCoordinatorDecorator
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Process\Decorator
+ * @package PMD\Bundle\StateMachineBundle\Process\Decorator
  */
 abstract class AbstractCoordinatorDecorator implements CoordinatorInterface
 {

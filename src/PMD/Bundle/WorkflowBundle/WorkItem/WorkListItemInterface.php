@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDWorkflowBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\WorkItem;
+namespace PMD\Bundle\WorkflowBundle\WorkItem;
 
-use PMD\WorkflowBundle\Activity\Instance\ActivityInstanceInterface;
+use PMD\Bundle\WorkflowBundle\Activity\Instance\ActivityInstanceInterface;
 
 /**
  * The representation of the work to be processed (by a workflow participant)
  * in the context of an activity within a process instance.
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\WorkItem
+ * @package PMD\Bundle\WorkflowBundle\WorkItem
  */
 interface WorkItemInterface
 {

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDResourcesResolverBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\ResourcesResolverBundle;
+namespace PMD\Bundle\Resource\ResolverBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class PMDResourcesResolverBundle
+ * Class PMDResourceResolverBundle
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle
+ * @package PMD\Bundle\Resource\ResolverBundle
  */
-class PMDResourcesResolverBundle extends Bundle
+class PMDResourceResolverBundle extends Bundle
 {
 }

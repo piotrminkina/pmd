@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDFrontendBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\FrontendBundle\Twig;
+namespace PMD\Bundle\FrontendBundle\Twig;
 
-use PMD\FrontendBundle\Templating\FrontendVariables;
+use PMD\Bundle\FrontendBundle\Templating\FrontendVariables;
 
 /**
  * Class PMDFrontendExtension
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\FrontendBundle\Twig
+ * @package PMD\Bundle\FrontendBundle\Twig
  */
 class PMDFrontendExtension extends \Twig_Extension
 {

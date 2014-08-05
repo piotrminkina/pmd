@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,21 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Process\Decorator;
+namespace PMD\Bundle\StateMachineBundle\Process\Decorator;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use PMD\StateMachineBundle\Process\CoordinatorInterface;
-use PMD\StateMachineBundle\Process\TokenInterface;
-use PMD\StateMachineBundle\Security\Authorization\Voter\AbstractTokenVoter;
-use PMD\StateMachineBundle\StateMachineInterface;
+use PMD\Bundle\StateMachineBundle\Process\CoordinatorInterface;
+use PMD\Bundle\StateMachineBundle\Process\TokenInterface;
+use PMD\Bundle\StateMachineBundle\Security\Authorization\Voter\AbstractTokenVoter;
+use PMD\Bundle\StateMachineBundle\StateMachineInterface;
 
 /**
  * Class GuardCoordinatorDecorator
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Process\Decorator
+ * @package PMD\Bundle\StateMachineBundle\Process\Decorator
  */
 class GuardCoordinatorDecorator extends AbstractCoordinatorDecorator
 {

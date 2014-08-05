@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDResourcesResolverBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\ResourcesResolverBundle\EventListener;
+namespace PMD\Bundle\Resource\ResolverBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use PMD\ResourcesResolverBundle\Factory\RequestControllerFactory;
+use PMD\Bundle\Resource\ResolverBundle\Factory\RequestControllerFactory;
 
 /**
  * Class ControllerListener
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle\EventListener
+ * @package PMD\Bundle\Resource\ResolverBundle\EventListener
  */
 class ControllerListener implements EventSubscriberInterface
 {

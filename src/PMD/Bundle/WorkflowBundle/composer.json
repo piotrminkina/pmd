@@ -11,7 +11,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "PMD\\WorkflowBundle": "" }
+        "psr-0": { "PMD\\Bundle\\WorkflowBundle": "" }
     },
     "require": {
         "php": ">=5.3.3",
@@ -24,7 +24,7 @@
     "config": {
         "bin-dir": "bin"
     },
-    "target-dir": "PMD/WorkflowBundle",
+    "target-dir": "PMD/Bundle/WorkflowBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "0.1-dev"

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Twig;
+namespace PMD\Bundle\StateMachineBundle\Twig;
 
-use PMD\StateMachineBundle\Provider\TokensProviderInterface;
-use PMD\StateMachineBundle\Model\StatefulInterface;
+use PMD\Bundle\StateMachineBundle\Provider\TokensProviderInterface;
+use PMD\Bundle\StateMachineBundle\Model\StatefulInterface;
 
 /**
  * Class PMDStateMachineExtension
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Twig
+ * @package PMD\Bundle\StateMachineBundle\Twig
  */
 class PMDStateMachineExtension extends \Twig_Extension
 {

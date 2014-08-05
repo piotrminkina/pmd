@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Behavior;
+namespace PMD\Bundle\StateMachineBundle\Behavior;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use PMD\StateMachineBundle\Behavior\Resolver\TokenOptionsResolverInterface;
-use PMD\StateMachineBundle\Process\TokenInterface;
+use PMD\Bundle\StateMachineBundle\Behavior\Resolver\TokenOptionsResolverInterface;
+use PMD\Bundle\StateMachineBundle\Process\TokenInterface;
 
 /**
  * Class AbstractConfigurableBehavior
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Behavior
+ * @package PMD\Bundle\StateMachineBundle\Behavior
  */
 abstract class AbstractConfigurableBehavior implements TokenConfigurableInterface
 {

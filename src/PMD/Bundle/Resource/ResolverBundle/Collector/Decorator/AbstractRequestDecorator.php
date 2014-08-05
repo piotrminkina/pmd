@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDResourcesResolverBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\ResourcesResolverBundle\Collector\Decorator;
+namespace PMD\Bundle\Resource\ResolverBundle\Collector\Decorator;
 
 use Symfony\Component\HttpFoundation\Request;
-use PMD\ResourcesResolverBundle\Collector\CollectorInterface;
+use PMD\Bundle\Resource\ResolverBundle\Collector\CollectorInterface;
 
 /**
  * Class AbstractRequestDecorator
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle\Collector\Decorator
+ * @package PMD\Bundle\Resource\ResolverBundle\Collector\Decorator
  */
 abstract class AbstractRequestDecorator extends AbstractDecorator
 {

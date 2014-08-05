@@ -11,7 +11,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "PMD\\DoctrineBundle": "" }
+        "psr-0": { "PMD\\Bundle\\DoctrineBundle": "" }
     },
     "require": {
         "php": ">=5.3.3",
@@ -29,7 +29,7 @@
     "config": {
         "bin-dir": "bin"
     },
-    "target-dir": "PMD/DoctrineBundle",
+    "target-dir": "PMD/Bundle/DoctrineBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "0.1-dev"

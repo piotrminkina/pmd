@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDWorkflowBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\Model;
+namespace PMD\Bundle\WorkflowBundle\Model;
 
 /**
  * Class StatefulInterface
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\Model
+ * @package PMD\Bundle\WorkflowBundle\Model
  */
 interface StatefulInterface
 {

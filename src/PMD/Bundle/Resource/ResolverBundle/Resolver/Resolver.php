@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDResourcesResolverBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\ResourcesResolverBundle\Resolver;
+namespace PMD\Bundle\Resource\ResolverBundle\Resolver;
 
-use PMD\ResourcesResolverBundle\Collector\CollectorInterface;
-use PMD\ResourcesResolverBundle\Exception\ResourceNotFoundException;
-use PMD\ResourcesResolverBundle\Injector\InjectorInterface;
-use PMD\ResourcesResolverBundle\Provider\ProviderReadInterface;
+use PMD\Bundle\Resource\ResolverBundle\Collector\CollectorInterface;
+use PMD\Bundle\Resource\ResolverBundle\Exception\ResourceNotFoundException;
+use PMD\Bundle\Resource\ResolverBundle\Injector\InjectorInterface;
+use PMD\Bundle\Resource\ResolverBundle\Provider\ProviderReadInterface;
 
 /**
  * Class Resolver
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle\Resolver
+ * @package PMD\Bundle\Resource\ResolverBundle\Resolver
  */
 class Resolver implements ResolverInterface
 {

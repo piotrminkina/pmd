@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Behavior\Resolver;
+namespace PMD\Bundle\StateMachineBundle\Behavior\Resolver;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use PMD\StateMachineBundle\Behavior\Options\OptionsRegistryInterface;
-use PMD\StateMachineBundle\Process\TokenInterface;
+use PMD\Bundle\StateMachineBundle\Behavior\Options\OptionsRegistryInterface;
+use PMD\Bundle\StateMachineBundle\Process\TokenInterface;
 
 /**
  * Class TokenOptionsResolver
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Behavior\Resolver
+ * @package PMD\Bundle\StateMachineBundle\Behavior\Resolver
  */
 class TokenOptionsResolver implements TokenOptionsResolverInterface
 {

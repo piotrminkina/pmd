@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDResourcesResolverBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\ResourcesResolverBundle\Parser;
+namespace PMD\Bundle\Resource\ResolverBundle\Parser;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use PMD\ResourcesResolverBundle\ExpressionLanguage;
+use PMD\Bundle\Resource\ResolverBundle\ExpressionLanguage;
 
 /**
  * Class ExpressionParser
  *
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\ResourcesResolverBundle\Parser
+ * @package PMD\Bundle\Resource\ResolverBundle\Parser
  */
 class ExpressionParser implements ParserInterface
 {

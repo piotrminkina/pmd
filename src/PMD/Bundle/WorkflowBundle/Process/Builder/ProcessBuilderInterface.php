@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDWorkflowBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\WorkflowBundle\Definition\Builder;
+namespace PMD\Bundle\WorkflowBundle\Definition\Builder;
 
-use PMD\WorkflowBundle\Activity\ActivityInterface;
-use PMD\WorkflowBundle\Process\ProcessInterface;
-use PMD\WorkflowBundle\Transition\TransitionInterface;
+use PMD\Bundle\WorkflowBundle\Activity\ActivityInterface;
+use PMD\Bundle\WorkflowBundle\Process\ProcessInterface;
+use PMD\Bundle\WorkflowBundle\Transition\TransitionInterface;
 
 /**
  * Interface ProcessBuilderInterface
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\WorkflowBundle\Process\Builder
+ * @package PMD\Bundle\WorkflowBundle\Process\Builder
  */
 interface ProcessBuilderInterface
 {

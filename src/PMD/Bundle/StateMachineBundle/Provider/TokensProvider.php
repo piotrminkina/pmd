@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PMDStateMachineBundle package.
+ * This file is part of the PMD package.
  *
  * (c) Piotr Minkina <projekty@piotrminkina.pl>
  *
@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace PMD\StateMachineBundle\Provider;
+namespace PMD\Bundle\StateMachineBundle\Provider;
 
 use Symfony\Component\HttpFoundation\RequestStack;
-use PMD\StateMachineBundle\Process\TokenReadInterface;
-use PMD\StateMachineBundle\Model\StatefulInterface;
-use PMD\StateMachineBundle\FactoryInterface;
+use PMD\Bundle\StateMachineBundle\Process\TokenReadInterface;
+use PMD\Bundle\StateMachineBundle\Model\StatefulInterface;
+use PMD\Bundle\StateMachineBundle\FactoryInterface;
 
 /**
  * Class TokensProvider
  * 
  * @author Piotr Minkina <projekty@piotrminkina.pl>
- * @package PMD\StateMachineBundle\Provider
+ * @package PMD\Bundle\StateMachineBundle\Provider
  */
 class TokensProvider implements TokensProviderInterface
 {
