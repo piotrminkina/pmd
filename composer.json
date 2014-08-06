@@ -20,7 +20,7 @@
     "replace": {
         "piotrminkina/doctrine-bundle": "self.version",
         "piotrminkina/frontend-bundle": "self.version",
-        "piotrminkina/resources-resolver-bundle": "self.version",
+        "piotrminkina/resource-resolver-bundle": "self.version",
         "piotrminkina/routing-bundle": "self.version",
         "piotrminkina/state-machine-bundle": "self.version",
         "piotrminkina/workflow-bundle": "self.version"
@@ -34,6 +34,7 @@
     "config": {
         "bin-dir": "bin"
     },
+    "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
             "dev-master": "0.1-dev"
